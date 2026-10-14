@@ -1,0 +1,19 @@
+# 本地工作区数据（编辑器/智能体的项目元数据，不入库）
+.workbuddy/
+
+# 浏览器临时 profile
+.edgeprof/
+.edgeprof_tmp/
+
+# 验收截图：体积大且可由 tools/_shot.mjs 重新生成
+assets/_shots/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# 系统
+.DS_Store
+Thumbs.db
+desktop.ini
