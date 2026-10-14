@@ -6,7 +6,13 @@
 .edgeprof_tmp/
 
 # 验收截图：体积大且可由 tools/_shot.mjs 重新生成
-assets/_shots/
+public/assets/_shots/
+
+# 同工作区里的另一个独立项目（含简历等个人信息，不属于本站）
+个人简历/
+
+# 同工作区里的另一个独立项目（自带 .git 的「AI 行业日报看板」，不属于本站）
+/Test/
 
 # Python
 __pycache__/

@@ -3,7 +3,7 @@
 // 前提：本地已在 8765 起静态服务，Edge 无头已在 9333 开远程调试。
 const PORT = process.env.CDP_PORT || 9333;
 const URL_ = process.env.PAGE_URL || "http://127.0.0.1:8765/index.html";
-const OUT = process.env.OUT_DIR || "assets/_shots";
+const OUT = process.env.OUT_DIR || "public/assets/_shots";
 
 import { mkdirSync, writeFileSync } from "node:fs";
 mkdirSync(OUT, { recursive: true });

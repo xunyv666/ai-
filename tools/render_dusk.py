@@ -16,7 +16,7 @@ FPS = 24
 FRAMES = 144
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-ASSETS = os.path.join(ROOT, "assets")
+ASSETS = os.path.join(ROOT, "public", "assets")
 os.makedirs(ASSETS, exist_ok=True)
 
 HORIZON = 0.660
