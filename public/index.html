@@ -1,704 +1,1713 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>赵继晨 — 学生</title>
-<meta name="description" content="赵继晨的个人网站。">
-<meta name="theme-color" content="#0d0f1e">
-<meta property="og:type" content="website">
-<meta property="og:title" content="赵继晨 — 学生">
-<meta property="og:description" content="赵继晨的个人网站。">
-<meta property="og:image" content="assets/dusk-poster.jpg">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230d0f1e'/%3E%3Cpath d='M4 20 Q9.5 12.5 15 20 Q20.5 12.5 28 20' fill='none' stroke='%23eb8f4a' stroke-width='2.6' stroke-linecap='round'/%3E%3C/svg%3E">
+<html lang="zh-CN" data-page-node-id="AaPosvP9ypUgDglssOw8th">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400&family=Inter+Tight:wght@400;500&display=swap" rel="stylesheet">
+<head data-page-node-id="ooFQjDLQhv7xdXMoBpUw5O">
+  <meta charset="UTF-8" data-page-node-id="XFkuYoRIeKXWQ21nSzMYhP">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"
+    data-page-node-id="4nhgnYRvFwnOG1ZKsXLFX7">
+  <title>赵继晨 — 学生</title>
+  <meta name="description" content="赵继晨的个人网站。" data-page-node-id="Gik5VkWqk0ldXf1GahIxGh">
+  <meta name="theme-color" content="#0a0b10" data-page-node-id="acyJkFcX2zY6m7IwXuRGFC">
+  <meta property="og:type" content="website" data-page-node-id="FVlwlQdR5FPV0VFiVshFDo">
+  <meta property="og:title" content="赵继晨 — 学生" data-page-node-id="FeBeMud5EYKhjBv6C2hLJz">
+  <meta property="og:description" content="赵继晨的个人网站。" data-page-node-id="HNjf7m52w6nteqRB6TW8HW">
+  <meta property="og:image" content="assets/dusk-poster.jpg" data-page-node-id="TSX2sHizY4WQLJ0cvADWGW">
+  <link rel="icon"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23c7d6ea'/%3E%3Cpath d='M4 20 Q9.5 12.5 15 20 Q20.5 12.5 28 20' fill='none' stroke='%234a6fa5' stroke-width='2.6' stroke-linecap='round'/%3E%3C/svg%3E"
+    data-page-node-id="iOxt11EqbGpVmCdgi3ncIP">
 
-<style>
-:root{
-  --ink:#f4ece0;
-  --ink-soft:rgba(244,236,224,.68);
-  --ink-faint:rgba(244,236,224,.44);
-  --night:#0d0f1e;
-  --rule:rgba(244,236,224,.18);
-  --amber:#eb8f4a;
-  --amber-sunk:#ff9b4a;
-  --pill-fg:#171021;
-  --ease:cubic-bezier(.22,.61,.36,1);
-  --dusk:0;
-}
-*,*::before,*::after{ box-sizing:border-box; }
-html{ -webkit-text-size-adjust:100%; }
-body{
-  margin:0;
-  background:var(--night);
-  color:var(--ink);
-  font-family:'Inter Tight','PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;
-  font-weight:400;
-  -webkit-font-smoothing:antialiased;
-  -moz-osx-font-smoothing:grayscale;
-  overflow-x:hidden;
-}
-h1,h2,p,ol,li,figure{ margin:0; padding:0; }
-ol{ list-style:none; }
-a{ color:inherit; }
+  <link rel="preconnect" href="https://fonts.googleapis.com" data-page-node-id="BtZsTURxeQ0KI4n8Fpr9xl">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin data-page-node-id="DUBAgUu7b47m02shlSWgy3">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400&family=Inter+Tight:wght@400;500&display=swap"
+    rel="stylesheet" data-page-node-id="Wxj0kFmXRX4Hmz4xTRVbTA">
 
-/* ============ 固定背景舞台 ============ */
-.stage{
-  position:fixed; inset:0; z-index:0; overflow:hidden;
-  background-color:var(--night);
-  /* 第一层是静帧（100KB，秒开）；万一静帧也失败，退到纯 CSS 黄昏渐变 */
-  background-image:url("assets/dusk-poster.jpg"),
-    linear-gradient(to bottom,
-      #0c0e1c 0%, #1b1a34 16%, #392b4a 34%, #653d4f 47%,
-      #a1554a 56%, #e0965a 62.5%, #f9d3a0 66%,
-      #6d4b3e 66.6%, #2b2439 73%, #0b0c19 100%);
-  background-size:cover, cover;
-  background-position:center, center;
-  background-repeat:no-repeat, no-repeat;
-}
-/* CSS 落日：静帧/CSS 兜底时的太阳，随滚动下沉。
+  <style>
+    :root {
+      --ink: #f3e9dc;
+      --ink-soft: rgba(243, 233, 220, .74);
+      --ink-faint: rgba(243, 233, 220, .46);
+      --night: #f4ece1;
+      --rule: rgba(243, 233, 220, .18);
+      --amber: #d99a55;
+      --amber-sunk: #c6893f;
+      --pill-fg: #14100b;
+      --ease: cubic-bezier(.22, .61, .36, 1);
+      --dusk: 0;
+      --suny: 62%;
+      /* 太阳纵向位置：滚动唯一驱动的东西 */
+      --sunp: 0;
+      /* 太阳升起进度 0~1，用于光强 */
+      --sunx: 63%;
+      /* 视频里太阳的横向位置：金鳞光带跟着它走 */
+
+      /* ---- 配色：暗调夕阳（墨黑天空 / 黑海面 / 金色霞光） ---- */
+      --s-top: 11, 12, 20;
+      /* 天空顶（近黑） */
+      --s-rose: 34, 24, 34;
+      /* 天空暗紫过渡 */
+      --s-mid: 88, 52, 46;
+      /* 天际暖暗 */
+      --s-lor: 255, 184, 104;
+      /* 地平线金光 */
+      --sea-a: 26, 30, 36;
+      /* 远海（暗） */
+      --sea-b: 6, 7, 10;
+      /* 近海（近黑） */
+      --sand: 58, 46, 36;
+      /* 暗金沙 */
+      --sand2: 26, 23, 21;
+      --page: 10, 11, 16;
+      /* 页面底色 */
+      --wash: 46, 38, 46;
+      /* 天空洗染（暗） */
+      --wash-a: .34;
+      --haze: 255, 176, 102;
+      /* 地平线霞光 */
+      --chrome: 9, 10, 15;
+      /* 顶栏/页脚渐隐底 */
+      --veil: 7, 7, 11;
+      /* 罩染 */
+      --deep: 0, 0, 0;
+      /* 暗角 */
+      --sun: 255, 192, 124;
+      /* 太阳光晕 */
+      --tint-op: .96;
+      --vid: brightness(.50) contrast(1.22) saturate(.90) sepia(.20);
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+      margin: 0;
+      background: rgb(var(--page));
+      color: var(--ink);
+      font-family: 'Inter Tight', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+      font-weight: 400;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+    }
+
+    h1,
+    h2,
+    p,
+    ol,
+    li,
+    figure {
+      margin: 0;
+      padding: 0;
+    }
+
+    ol {
+      list-style: none;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    /* ============ 固定背景舞台 ============ */
+    .stage {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+      background-color: rgb(var(--page));
+      /* 第一层是静帧（100KB，秒开）；万一静帧也失败，退到纯 CSS 海岸渐变 */
+      background-image:
+        linear-gradient(rgba(8, 9, 14, .74), rgba(8, 9, 14, .74)),
+        url("assets/dusk-poster.jpg"),
+        linear-gradient(to bottom,
+          rgb(var(--s-top)) 0%, rgb(var(--s-rose)) 26%, rgb(var(--s-mid)) 46%,
+          rgb(var(--s-lor)) 61%, rgb(var(--s-lor)) 66%,
+          rgb(var(--sea-a)) 66.6%, rgb(var(--sea-b)) 100%);
+      background-size: cover, cover, cover;
+      background-position: center, center, center;
+      background-repeat: no-repeat, no-repeat, no-repeat;
+    }
+
+    /* CSS 初阳：静帧/CSS 兜底时的太阳，随滚动上升。
    transform 与 opacity 都是合成器属性，逐帧改不触发重绘。 */
-.stage::before{
-  content:''; position:absolute; left:39.5%; top:60.5%;
-  width:clamp(90px, 9.5vw, 190px); height:clamp(90px, 9.5vw, 190px);
-  border-radius:50%;
-  background:radial-gradient(closest-side, #fff3d6 0%, #ffc178 42%, rgba(255,150,70,.42) 68%, rgba(255,150,70,0) 100%);
-  transform:translate(-50%,-50%) translateY(calc(var(--dusk) * 44vh));
-  opacity:calc(1 - var(--dusk) * .80);
-}
-/* 视频一旦就绪，CSS 落日立刻让位：否则它会以硬边圆盘叠在视频的落日之上 */
-.stage.is-ready::before{ opacity:0; visibility:hidden; }
-.stage video{
-  position:absolute; top:50%; left:50%;
-  width:100%; height:100%;
-  transform:translate(-50%,-50%) scale(1.02);
-  object-fit:cover;
-  filter:saturate(.92) contrast(1.04);
-  opacity:0; transition:opacity 1.1s var(--ease);
-  background:transparent;
-}
-.stage.is-ready video{ opacity:1; }
+    .stage::before {
+      content: '';
+      position: absolute;
+      left: var(--sunx);
+      top: var(--suny);
+      width: clamp(90px, 9.5vw, 190px);
+      height: clamp(90px, 9.5vw, 190px);
+      border-radius: 50%;
+      background: radial-gradient(closest-side, rgba(255, 246, 226, .98) 0%, rgba(var(--sun), .92) 38%, rgba(var(--sun), .30) 64%, rgba(var(--sun), 0) 100%);
+      transform: translate(-50%, -50%);
+      opacity: calc(1 - var(--dusk) * .80);
+    }
 
-/* 深色罩染：顶/底更重（给导航与页脚压底），左侧给文字留暗底 */
-.veil{
-  position:absolute; inset:0; pointer-events:none;
-  background:
-    linear-gradient(to bottom,
-      rgba(7,8,18,.86) 0%, rgba(7,8,18,.34) 18%, rgba(7,8,18,.10) 42%,
-      rgba(7,8,18,.26) 72%, rgba(7,8,18,.90) 100%),
-    linear-gradient(102deg,
-      rgba(7,8,18,.74) 0%, rgba(7,8,18,.34) 34%, rgba(7,8,18,.06) 58%, rgba(7,8,18,0) 74%),
-    radial-gradient(120% 88% at 62% 64%, rgba(255,152,72,.10) 0%, rgba(7,8,18,0) 60%),
-    radial-gradient(140% 122% at 50% 46%, rgba(7,8,18,0) 40%, rgba(4,5,12,.62) 100%);
-}
-/* 入夜层：滚动越深越暗。只用 opacity，避免逐帧改动 background 造成全屏重绘。 */
-.night{
-  position:absolute; inset:0; pointer-events:none;
-  background:#05060f;
-  opacity:calc(.06 + var(--dusk) * .40);
-}
-.grain{
-  position:absolute; inset:-50%; pointer-events:none;
-  opacity:.17; mix-blend-mode:overlay;
-  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/></filter><rect width='140' height='140' filter='url(%23n)' opacity='.5'/></svg>");
-}
-/* 缓慢漂移的海鸥剪影 */
-.birds{ position:absolute; inset:0; pointer-events:none; color:#0a0b17; }
-.birds svg{ position:absolute; fill:none; stroke:currentColor; stroke-width:2; stroke-linecap:round; }
-.birds svg:nth-child(1){ width:74px; top:22%; left:-12%; opacity:.34; animation:glide 46s linear infinite; }
-.birds svg:nth-child(2){ width:52px; top:34%; left:-12%; opacity:.26; animation:glide 67s linear infinite 8s; }
-.birds svg:nth-child(3){ width:38px; top:44%; left:-12%; opacity:.20; animation:glide 88s linear infinite 22s; }
-@keyframes glide{
-  from{ transform:translate3d(0,0,0) }
-  to{ transform:translate3d(128vw,0,0) }
-}
+    /* 视频一旦就绪，CSS 初阳立刻让位：否则它会以硬边圆盘叠在视频的初阳之上 */
+    .stage.is-ready::before {
+      opacity: 0;
+      visibility: hidden;
+    }
 
-/* ============ 顶栏 / 页脚 / 右侧章节轨 ============ */
-.chrome{
-  position:fixed; left:0; right:0; top:0; z-index:40;
-  display:flex; align-items:center; justify-content:space-between; gap:12px;
-  padding:max(14px, calc(env(safe-area-inset-top, 0px) + 12px)) clamp(18px, 3.6vw, 54px) 14px;
-  background:linear-gradient(to bottom, rgba(11,12,24,.90) 0%, rgba(11,12,24,.66) 68%, rgba(11,12,24,0) 100%);
-}
-.mark{ display:flex; align-items:center; gap:9px; font-size:15px; letter-spacing:.01em; min-width:0; }
-.mark svg{ width:24px; height:14px; flex-shrink:0; fill:none; stroke:var(--amber); stroke-width:2.1; stroke-linecap:round; }
-.nav{ display:flex; align-items:center; gap:clamp(14px, 2.4vw, 30px); flex-shrink:0; }
-.nav a:not(.pill){
-  color:var(--ink); text-decoration:none; font-size:14.5px;
-  opacity:.86; cursor:pointer; transition:opacity .3s var(--ease);
-}
-.nav a:not(.pill):hover{ opacity:1; }
-.pill{
-  display:inline-flex; align-items:center; justify-content:center;
-  height:40px; padding:0 22px; border-radius:999px;
-  background:var(--amber); color:var(--pill-fg);
-  font-size:14.5px; font-weight:500; letter-spacing:.01em;
-  text-decoration:none; white-space:nowrap; cursor:pointer;
-  border:1px solid rgba(255,255,255,.22);
-  box-shadow:0 6px 22px -10px rgba(235,143,74,.9), 0 1px 0 rgba(255,255,255,.30) inset;
-  -webkit-text-fill-color:var(--pill-fg);
-  transition:transform .4s var(--ease), background .3s var(--ease);
-}
-.nav .pill{ color:var(--pill-fg); -webkit-text-fill-color:var(--pill-fg); }
-.pill:hover,.pill:focus-visible{ transform:translateY(-2px); background:var(--amber-sunk); }
-.pill:focus-visible,.nav a:focus-visible{ outline:2px solid var(--amber); outline-offset:3px; }
+    .stage video {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 100%;
+      height: 100%;
+      /* 画面上移 7%，太阳在屏内抬高；scale 补足位移带来的边缘露出 */
+      transform: translate(-50%, -50%) translateY(-7%) scale(1.16);
+      object-fit: cover;
+      filter: var(--vid);
+      opacity: 0;
+      transition: opacity 1.1s var(--ease);
+      background: transparent;
+    }
 
-.foot{
-  position:fixed; bottom:0; left:0; right:0; z-index:40;
-  display:flex; justify-content:center; pointer-events:none;
-  padding:14px clamp(18px, 4vw, 24px) max(16px, calc(env(safe-area-inset-bottom, 0px) + 12px));
-  font-size:12px; line-height:1.45; letter-spacing:.02em;
-  color:var(--ink-faint); text-align:center;
-  background:linear-gradient(to top, rgba(11,12,24,.88) 0%, rgba(11,12,24,.62) 70%, rgba(11,12,24,0) 100%);
-}
-.hint{
-  position:fixed; z-index:40; left:50%; bottom:max(52px, calc(env(safe-area-inset-bottom, 0px) + 48px));
-  transform:translateX(-50%);
-  font-size:11.5px; letter-spacing:.14em; color:var(--ink-faint);
-  pointer-events:none; white-space:nowrap;
-  transition:opacity .6s var(--ease);
-}
-.hint b{ font-weight:400; color:var(--amber); }
+    .stage.is-ready video {
+      opacity: 1;
+    }
 
-.rail{
-  position:fixed; z-index:41; right:clamp(18px, 3.6vw, 54px); top:50%;
-  transform:translateY(-50%);
-  display:flex; align-items:center; gap:14px;
-}
-.rail .line{ position:relative; width:1px; height:132px; background:var(--rule); overflow:hidden; }
-.rail .line i{ display:block; width:100%; height:100%; background:var(--amber); transform-origin:50% 0; transform:scaleY(0); }
-.rail ol{ display:flex; flex-direction:column; gap:22px; }
-.rail li{ display:flex; align-items:center; gap:10px; }
-.rail li b{
-  font-size:10.5px; font-weight:400; letter-spacing:.10em;
-  color:var(--ink-faint); transition:color .4s var(--ease);
-}
-.rail li i{
-  display:block; width:13px; height:1px; background:var(--rule); border-radius:1px;
-  transition:width .5s var(--ease), background .5s var(--ease);
-}
-.rail li.on b{ color:var(--amber); }
-.rail li.on i{ width:34px; background:var(--amber); }
+    /* 极淡罩染：只在顶/底给导航与页脚留一点可读底，画面保持通透清晰 */
+    .veil {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 3;
+      background:
+        linear-gradient(to bottom,
+          rgba(var(--veil), .14) 0%, rgba(var(--veil), .04) 18%, rgba(var(--veil), 0) 42%,
+          rgba(var(--veil), .08) 72%, rgba(var(--veil), .24) 100%),
+        radial-gradient(140% 122% at 50% 46%, rgba(var(--veil), 0) 55%, rgba(var(--deep), .10) 100%);
+    }
 
-.index{
-  position:fixed; z-index:41; right:clamp(18px, 3.6vw, 54px);
-  bottom:max(58px, calc(env(safe-area-inset-bottom, 0px) + 54px));
-  text-align:right; pointer-events:none;
-  font-variant-numeric:tabular-nums; font-size:11.5px; letter-spacing:.09em; color:var(--ink-faint);
-}
-.index strong{ display:block; font-size:15px; font-weight:400; letter-spacing:.02em; color:var(--ink-soft); }
+    /* 天光层：滚动越深略微收敛，仍然明亮 */
+    .night {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: rgb(var(--s-mid));
+      opacity: .08;
+    }
 
-/* ============ 面板层 ============ */
-.panels{ position:fixed; inset:0; z-index:20; pointer-events:none; }
-.panel{
-  position:absolute; inset:0;
-  display:flex; flex-direction:column; justify-content:flex-end; align-items:flex-start;
-  text-align:left;
-  padding:max(96px, calc(env(safe-area-inset-top, 0px) + 80px)) clamp(18px, 5vw, 54px) max(80px, calc(env(safe-area-inset-bottom, 0px) + 72px));
-}
-/* 中文不能用 ch 量行宽：ch 是拉丁「0」的宽度，对中文会算出过窄的容器，
+    .grain {
+      position: absolute;
+      inset: -50%;
+      pointer-events: none;
+      opacity: .07;
+      mix-blend-mode: overlay;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/></filter><rect width='140' height='140' filter='url(%23n)' opacity='.5'/></svg>");
+    }
+
+    /* ============ 海岸色彩重映射 ============
+   mix-blend-mode:color 只替换色相/饱和度、保留视频原有明暗，
+   于是落日的构图被原样保住，颜色却变成「上天空、下海面」的自然海岸。 */
+    .tint {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      mix-blend-mode: color;
+      opacity: var(--tint-op);
+      background: linear-gradient(to bottom,
+          rgb(var(--s-top)) 0%, rgb(var(--s-rose)) 24%, rgb(var(--s-mid)) 42%,
+          rgb(var(--s-lor)) 56%, rgb(var(--s-lor)) 65.6%,
+          rgb(var(--sea-a)) 67%, rgb(var(--sea-b)) 100%);
+    }
+
+    /* ============ 暗场：天空与海面压向夜色 ============
+   径向「光洞」以太阳位置为中心，靠近太阳处几乎全透明，
+   越远越沉，于是画面只剩夕阳一圈暖光，其余沉入黑。
+   压在 tint 之上、浪与金鳞之下 —— 光不会被压掉，暗部才会。 */
+    .duskdim {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 2;
+      background:
+        radial-gradient(64% 48% at var(--sunx) var(--suny),
+          rgba(10, 8, 12, 0) 0%,
+          rgba(10, 8, 12, .06) 16%,
+          rgba(10, 8, 12, .26) 38%,
+          rgba(9, 8, 12, .58) 64%,
+          rgba(8, 7, 11, .76) 84%,
+          rgba(8, 7, 11, .82) 100%),
+        linear-gradient(to bottom,
+          rgba(7, 8, 13, .72) 0%,
+          rgba(7, 8, 13, .54) 26%,
+          rgba(7, 8, 13, .28) 48%,
+          rgba(7, 8, 13, .08) 62%,
+          rgba(5, 6, 10, .26) 72%,
+          rgba(4, 5, 9, .48) 100%);
+    }
+
+    /* ============ 太阳光晕：单独把太阳点亮 ============
+   暗场压暗整幅画面后，太阳也跟着变灰。这一层以太阳为圆心，
+   用 screen 混合叠一圈暖白光——只加光、不减暗，暗部不受影响。 */
+    .sunbloom {
+      position: absolute;
+      left: var(--sunx);
+      top: var(--suny);
+      width: clamp(300px, 40vw, 560px);
+      aspect-ratio: 1/1;
+      /* 随升高略微收小：低空的大气放大感，到高空更接近一颗正常日轮 */
+      transform: translate(-50%, -50%) scale(calc(1.04 - var(--sunp) * .18));
+      pointer-events: none;
+      mix-blend-mode: screen;
+      z-index: 7;
+      background:
+        radial-gradient(closest-side,
+          rgba(255, 251, 238, 1) 0%,
+          rgba(255, 249, 230, 1) 13%,
+          rgba(255, 246, 220, .94) 19%,
+          rgba(255, 242, 206, .66) 27%,
+          rgba(255, 228, 180, .38) 37%,
+          rgba(255, 210, 156, .17) 50%,
+          rgba(255, 196, 136, .06) 64%,
+          rgba(255, 190, 128, 0) 80%);
+      filter: blur(1.2px);
+    }
+
+    /* ============ 太阳照亮周围 ============
+   以太阳为圆心、远大于日轮的一圈暖光，screen 叠加把附近天空与海面整体提亮，
+   于是太阳升到哪，哪一片就被照亮；越远衰减越快，不会把整幅画面冲白。 */
+    .sunglow {
+      position: absolute;
+      left: var(--sunx);
+      top: var(--suny);
+      width: min(150vw, 1900px);
+      aspect-ratio: 1/1.06;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      mix-blend-mode: screen;
+      z-index: 6;
+      background: radial-gradient(closest-side,
+          rgba(255, 218, 168, .30) 0%,
+          rgba(255, 200, 142, .22) 24%,
+          rgba(255, 180, 120, .12) 46%,
+          rgba(255, 168, 106, .05) 68%,
+          rgba(255, 160, 96, 0) 86%);
+      filter: blur(24px);
+      opacity: calc(.72 + var(--sunp) * .28);
+    }
+
+    /* ============ 沙滩浅海：近处沙底、远处渐深 ============
+   底部铺沙色，越靠近画面底缘越透出沙滩，形成「近岸浅滩、远海深蓝」的远近纵深感。 */
+    .sandbar {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 34%;
+      pointer-events: none;
+      z-index: 4;
+      background: linear-gradient(to top,
+          rgb(var(--sand)) 0%, rgb(var(--sand2)) 32%,
+          rgba(var(--sea-a), .90) 70%, rgba(var(--sea-a), 0) 100%);
+      mix-blend-mode: screen;
+      opacity: .10;
+      -webkit-mask-image: linear-gradient(to top, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, .7) 45%, rgba(0, 0, 0, 0) 100%);
+      mask-image: linear-gradient(to top, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, .7) 45%, rgba(0, 0, 0, 0) 100%);
+    }
+
+    /* ============ 动态海浪：三层波前由远及近涌向岸边 ============
+   每层浪从贴近地平线的小尺寸（远处）持续放大并向屏幕下方推进，
+   到近岸最大后循环，叠出「海浪从画面里往外/向观众打来」的推近感。
+   三层错相，浪一浪接一浪不间断。 */
+    .waves {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 40%;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 4;
+    }
+
+    .waves svg path {
+      fill: #ffcd92;
+    }
+
+    .waves svg {
+      position: absolute;
+      left: 50%;
+      bottom: 0;
+      width: 200%;
+      height: auto;
+      transform-origin: 50% 100%;
+      /* 基准态与动画首帧一致：svg 定位在 left:50%，若不做 translateX(-50%)，
+     延迟阶段（wave-2/3 各有 2.5s/5s 延迟）它就只露出一半、还是靠右的那半。 */
+      transform: translateX(-50%) scale(.16);
+      display: block;
+      mix-blend-mode: screen;
+    }
+
+    /* fill-mode:both 让延迟期间也停在首帧（贴地平线的小浪），不会突然冒出半个波形 */
+    .wave-1 {
+      opacity: .16;
+      animation: surge 7s cubic-bezier(.3, .1, .7, .4) infinite both;
+    }
+
+    .wave-2 {
+      opacity: .12;
+      animation: surge 10s cubic-bezier(.3, .1, .7, .4) infinite 2.5s both;
+    }
+
+    .wave-3 {
+      opacity: .08;
+      animation: surge 14s cubic-bezier(.3, .1, .7, .4) infinite 5s both;
+    }
+
+    @keyframes surge {
+      0% {
+        transform: translateX(-50%) translateY(52%) scale(.16);
+        opacity: .10;
+      }
+
+      55% {
+        transform: translateX(-50%) translateY(14%) scale(.8);
+        opacity: .17;
+      }
+
+      100% {
+        transform: translateX(-50%) translateY(0) scale(1.35);
+        opacity: 0;
+      }
+    }
+
+    /* 近岸泡沫白边：浪打到近处时泛起、退去 */
+    .waves::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 16%;
+      background: linear-gradient(to top,
+          rgba(255, 214, 158, .14) 0%, rgba(255, 214, 158, 0) 100%);
+      animation: foam 6s ease-in-out infinite;
+    }
+
+    @keyframes foam {
+
+      0%,
+      100% {
+        transform: translateY(0) scaleY(.8);
+        opacity: .5;
+      }
+
+      50% {
+        transform: translateY(-7px) scaleY(1.1);
+        opacity: .9;
+      }
+    }
+
+    /* ============ 夕阳金鳞：海面上的碎金反光 ============
+   1) .sunpath：太阳正下方一道金色倒影（横向拉丝 + 纵向渐隐）
+   2) .glitter：三层不同尺寸的闪点，各自错速闪烁并缓慢漂移
+   mask 把碎金收成梭形：贴近地平线最密，越往岸边越散。 */
+    .sunpath {
+      position: absolute;
+      left: var(--sunx);
+      top: max(calc(var(--suny) + 2.4%), 63%);
+      bottom: 0;
+      width: min(42vw, 540px);
+      transform: translateX(-50%);
+      z-index: 5;
+      pointer-events: none;
+      mix-blend-mode: screen;
+      opacity: calc(.80 - var(--dusk) * .18);
+      background:
+        repeating-linear-gradient(to bottom,
+          rgba(255, 238, 194, .44) 0 1px, rgba(255, 238, 194, 0) 1px 8px),
+        linear-gradient(to bottom,
+          rgba(255, 224, 164, .78) 0%, rgba(255, 198, 120, .42) 30%, rgba(255, 180, 96, 0) 90%);
+      /* 两层 mask 相交：纵向顶部 8% 渐入 × 径向横向收束，光带顶端不再有硬截断 */
+      -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, #000 8%), radial-gradient(46% 84% at 50% 0%, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, .55) 42%, rgba(0, 0, 0, 0) 84%);
+      -webkit-mask-composite: source-in;
+      mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, #000 8%), radial-gradient(46% 84% at 50% 0%, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, .55) 42%, rgba(0, 0, 0, 0) 84%);
+      mask-composite: intersect;
+      filter: blur(5px);
+    }
+
+    .glitter {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: max(calc(var(--suny) + 2.4%), 63%);
+      bottom: 0;
+      pointer-events: none;
+      mix-blend-mode: screen;
+      overflow: hidden;
+      z-index: 5;
+      -webkit-mask-image: radial-gradient(46% 100% at var(--sunx) 0%, rgba(0, 0, 0, .98) 0%, rgba(0, 0, 0, .72) 38%, rgba(0, 0, 0, .24) 66%, rgba(0, 0, 0, 0) 88%);
+      mask-image: radial-gradient(46% 100% at var(--sunx) 0%, rgba(0, 0, 0, .98) 0%, rgba(0, 0, 0, .72) 38%, rgba(0, 0, 0, .24) 66%, rgba(0, 0, 0, 0) 88%);
+    }
+
+    .glitter i {
+      position: absolute;
+      inset: -8% -15%;
+      display: block;
+      background-repeat: repeat;
+      animation: twinkle 5.6s ease-in-out infinite, glitterDrift 26s linear infinite;
+    }
+
+    .g1 {
+      background-image:
+        radial-gradient(1.3px 1.3px at 9px 7px, rgba(255, 248, 220, .95) 48%, rgba(255, 248, 220, 0) 50%),
+        radial-gradient(1.1px 1.1px at 31px 19px, rgba(255, 236, 186, .90) 48%, rgba(255, 236, 186, 0) 50%),
+        radial-gradient(1.5px 1.5px at 22px 30px, rgba(255, 226, 158, .85) 48%, rgba(255, 226, 158, 0) 50%);
+      background-size: 48px 38px, 63px 47px, 41px 33px;
+      opacity: 1;
+    }
+
+    .g2 {
+      background-image:
+        radial-gradient(2.2px 1.4px at 17px 11px, rgba(255, 250, 228, .95) 46%, rgba(255, 250, 228, 0) 52%),
+        radial-gradient(2.6px 1.6px at 49px 29px, rgba(255, 232, 170, .92) 46%, rgba(255, 232, 170, 0) 52%);
+      background-size: 88px 54px, 118px 68px;
+      opacity: .82;
+      animation-duration: 7.4s, 34s;
+      animation-delay: .9s, 0s;
+    }
+
+    .g3 {
+      background-image:
+        radial-gradient(3px 1.8px at 24px 14px, rgba(255, 252, 236, 1) 44%, rgba(255, 252, 236, 0) 54%),
+        radial-gradient(2.4px 1.4px at 71px 40px, rgba(255, 238, 182, .95) 44%, rgba(255, 238, 182, 0) 54%);
+      background-size: 132px 78px, 168px 96px;
+      opacity: .68;
+      animation-duration: 9.4s, 46s;
+      animation-delay: 2.1s, 0s;
+    }
+
+    @keyframes twinkle {
+
+      0%,
+      100% {
+        opacity: .40;
+      }
+
+      32% {
+        opacity: .96;
+      }
+
+      58% {
+        opacity: .58;
+      }
+
+      78% {
+        opacity: 1;
+      }
+    }
+
+    @keyframes glitterDrift {
+      from {
+        background-position: 0 0, 0 0, 0 0;
+      }
+
+      to {
+        background-position: 48px 6px, -63px -8px, 41px 4px;
+      }
+    }
+
+    /* ============ 景深（人眼立体感） ============
+   天空保持通透不罩雾；纵深集中在海面：地平线留一条极淡的海天分界光，
+   近岸（底缘）略微加深，与沙底浅滩叠加出「近浅、远深」的层次。 */
+    .depth {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 3;
+      background:
+        linear-gradient(to bottom,
+          rgba(var(--wash), calc(var(--wash-a) * .58)) 0%,
+          rgba(var(--wash), calc(var(--wash-a) * .42)) 22%,
+          rgba(var(--wash), calc(var(--wash-a) * .24)) 42%,
+          rgba(var(--wash), 0) 56%),
+        linear-gradient(to bottom,
+          rgba(var(--haze), 0) 42%, rgba(var(--haze), .09) 50%,
+          rgba(var(--haze), .17) 57%, rgba(var(--haze), .06) 62%, rgba(var(--haze), 0) 67%),
+        linear-gradient(to bottom,
+          rgba(var(--sun), 0) 62%, rgba(var(--sun), .50) 65.6%, rgba(var(--sun), 0) 69%),
+        linear-gradient(to top, rgba(var(--deep), .08) 0%, rgba(var(--deep), .03) 18%, rgba(var(--deep), 0) 34%),
+        radial-gradient(150% 130% at 50% 50%, rgba(0, 0, 0, 0) 68%, rgba(var(--deep), .06) 100%);
+    }
+
+    /* ============ 白云：几团软云在天空区缓慢横移 ============
+   云团用 radial-gradient 叠出体积、再 blur 化开边缘；
+   动画只动 transform，交给合成器，滚动时不掉帧。
+   mask 让云往下渐隐，避免糊到地平线上。 */
+    .clouds {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      height: 56%;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 8;
+      -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, .95) 38%, rgba(0, 0, 0, .42) 64%, rgba(0, 0, 0, 0) 84%);
+      mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, .95) 38%, rgba(0, 0, 0, .42) 64%, rgba(0, 0, 0, 0) 84%);
+    }
+
+    .cloud {
+      position: absolute;
+      left: 0;
+      aspect-ratio: 16/6;
+      filter: blur(4px);
+      will-change: transform;
+      background:
+        radial-gradient(closest-side at 24% 78%, #2b2534 0%, #2b2534 34%, rgba(43, 37, 52, .62) 52%, rgba(255, 255, 255, 0) 70%),
+        radial-gradient(closest-side at 42% 54%, #332c3c 0%, #332c3c 38%, rgba(51, 44, 60, .66) 55%, rgba(255, 255, 255, 0) 72%),
+        radial-gradient(closest-side at 61% 42%, #2f2838 0%, #2f2838 36%, rgba(47, 40, 56, .64) 54%, rgba(255, 255, 255, 0) 71%),
+        radial-gradient(closest-side at 79% 66%, #282232 0%, #282232 32%, rgba(40, 34, 50, .58) 50%, rgba(255, 255, 255, 0) 69%),
+        radial-gradient(closest-side at 50% 88%, #2b2534 0%, rgba(43, 37, 52, .62) 40%, rgba(43, 37, 52, 0) 64%);
+      animation-name: drift;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+    }
+
+    .cloud-1 {
+      top: 4%;
+      width: 46vw;
+      opacity: .46;
+      animation-duration: 96s;
+    }
+
+    .cloud-2 {
+      top: 17%;
+      width: 34vw;
+      opacity: .36;
+      animation-duration: 126s;
+      animation-delay: 8s;
+    }
+
+    .cloud-3 {
+      top: 29%;
+      width: 26vw;
+      opacity: .26;
+      animation-duration: 152s;
+      animation-delay: 30s;
+    }
+
+    .cloud-4 {
+      top: 2%;
+      width: 19vw;
+      opacity: .22;
+      animation-duration: 170s;
+      animation-delay: 52s;
+    }
+
+    @keyframes drift {
+      0% {
+        transform: translate3d(-62vw, 8px, 0) scale(.96);
+      }
+
+      50% {
+        transform: translate3d(30vw, -10px, 0) scale(1.03);
+      }
+
+      100% {
+        transform: translate3d(122vw, 6px, 0) scale(1);
+      }
+    }
+
+    /* 缓慢漂移的海鸥剪影 */
+    .birds {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      color: #e8bf98;
+    }
+
+    .birds svg {
+      position: absolute;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+    }
+
+    .birds svg:nth-child(1) {
+      width: 74px;
+      top: 22%;
+      left: -12%;
+      opacity: .16;
+      animation: glide 46s linear infinite;
+    }
+
+    .birds svg:nth-child(2) {
+      width: 52px;
+      top: 34%;
+      left: -12%;
+      opacity: .12;
+      animation: glide 67s linear infinite 8s;
+    }
+
+    .birds svg:nth-child(3) {
+      width: 38px;
+      top: 44%;
+      left: -12%;
+      opacity: .09;
+      animation: glide 88s linear infinite 22s;
+    }
+
+    @keyframes glide {
+      from {
+        transform: translate3d(0, 0, 0)
+      }
+
+      to {
+        transform: translate3d(128vw, 0, 0)
+      }
+    }
+
+    /* ============ 顶栏 / 页脚 / 右侧章节轨 ============ */
+    .chrome {
+      position: fixed;
+      left: 0;
+      right: 0;
+      top: 0;
+      z-index: 40;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: max(14px, calc(env(safe-area-inset-top, 0px) + 12px)) clamp(18px, 3.6vw, 54px) 14px;
+      background: linear-gradient(to bottom, rgba(var(--chrome), .92) 0%, rgba(var(--chrome), .64) 68%, rgba(var(--chrome), 0) 100%);
+    }
+
+    .mark {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      font-size: 15px;
+      letter-spacing: .01em;
+      min-width: 0;
+    }
+
+    .mark svg {
+      width: 24px;
+      height: 14px;
+      flex-shrink: 0;
+      fill: none;
+      stroke: var(--amber);
+      stroke-width: 2.1;
+      stroke-linecap: round;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: clamp(14px, 2.4vw, 30px);
+      flex-shrink: 0;
+    }
+
+    .nav a:not(.pill) {
+      color: var(--ink);
+      text-decoration: none;
+      font-size: 14.5px;
+      opacity: .86;
+      cursor: pointer;
+      transition: opacity .3s var(--ease);
+    }
+
+    .nav a:not(.pill):hover {
+      opacity: 1;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 40px;
+      padding: 0 22px;
+      border-radius: 999px;
+      background: var(--amber);
+      color: var(--pill-fg);
+      font-size: 14.5px;
+      font-weight: 500;
+      letter-spacing: .01em;
+      text-decoration: none;
+      white-space: nowrap;
+      cursor: pointer;
+      border: 1px solid rgba(255, 235, 205, .28);
+      box-shadow: 0 8px 24px -10px rgba(0, 0, 0, .75), 0 1px 0 rgba(255, 255, 255, .32) inset;
+      -webkit-text-fill-color: var(--pill-fg);
+      transition: transform .4s var(--ease), background .3s var(--ease);
+    }
+
+    .nav .pill {
+      color: var(--pill-fg);
+      -webkit-text-fill-color: var(--pill-fg);
+    }
+
+    .pill:hover,
+    .pill:focus-visible {
+      transform: translateY(-2px);
+      background: var(--amber-sunk);
+    }
+
+    .pill:focus-visible,
+    .nav a:focus-visible {
+      outline: 2px solid var(--amber);
+      outline-offset: 3px;
+    }
+
+    .foot {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 40;
+      display: flex;
+      justify-content: center;
+      pointer-events: none;
+      padding: 14px clamp(18px, 4vw, 24px) max(16px, calc(env(safe-area-inset-bottom, 0px) + 12px));
+      font-size: 12px;
+      line-height: 1.45;
+      letter-spacing: .02em;
+      color: var(--ink-faint);
+      text-align: center;
+      background: linear-gradient(to top, rgba(var(--chrome), .88) 0%, rgba(var(--chrome), .58) 70%, rgba(var(--chrome), 0) 100%);
+    }
+
+    .hint {
+      position: fixed;
+      z-index: 40;
+      left: 50%;
+      bottom: max(52px, calc(env(safe-area-inset-bottom, 0px) + 48px));
+      transform: translateX(-50%);
+      font-size: 11.5px;
+      letter-spacing: .14em;
+      color: var(--ink-faint);
+      pointer-events: none;
+      white-space: nowrap;
+      transition: opacity .6s var(--ease);
+    }
+
+    .hint b {
+      font-weight: 400;
+      color: var(--amber);
+    }
+
+    .rail {
+      position: fixed;
+      z-index: 41;
+      right: clamp(18px, 3.6vw, 54px);
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .rail .line {
+      position: relative;
+      width: 1px;
+      height: 132px;
+      background: var(--rule);
+      overflow: hidden;
+    }
+
+    .rail .line i {
+      display: block;
+      width: 100%;
+      height: 100%;
+      background: var(--amber);
+      transform-origin: 50% 0;
+      transform: scaleY(0);
+    }
+
+    .rail ol {
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+    }
+
+    .rail li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .rail li b {
+      font-size: 10.5px;
+      font-weight: 400;
+      letter-spacing: .10em;
+      color: var(--ink-faint);
+      transition: color .4s var(--ease);
+    }
+
+    .rail li i {
+      display: block;
+      width: 13px;
+      height: 1px;
+      background: var(--rule);
+      border-radius: 1px;
+      transition: width .5s var(--ease), background .5s var(--ease);
+    }
+
+    .rail li.on b {
+      color: var(--amber);
+    }
+
+    .rail li.on i {
+      width: 34px;
+      background: var(--amber);
+    }
+
+    .index {
+      position: fixed;
+      z-index: 41;
+      right: clamp(18px, 3.6vw, 54px);
+      bottom: max(58px, calc(env(safe-area-inset-bottom, 0px) + 54px));
+      text-align: right;
+      pointer-events: none;
+      font-variant-numeric: tabular-nums;
+      font-size: 11.5px;
+      letter-spacing: .09em;
+      color: var(--ink-faint);
+    }
+
+    .index strong {
+      display: block;
+      font-size: 15px;
+      font-weight: 400;
+      letter-spacing: .02em;
+      color: var(--ink-soft);
+    }
+
+    /* ============ 面板层 ============ */
+    .panels {
+      position: fixed;
+      inset: 0;
+      z-index: 20;
+      pointer-events: none;
+    }
+
+    .panel {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      align-items: flex-start;
+      text-align: left;
+      padding: max(96px, calc(env(safe-area-inset-top, 0px) + 80px)) clamp(18px, 5vw, 54px) max(80px, calc(env(safe-area-inset-bottom, 0px) + 72px));
+    }
+
+    /* 中文不能用 ch 量行宽：ch 是拉丁「0」的宽度，对中文会算出过窄的容器，
    标题会被挤成「能用的东 / 西。」这种孤字断行。这里一律用 rem 控行宽。 */
-.panel-inner{ max-width:min(100%, 46rem); margin-right:auto; }
-.eyebrow{
-  display:flex; align-items:center; gap:11px; flex-wrap:wrap;
-  font-size:12.5px; letter-spacing:.13em; color:var(--ink-soft);
-  margin-bottom:clamp(16px, 2vw, 24px); text-transform:uppercase;
-}
-.eyebrow::before{ content:''; width:5px; height:5px; border-radius:50%; background:var(--amber); flex-shrink:0; }
-h1{
-  font-family:'Fraunces','Songti SC','STSong','Noto Serif SC',Georgia,serif;
-  font-weight:400; font-size:clamp(36px, 6.6vw, 92px);
-  line-height:1.06; letter-spacing:-.005em;
-  max-width:100%; text-wrap:balance;
-  text-shadow:0 2px 34px rgba(6,7,16,.72);
-}
-.sub{
-  margin-top:clamp(18px, 2.2vw, 26px);
-  font-size:clamp(15px, 1.24vw, 18.5px); line-height:1.62;
-  letter-spacing:.005em; color:var(--ink-soft);
-  max-width:min(50ch, 100%); text-wrap:pretty;
-}
-.cta{ margin-top:clamp(26px, 3.2vw, 42px); pointer-events:auto; }
-.cta .pill{ height:48px; padding:0 28px; font-size:15px; }
+    .panel-inner {
+      max-width: min(100%, 46rem);
+      margin-right: auto;
+    }
 
-/* ============ 预加载：左下角计数 + 环形弧 ============ */
-.boot{
-  position:fixed; inset:0; z-index:90;
-  display:flex; flex-direction:column; justify-content:flex-end; align-items:flex-start;
-  gap:14px; background:var(--night);
-  padding:max(96px, calc(env(safe-area-inset-top, 0px) + 80px)) clamp(18px, 5vw, 54px) max(80px, calc(env(safe-area-inset-bottom, 0px) + 72px));
-  transition:opacity .8s var(--ease), visibility .8s;
-}
-.boot.done{ opacity:0; visibility:hidden; }
-.boot .ring{ width:44px; height:44px; transform:rotate(-90deg); }
-.boot .ring circle{ fill:none; stroke-width:1.5; }
-.boot .ring .bg{ stroke:var(--rule); }
-.boot .ring .fg{ stroke:var(--amber); stroke-linecap:round; stroke-dasharray:119.4; stroke-dashoffset:119.4; }
-.boot .num{
-  display:flex; align-items:baseline; gap:9px;
-  font-variant-numeric:tabular-nums; font-size:clamp(30px, 5vw, 46px);
-  line-height:1; color:var(--ink); letter-spacing:.01em;
-}
-.boot .num span{ font-variant-numeric:tabular-nums; }
-.boot .num em{ font-style:normal; font-size:13px; letter-spacing:.14em; color:var(--ink-faint); }
-.boot .label{ font-size:12.5px; letter-spacing:.16em; color:var(--ink-faint); }
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      flex-wrap: wrap;
+      font-size: 12.5px;
+      letter-spacing: .13em;
+      color: var(--ink-soft);
+      margin-bottom: clamp(16px, 2vw, 24px);
+      text-transform: uppercase;
+    }
 
-/* ============ 滚动轨道：唯一的页面高度 ============ */
-.track{ position:relative; z-index:1; height:640vh; min-height:3600px; }
+    .eyebrow::before {
+      content: '';
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--amber);
+      flex-shrink: 0;
+    }
 
-/* ============ 响应式 ============ */
-@media (max-width:900px){
-  .veil{
-    background:
-      linear-gradient(to bottom,
-        rgba(7,8,18,.88) 0%, rgba(7,8,18,.42) 20%, rgba(7,8,18,.20) 44%,
-        rgba(7,8,18,.34) 72%, rgba(7,8,18,.92) 100%),
-      linear-gradient(102deg,
-        rgba(7,8,18,.80) 0%, rgba(7,8,18,.42) 40%, rgba(7,8,18,.08) 66%, rgba(7,8,18,0) 82%),
-      radial-gradient(140% 122% at 50% 46%, rgba(7,8,18,0) 38%, rgba(4,5,12,.68) 100%);
-  }
-  .night{ opacity:calc(.12 + var(--dusk) * .40); }
-}
-@media (max-width:720px){
-  .nav a:not(.pill){ display:none; }
-  .rail{ display:none; }
-  .index{ display:none; }
-  .mark{ font-size:14px; }
-  /* 竖屏下 16:9 素材走 cover 会把落日裁到右边界之外，
+    h1 {
+      font-family: 'Fraunces', 'Songti SC', 'STSong', 'Noto Serif SC', Georgia, serif;
+      font-weight: 400;
+      font-size: clamp(36px, 6.6vw, 92px);
+      line-height: 1.06;
+      letter-spacing: -.005em;
+      max-width: 100%;
+      text-wrap: balance;
+      text-shadow: 0 2px 28px rgba(0, 0, 0, .55), 0 1px 2px rgba(0, 0, 0, .35);
+    }
+
+    .sub {
+      margin-top: clamp(18px, 2.2vw, 26px);
+      font-size: clamp(15px, 1.24vw, 18.5px);
+      line-height: 1.62;
+      letter-spacing: .005em;
+      color: var(--ink-soft);
+      max-width: min(50ch, 100%);
+      text-wrap: pretty;
+    }
+
+    .cta {
+      margin-top: clamp(26px, 3.2vw, 42px);
+      pointer-events: auto;
+    }
+
+    .cta .pill {
+      height: 48px;
+      padding: 0 28px;
+      font-size: 15px;
+    }
+
+    /* ============ 预加载：左下角计数 + 环形弧 ============ */
+    .boot {
+      position: fixed;
+      inset: 0;
+      z-index: 90;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      align-items: flex-start;
+      gap: 14px;
+      background: rgb(var(--page));
+      padding: max(96px, calc(env(safe-area-inset-top, 0px) + 80px)) clamp(18px, 5vw, 54px) max(80px, calc(env(safe-area-inset-bottom, 0px) + 72px));
+      transition: opacity .8s var(--ease), visibility .8s;
+    }
+
+    .boot.done {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .boot .ring {
+      width: 44px;
+      height: 44px;
+      transform: rotate(-90deg);
+    }
+
+    .boot .ring circle {
+      fill: none;
+      stroke-width: 1.5;
+    }
+
+    .boot .ring .bg {
+      stroke: var(--rule);
+    }
+
+    .boot .ring .fg {
+      stroke: var(--amber);
+      stroke-linecap: round;
+      stroke-dasharray: 119.4;
+      stroke-dashoffset: 119.4;
+    }
+
+    .boot .num {
+      display: flex;
+      align-items: baseline;
+      gap: 9px;
+      font-variant-numeric: tabular-nums;
+      font-size: clamp(30px, 5vw, 46px);
+      line-height: 1;
+      color: var(--ink);
+      letter-spacing: .01em;
+    }
+
+    .boot .num span {
+      font-variant-numeric: tabular-nums;
+    }
+
+    .boot .num em {
+      font-style: normal;
+      font-size: 13px;
+      letter-spacing: .14em;
+      color: var(--ink-faint);
+    }
+
+    .boot .label {
+      font-size: 12.5px;
+      letter-spacing: .16em;
+      color: var(--ink-faint);
+    }
+
+    /* ============ 滚动轨道：唯一的页面高度 ============ */
+    .track {
+      position: relative;
+      z-index: 1;
+      height: 640vh;
+      min-height: 3600px;
+    }
+
+    /* ============ 响应式 ============ */
+    @media (max-width:900px) {
+      .veil {
+        background:
+          linear-gradient(to bottom,
+            rgba(var(--veil), .26) 0%, rgba(var(--veil), .12) 20%, rgba(var(--veil), .05) 44%,
+            rgba(var(--veil), .12) 72%, rgba(var(--veil), .40) 100%),
+          linear-gradient(102deg,
+            rgba(var(--veil), .22) 0%, rgba(var(--veil), .11) 40%, rgba(var(--veil), .02) 66%, rgba(var(--veil), 0) 82%),
+          radial-gradient(140% 122% at 50% 46%, rgba(var(--veil), 0) 38%, rgba(var(--deep), .16) 100%);
+      }
+
+      .night {
+        opacity: .18;
+      }
+    }
+
+    @media (max-width:720px) {
+      .nav a:not(.pill) {
+        display: none;
+      }
+
+      .rail {
+        display: none;
+      }
+
+      .index {
+        display: none;
+      }
+
+      .mark {
+        font-size: 14px;
+      }
+
+      /* 竖屏下 16:9 素材走 cover 会把初阳裁到右边界之外，
      把取景框往左推一点，让太阳回到画面右三分之一处。 */
-  .stage video{ object-position:60% center; }
-  .nav .pill{ height:38px; padding:0 16px; font-size:13.5px; }
-  .panel-inner{ max-width:100%; }
-  h1{ max-width:13ch; font-size:clamp(30px, 9.4vw, 50px); }
-  .sub{ font-size:15px; max-width:100%; }
-  .panel,.boot{ padding:max(88px, calc(env(safe-area-inset-top, 0px) + 72px)) 18px max(84px, calc(env(safe-area-inset-bottom, 0px) + 68px)); }
-  .foot{ font-size:11px; }
-  .hint{ bottom:max(48px, calc(env(safe-area-inset-bottom, 0px) + 44px)); }
-}
-@media (max-width:420px){
-  .mark svg{ display:none; }
-  .nav .pill{ height:36px; padding:0 14px; font-size:13px; }
-  h1{ max-width:12ch; font-size:clamp(27px, 10.2vw, 40px); }
-  .eyebrow{ font-size:11px; letter-spacing:.10em; max-width:100%; }
-  .cta .pill{ width:100%; max-width:280px; height:44px; padding:0 20px; font-size:14px; }
-}
-@media (max-height:520px) and (orientation:landscape){
-  .panel,.boot{ padding:max(70px, calc(env(safe-area-inset-top, 0px) + 56px)) 24px max(60px, calc(env(safe-area-inset-bottom, 0px) + 46px)); }
-  h1{ font-size:clamp(26px, 7.6vh, 42px); }
-  .sub{ margin-top:12px; font-size:14px; max-width:100%; }
-  .cta{ margin-top:16px; }
-  .rail,.index,.hint{ display:none; }
-}
-@media (prefers-reduced-motion: reduce){
-  .birds{ display:none; }
-  .stage::before{ transform:translate(-50%,-50%); }
-  .pill{ transition:none; }
-}
-</style>
+      .stage video {
+        object-position: 60% center;
+      }
+
+      /* 竖屏裁掉上下、横向不变，太阳横向位置与桌面一致 */
+      .stage {
+        --sunx: 63%;
+      }
+
+      .sunpath {
+        width: min(60vw, 320px);
+        opacity: .55;
+      }
+
+      .glitter {
+        -webkit-mask-image: radial-gradient(52% 100% at var(--sunx) 0%, rgba(0, 0, 0, .9) 0%, rgba(0, 0, 0, .55) 40%, rgba(0, 0, 0, .18) 68%, rgba(0, 0, 0, 0) 88%);
+        mask-image: radial-gradient(52% 100% at var(--sunx) 0%, rgba(0, 0, 0, .9) 0%, rgba(0, 0, 0, .55) 40%, rgba(0, 0, 0, .18) 68%, rgba(0, 0, 0, 0) 88%);
+      }
+
+      .nav .pill {
+        height: 38px;
+        padding: 0 16px;
+        font-size: 13.5px;
+      }
+
+      .panel-inner {
+        max-width: 100%;
+      }
+
+      h1 {
+        max-width: 13ch;
+        font-size: clamp(30px, 9.4vw, 50px);
+      }
+
+      .sub {
+        font-size: 15px;
+        max-width: 100%;
+      }
+
+      .panel,
+      .boot {
+        padding: max(88px, calc(env(safe-area-inset-top, 0px) + 72px)) 18px max(84px, calc(env(safe-area-inset-bottom, 0px) + 68px));
+      }
+
+      .foot {
+        font-size: 11px;
+      }
+
+      .hint {
+        bottom: max(48px, calc(env(safe-area-inset-bottom, 0px) + 44px));
+      }
+    }
+
+    @media (max-width:420px) {
+      .mark svg {
+        display: none;
+      }
+
+      .nav .pill {
+        height: 36px;
+        padding: 0 14px;
+        font-size: 13px;
+      }
+
+      h1 {
+        max-width: 12ch;
+        font-size: clamp(27px, 10.2vw, 40px);
+      }
+
+      .eyebrow {
+        font-size: 11px;
+        letter-spacing: .10em;
+        max-width: 100%;
+      }
+
+      .cta .pill {
+        width: 100%;
+        max-width: 280px;
+        height: 44px;
+        padding: 0 20px;
+        font-size: 14px;
+      }
+    }
+
+    @media (max-height:520px) and (orientation:landscape) {
+
+      .panel,
+      .boot {
+        padding: max(70px, calc(env(safe-area-inset-top, 0px) + 56px)) 24px max(60px, calc(env(safe-area-inset-bottom, 0px) + 46px));
+      }
+
+      h1 {
+        font-size: clamp(26px, 7.6vh, 42px);
+      }
+
+      .sub {
+        margin-top: 12px;
+        font-size: 14px;
+        max-width: 100%;
+      }
+
+      .cta {
+        margin-top: 16px;
+      }
+
+      .rail,
+      .index,
+      .hint {
+        display: none;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .birds {
+        display: none;
+      }
+
+      .cloud {
+        animation: none;
+        transform: translate3d(0, 0, 0);
+      }
+
+      .glitter i {
+        animation: none;
+        opacity: .6;
+      }
+
+      .cloud-2 {
+        transform: translate3d(28vw, 0, 0);
+      }
+
+      .cloud-3 {
+        transform: translate3d(58vw, 0, 0);
+      }
+
+      .cloud-4 {
+        transform: translate3d(80vw, 0, 0);
+      }
+
+      .waves svg,
+      .waves::after {
+        animation: none;
+      }
+
+      .stage::before {
+        transform: translate(-50%, -50%);
+      }
+
+      .pill {
+        transition: none;
+      }
+    }
+  </style>
 </head>
-<body>
 
-<!-- 预加载：左下角计数 + 环形弧，位置与首屏文案对齐，淡出即无缝衔接 -->
-<div class="boot" id="boot">
-  <svg class="ring" viewBox="0 0 44 44" aria-hidden="true">
-    <circle class="bg" cx="22" cy="22" r="19"></circle>
-    <circle class="fg" id="bootRing" cx="22" cy="22" r="19"></circle>
-  </svg>
-  <div class="num"><span id="bootPct">00</span><em>%</em></div>
-  <p class="label">正在装载黄昏</p>
-</div>
+<body data-page-node-id="AU1RlBBj43ckCzPOPQ7TTR">
 
-<!-- 固定背景舞台 -->
-<div class="stage" id="stage">
-  <video id="clip" muted playsinline preload="auto" disablepictureinpicture
-         poster="assets/dusk-poster.jpg"></video>
-  <div class="veil"></div>
-  <div class="night"></div>
-  <div class="birds" aria-hidden="true">
-    <svg viewBox="0 0 26 8"><path d="M1 6 Q7 -1 13 6 Q19 -1 25 6"/></svg>
-    <svg viewBox="0 0 26 8"><path d="M1 6 Q7 -1 13 6 Q19 -1 25 6"/></svg>
-    <svg viewBox="0 0 26 8"><path d="M1 6 Q7 -1 13 6 Q19 -1 25 6"/></svg>
+  <!-- 预加载：左下角计数 + 环形弧，位置与首屏文案对齐，淡出即无缝衔接 -->
+  <div class="boot" id="boot" data-page-node-id="OvhjSmcz0WGHPvrhR3w6Ez">
+    <svg class="ring" viewBox="0 0 44 44" aria-hidden="true" data-page-node-id="HqqomYntsrZ98BNMFyPzzZ">
+      <circle class="bg" cx="22" cy="22" r="19" data-page-node-id="3f1MEE7COajXzuA2WgK9WI"></circle>
+      <circle class="fg" id="bootRing" cx="22" cy="22" r="19" data-page-node-id="h16q0vWW8IUQdp7vmeYGRO"></circle>
+    </svg>
+    <div class="num" data-page-node-id="ndFLKHPlkEdG69zqGenyC6"><span id="bootPct"
+        data-page-node-id="5hkTrb4IQFEuttFcoXK3qm">00</span><em data-page-node-id="fakDbjSRmQ5vqwdA96fEWv">%</em></div>
+    <p class="label" data-page-node-id="q657TR1fGzJn9r61rtZLRD">正在装载黎明</p>
   </div>
-  <div class="grain"></div>
-</div>
 
-<!-- 顶栏 -->
-<header class="chrome">
-  <div class="mark">
-    <svg viewBox="0 0 26 8" aria-hidden="true"><path d="M1 6 Q7 -1 13 6 Q19 -1 25 6"/></svg>
-    赵继晨
+  <!-- 固定背景舞台 -->
+  <div class="stage" id="stage" data-page-node-id="x3g09EGPSNrTgLNiLzmORI">
+    <video id="clip" muted playsinline preload="auto" disablepictureinpicture poster="assets/dusk-poster.jpg"
+      data-page-node-id="JlxyGvDkGXsW4fZtGtN3KE"></video>
+    <div class="tint" data-page-node-id="LiaCnXqej9vEysHBs0Zrn6"></div>
+    <div class="duskdim" aria-hidden="true"></div>
+    <div class="sunglow" aria-hidden="true"></div>
+    <div class="sunbloom" aria-hidden="true"></div>
+    <div class="sandbar" aria-hidden="true"></div>
+    <div class="waves" aria-hidden="true">
+      <svg class="wave-3" viewBox="0 0 2880 320" preserveAspectRatio="none">
+        <path
+          d="M0,160 C240,60 480,260 720,160 C960,60 1200,260 1440,160 C1680,60 1920,260 2160,160 C2400,60 2640,260 2880,160 L2880,320 L0,320 Z"
+          fill="#ffffff" />
+      </svg>
+      <svg class="wave-2" viewBox="0 0 2880 360" preserveAspectRatio="none">
+        <path
+          d="M0,200 C200,100 400,300 720,200 C1040,100 1240,300 1440,200 C1640,100 1840,300 2160,200 C2480,100 2680,300 2880,200 L2880,360 L0,360 Z"
+          fill="#ffffff" />
+      </svg>
+      <svg class="wave-1" viewBox="0 0 2880 400" preserveAspectRatio="none">
+        <path
+          d="M0,240 C240,120 480,360 720,240 C960,120 1200,360 1440,240 C1680,120 1920,360 2160,240 C2400,120 2640,360 2880,240 L2880,400 L0,400 Z"
+          fill="#ffffff" />
+      </svg>
+    </div>
+    <div class="sunpath" aria-hidden="true"></div>
+    <div class="glitter" aria-hidden="true"><i class="g1"></i><i class="g2"></i><i class="g3"></i></div>
+    <div class="depth" aria-hidden="true" data-page-node-id="dBxZgy1EKiMhDRCeUBSFEJ"></div>
+    <div class="clouds" aria-hidden="true">
+      <div class="cloud cloud-1"></div>
+      <div class="cloud cloud-2"></div>
+      <div class="cloud cloud-3"></div>
+      <div class="cloud cloud-4"></div>
+    </div>
+    <div class="veil" data-page-node-id="6wIWVedZkLRuykj3QItUKR"></div>
+    <div class="night" data-page-node-id="p9qPCFDPp0CrVkR0UMBYtm"></div>
+    <div class="birds" aria-hidden="true" data-page-node-id="ooXLOzZzc8F7a5Bn8BP2mB">
+      <svg viewBox="0 0 26 8" data-page-node-id="A43cAtowp9kKbBP0U96nNd">
+        <path d="M1 6 Q7 -1 13 6 Q19 -1 25 6" data-page-node-id="8GWzKlahxpmnT5RmqVhrK8" />
+      </svg>
+      <svg viewBox="0 0 26 8" data-page-node-id="1Rvb259CmkGloZb1Tx7s9O">
+        <path d="M1 6 Q7 -1 13 6 Q19 -1 25 6" data-page-node-id="CkwCCVc0Tqgyx5Wcb6xdWn" />
+      </svg>
+      <svg viewBox="0 0 26 8" data-page-node-id="S6qfJgQCeNZLKw3HIIOJKd">
+        <path d="M1 6 Q7 -1 13 6 Q19 -1 25 6" data-page-node-id="xbg8mCjeUCbu86E2BLLQHv" />
+      </svg>
+    </div>
+    <div class="grain" data-page-node-id="BjmDFW89k9iU9AN6OgDDZU"></div>
   </div>
-  <nav class="nav">
-    <a data-go="1">作品</a>
-    <a data-go="2">关于</a>
-    <a class="pill" href="mailto:603327998@qq.com">写邮件给我</a>
-  </nav>
-</header>
 
-<!-- 右侧章节轨 -->
-<aside class="rail" aria-hidden="true">
-  <div class="line"><i id="railFill"></i></div>
-  <ol>
-    <li data-rail="0"><b>01</b><i></i></li>
-    <li data-rail="1"><b>02</b><i></i></li>
-    <li data-rail="2"><b>03</b><i></i></li>
-    <li data-rail="3"><b>04</b><i></i></li>
-  </ol>
-</aside>
-
-<!-- 右下角读数 -->
-<div class="index" aria-hidden="true">
-  <strong><span id="idxNum">01</span> / 04</strong>
-  <span id="idxTime">00.0 / 06.0s</span>
-</div>
-
-<!-- 章节面板：滚动驱动，错峰入场 -->
-<main class="panels">
-
-  <section class="panel" data-panel id="ch-0">
-    <div class="panel-inner">
-      <p class="eyebrow" data-stag>学生 <span>·</span> 苏州</p>
-      <h1 data-stag>欢迎</h1>
-      <p class="sub" data-stag>个人网站</p>
-      <div class="cta" data-stag><a class="pill" data-go="1">看我的作品</a></div>
+  <!-- 顶栏 -->
+  <header class="chrome" data-page-node-id="QDOXZPcfKVZTdqu7OVd9k8">
+    <div class="mark" data-page-node-id="CClHfi9mNanXojXLMOUSCT">
+      <svg viewBox="0 0 26 8" aria-hidden="true" data-page-node-id="Es06lCbyWxwGdz5QWXHNd3">
+        <path d="M1 6 Q7 -1 13 6 Q19 -1 25 6" data-page-node-id="Zde3PFTXsQuHzPxIqfZEwR" />
+      </svg>
+      赵继晨
     </div>
-  </section>
+    <nav class="nav" data-page-node-id="Sf9k2AlANpgTgQ7JQaKkVo">
+      <a data-go="1" data-page-node-id="4BkJUK4gsHRQAkEpQEc34U">作品</a>
+      <a data-go="2" data-page-node-id="hCUWN8bQZkrC8kVCG2bmog">关于</a>
+      <a href="resume.html" data-page-node-id="nFEdm3tzRc2FOtsAdrpc1C">简历</a>
+      <a href="daily.html" data-page-node-id="haZh7eB6RxyKbHNAIoy2QW">AI 日报</a>
+      <a class="pill" href="mailto:603327998@qq.com" data-page-node-id="JPQwDi2SPrZYyYsl4gqK4w">写邮件给我</a>
+    </nav>
+  </header>
 
-  <section class="panel" data-panel id="ch-1">
-    <div class="panel-inner">
-      <p class="eyebrow" data-stag>作品</p>
-      <h1 data-stag>慢慢做，<br>都会放这儿。</h1>
-      <p class="sub" data-stag>暂时还空着。之后会把做过的东西陆续整理上来。</p>
-      <div class="cta" data-stag><a class="pill" data-go="2">往下看</a></div>
-    </div>
-  </section>
+  <!-- 右侧章节轨 -->
+  <aside class="rail" aria-hidden="true" data-page-node-id="cmMrAoTfg4pXgvWy8BDcVQ">
+    <div class="line" data-page-node-id="WKoWmC8GFRfjCHFS8X4asQ"><i id="railFill"
+        data-page-node-id="Oqh1xd663sCD9IPxnXUJNJ"></i></div>
+    <ol data-page-node-id="LCEqUCpMhRM2v4NUPAvqoz">
+      <li data-rail="0" data-page-node-id="dYrwGn9jt8QEEeRESxSz6S"><b
+          data-page-node-id="iAKcMD23zLZhK729IkTCZb">01</b><i data-page-node-id="tvbkLCMVRNBz39q8euRSMr"></i></li>
+      <li data-rail="1" data-page-node-id="pNnBOv4smRMWzBETnlXck1"><b
+          data-page-node-id="IgW9WdI0clzyLppGE2foq9">02</b><i data-page-node-id="c02xPTFttnpTyW8e2TrLTR"></i></li>
+      <li data-rail="2" data-page-node-id="8oDmx6QEtEGOx6dOTHkvLr"><b
+          data-page-node-id="7hyxuP6ARcDCG1TIWtFYTm">03</b><i data-page-node-id="mZCzr3K47PWhvC3nC8rxXz"></i></li>
+      <li data-rail="3" data-page-node-id="whBJvF5YViJRQf6W4BSWiy"><b
+          data-page-node-id="BeQIJPOD3C3xmuEWdvTB8I">04</b><i data-page-node-id="nRA2TGcIcFeNYnCBcM6Xrs"></i></li>
+    </ol>
+  </aside>
 
-  <section class="panel" data-panel id="ch-2">
-    <div class="panel-inner">
-      <p class="eyebrow" data-stag>关于</p>
-      <h1 data-stag>慢一点，<br>但做完整。</h1>
-      <p class="sub" data-stag>喜欢把复杂的东西收进一个安静的界面里。写代码，也写一点设计稿和说明书。</p>
-      <div class="cta" data-stag><a class="pill" data-go="3">怎么联系</a></div>
-    </div>
-  </section>
+  <!-- 右下角读数 -->
+  <div class="index" aria-hidden="true" data-page-node-id="4gOKodhMuL8QzUHS7FDcrR">
+    <strong data-page-node-id="HhbmKZDD30P3Mi409zXFUv"><span id="idxNum"
+        data-page-node-id="86oGqRBVPsf5iFqqCotQZV">01</span> / 04</strong>
+    <span id="idxTime" data-page-node-id="91DEqAKOYoViImtn289nic">00.0 / 06.0s</span>
+  </div>
 
-  <section class="panel" data-panel id="ch-3">
-    <div class="panel-inner">
-      <p class="eyebrow" data-stag>联系</p>
-      <h1 data-stag>聊聊你的<br>下一个想法。</h1>
-      <p class="sub" data-stag>邮件最快：603327998@qq.com。</p>
-      <div class="cta" data-stag><a class="pill" href="mailto:603327998@qq.com">写邮件给我</a></div>
-    </div>
-  </section>
+  <!-- 章节面板：滚动驱动，错峰入场 -->
+  <main class="panels" data-page-node-id="wa6fysQS7mnBQJte84AC0t">
 
-</main>
+    <section class="panel" data-panel id="ch-0" data-page-node-id="s6B908pLh6WCwKCe7PxrM3">
+      <div class="panel-inner" data-page-node-id="OsoLmleGZMKhDTWgBpKKC1">
+        <p class="eyebrow" data-stag data-page-node-id="57EylDpJSfLt4g1UrXkOAr">学生 <span
+            data-page-node-id="xqqlBMOokhOCHDJFfgZ2Bw">·</span> 苏州</p>
+        <h1 data-stag data-page-node-id="2zZq9DZxpiyzhVvGNuOFBx">欢迎</h1>
+        <p class="sub" data-stag data-page-node-id="RYKQ45UUO95DAFm02my5Dg">个人网站</p>
+        <div class="cta" data-stag data-page-node-id="bZQD6FmY95OnAFbAnwBz2g"><a class="pill" data-go="1"
+            data-page-node-id="LIwGwTg89EbY3T1O6Df9Sq">看我的作品</a></div>
+      </div>
+    </section>
 
-<footer class="foot">© 2026 赵继晨 &nbsp;·&nbsp; 苏州 &nbsp;·&nbsp; 天黑了就收工</footer>
-<p class="hint" id="hint">滚动，看日落 <b>↓</b></p>
+    <section class="panel" data-panel id="ch-1" data-page-node-id="VvGLxGHnz8FBkr0fzLg6zD">
+      <div class="panel-inner" data-page-node-id="mutuIuvDHVfQGhWFi7ADEu">
+        <p class="eyebrow" data-stag data-page-node-id="MT6MuvZKyyZioWY72stx7G">作品</p>
+        <h1 data-stag data-page-node-id="ajCdJzoeA5BEvEwroVDugn">慢慢做，<br
+            data-page-node-id="xiqLJBt8OM7WwRXE6n5Exo">都会放这儿。</h1>
+        <p class="sub" data-stag data-page-node-id="JBAeKSSb8ir6S9c4DrbhR1">一份 AI 行业日报看板已经上线，点开看看。</p>
+        <div class="cta" data-stag data-page-node-id="s7DgGZaj5ECsRiTLhaOTWp"><a class="pill" href="daily.html"
+            data-page-node-id="2IEIcDg3muuBXpyI7EF3wp">看 AI 日报</a></div>
+      </div>
+    </section>
 
-<!-- 唯一的页面高度来源 -->
-<div class="track"></div>
+    <section class="panel" data-panel id="ch-2" data-page-node-id="5wCr4HsiyA5EkBUJAHCoLn">
+      <div class="panel-inner" data-page-node-id="oJbsHbfHArPfs8es2xb0xp">
+        <p class="eyebrow" data-stag data-page-node-id="fg6qSNBmHXrDqf0fuaoT81">关于</p>
+        <h1 data-stag data-page-node-id="72gerBQVeaKnPT6R4xcEp0">慢一点，<br
+            data-page-node-id="jiySwP8OJkeVXi3FWKYNwp">但做完整。</h1>
+        <p class="sub" data-stag data-page-node-id="mi2M9AiNGP9WMhSnCiuviH">喜欢把复杂的东西收进一个安静的界面里。写代码，也写一点设计稿和说明书。</p>
+        <div class="cta" data-stag data-page-node-id="XRpwo2s2kPSt2AtLdiQBYM"><a class="pill" data-go="3"
+            data-page-node-id="okIu2W0plGhaZyTGQ8CLch">怎么联系</a></div>
+      </div>
+    </section>
 
-<script>
-(function(){
-"use strict";
+    <section class="panel" data-panel id="ch-3" data-page-node-id="VqbBEC7vshIpsZbyjahlWj">
+      <div class="panel-inner" data-page-node-id="DntbNeXHC9GWX01tgDXR5G">
+        <p class="eyebrow" data-stag data-page-node-id="cMijxZ92Mf00qMlfBWtPY1">联系</p>
+        <h1 data-stag data-page-node-id="iFzYQBSAW7GbzIlt0qL1KR">聊聊你的<br
+            data-page-node-id="AbJv7tBqrOj45xrufYfAW6">下一个想法。</h1>
+        <p class="sub" data-stag data-page-node-id="CBzCIoKG56TSh8ZB0Se7Zi">邮件最快：603327998@qq.com。</p>
+        <div class="cta" data-stag data-page-node-id="1DkxekbA3HMOXvj2vKvgAB"><a class="pill"
+            href="mailto:603327998@qq.com" data-page-node-id="kS7hgad9n4wJTWRR3uvFBo">写邮件给我</a></div>
+      </div>
+    </section>
 
-/* 视频：本地 1920×1080 / 24fps / 144 帧 / 全 I 帧（每帧皆关键帧）。
-   全 I 帧是滚动擦动的前提——任意时间点都能瞬间定位到精确帧，
-   否则每次 currentTime 跳转都要回退到前一个关键帧再解码，擦动会变成幻灯片。 */
-var VIDEO  = "assets/dusk-gulls.mp4";
-var POSTER = "assets/dusk-poster.jpg";
+  </main>
 
-/* 章节节奏 [fadeInStart, fadeInEnd, fadeOutStart, fadeOutEnd]，单位是 0..1 的页面进度。
-   相邻两段的间隙（0.19→0.27、0.52→0.60、0.85→0.91）是刻意的死区：
-   只有视频、没有文字，保证任意时刻不会有两块文案同时可读。
-   最后一段的淡出区间在 1.0 之外，即结尾 CTA 常驻不消失。 */
-var CUES = [
-  [0.00, 0.00, 0.13, 0.19],
-  [0.27, 0.34, 0.46, 0.52],
-  [0.60, 0.67, 0.79, 0.85],
-  [0.91, 0.97, 1.10, 1.20]
-];
-var DRIFT = 26;      // 每块面板的位移行程（px）
-var RAIL_N = 132;    // 右侧竖轨高度，与 CSS 保持一致
-var RING_LEN = 119.4;
+  <footer class="foot" data-page-node-id="gYPDGajFwP3KeKECLcQbca">© 2026 赵继晨 &nbsp;·&nbsp; 苏州 &nbsp;·&nbsp; 天亮了就开工
+  </footer>
 
-var docEl = document.documentElement;
-var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  <p class="hint" id="hint" data-page-node-id="59O4Dp4hnjB8ie44dwbdpt">滚动，升起太阳 <b
+      data-page-node-id="QaPtJr1duyzSsZyINIsPsL">↓</b></p>
 
-var clip    = document.getElementById("clip");
-var stage   = document.getElementById("stage");
-var boot    = document.getElementById("boot");
-var bootPct = document.getElementById("bootPct");
-var bootRing= document.getElementById("bootRing");
-var railFill= document.getElementById("railFill");
-var idxNum  = document.getElementById("idxNum");
-var idxTime = document.getElementById("idxTime");
-var hint    = document.getElementById("hint");
-var railLis = [].slice.call(document.querySelectorAll("[data-rail]"));
+  <!-- 唯一的页面高度来源 -->
+  <div class="track" data-page-node-id="jZaxLAxjqczrij8D2BFxKJ"></div>
 
-var panels = [].slice.call(document.querySelectorAll("[data-panel]")).map(function(p){
-  var items = [].slice.call(p.querySelectorAll("[data-stag]"));
-  return {
-    el: p,
-    items: items,
-    // 按钮是错峰入场里最后出现的一个，可点状态必须跟着它自己的透明度走，
-    // 否则会出现「按钮已经看得见、却点不动」的空窗。
-    cta: p.querySelector(".cta") || items[items.length - 1],
-    lastInert: null
-  };
-});
+  <script>
+    (function () {
+      "use strict";
 
-/* ---------- 基础工具 ---------- */
-function clamp(v, a, b){ return v < a ? a : (v > b ? b : v); }
-function smooth(t){ return t * t * (3 - 2 * t); }          // smoothstep
-function ramp(p, a, b){
-  if (b <= a) return p >= b ? 1 : 0;
-  return smooth(clamp((p - a) / (b - a), 0, 1));
-}
-/* 同一块面板内，按元素序号错峰入场：让文案一行一行地浮出来 */
-function stagedEnter(p, c0, c1, j, n){
-  var span = c1 - c0;
-  if (span <= 0) return p >= c1 ? 1 : 0;
-  var k = n > 1 ? j / (n - 1) : 0;
-  var a = c0 + span * 0.45 * k;
-  var b = c0 + span * 0.55 + span * 0.45 * k;
-  return ramp(p, a, b);
-}
+      /* 视频：本地 1920×1080 / 24fps / 144 帧 / 全 I 帧（每帧皆关键帧）。
+         全 I 帧是滚动擦动的前提——任意时间点都能瞬间定位到精确帧，
+         否则每次 currentTime 跳转都要回退到前一个关键帧再解码，擦动会变成幻灯片。 */
+      var VIDEO = "assets/dusk-gulls.mp4";
+      var POSTER = "assets/dusk-poster.jpg";
 
-/* ---------- 状态 ---------- */
-var progress = 0, seekTo = 0, seekAt = 0, duration = 0;
-var ready = false, started = false, attached = false;
-var maxScroll = 1;
+      /* 章节节奏 [fadeInStart, fadeInEnd, fadeOutStart, fadeOutEnd]，单位是 0..1 的页面进度。
+         相邻两段的间隙（0.19→0.27、0.52→0.60、0.85→0.91）是刻意的死区：
+         只有视频、没有文字，保证任意时刻不会有两块文案同时可读。
+         最后一段的淡出区间在 1.0 之外，即结尾 CTA 常驻不消失。 */
+      var CUES = [
+        [0.00, 0.00, 0.13, 0.19],
+        [0.27, 0.34, 0.46, 0.52],
+        [0.60, 0.67, 0.79, 0.85],
+        [0.91, 0.97, 1.10, 1.20]
+      ];
+      var DRIFT = 26;      // 每块面板的位移行程（px）
+      var RAIL_N = 132;    // 右侧竖轨高度，与 CSS 保持一致
+      var RING_LEN = 119.4;
 
-function readScroll(){
-  maxScroll = Math.max(1, docEl.scrollHeight - window.innerHeight);
-  progress = clamp(window.pageYOffset / maxScroll, 0, 1);
-  if (duration) seekTo = progress * duration;
-}
+      var docEl = document.documentElement;
+      var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-/* ---------- 每帧绘制 ---------- */
-var canBlur = !reduced && window.matchMedia("(min-width: 721px)").matches;
+      var clip = document.getElementById("clip");
+      var stage = document.getElementById("stage");
+      var boot = document.getElementById("boot");
+      var bootPct = document.getElementById("bootPct");
+      var bootRing = document.getElementById("bootRing");
+      var railFill = document.getElementById("railFill");
+      var idxNum = document.getElementById("idxNum");
+      var idxTime = document.getElementById("idxTime");
+      var hint = document.getElementById("hint");
+      var railLis = [].slice.call(document.querySelectorAll("[data-rail]"));
 
-function paint(){
-  docEl.style.setProperty("--dusk", progress.toFixed(4));
-  railFill.style.transform = "scaleY(" + progress.toFixed(4) + ")";
-  if (hint) hint.style.opacity = progress > 0.035 ? "0" : "1";
+      var panels = [].slice.call(document.querySelectorAll("[data-panel]")).map(function (p) {
+        var items = [].slice.call(p.querySelectorAll("[data-stag]"));
+        return {
+          el: p,
+          items: items,
+          // 按钮是错峰入场里最后出现的一个，可点状态必须跟着它自己的透明度走，
+          // 否则会出现「按钮已经看得见、却点不动」的空窗。
+          cta: p.querySelector(".cta") || items[items.length - 1],
+          lastInert: null
+        };
+      });
 
-  var best = -1, bestV = 0.02;
-
-  for (var i = 0; i < panels.length; i++){
-    var c = CUES[i];
-    var P = panels[i];
-    var n = P.items.length;
-
-    // 面板整体：用于指针事件与可访问性，不做视觉淡出（避免与子元素双重叠加）
-    var pv = ramp(progress, c[0], c[1]) * (1 - ramp(progress, c[2], c[3]));
-    if (pv > bestV){ bestV = pv; best = i; }
-
-    var leave = ramp(progress, c[2], c[3]);
-    var ctaO = 0;
-    for (var j = 0; j < n; j++){
-      var el = P.items[j];
-      var e = stagedEnter(progress, c[0], c[1], j, n);
-      var o = e * (1 - leave);
-      if (el === P.cta) ctaO = o;
-      el.style.opacity = o.toFixed(3);
-      el.style.transform = "translate3d(0," +
-        ((1 - e) * DRIFT - leave * DRIFT * 0.55).toFixed(2) + "px,0)";
-      // 模糊只保留「远处的鸟逐渐聚焦」这一下，且衰减要快：
-      // 用 (1-e)^1.6 × 5px，e≈0.5 时就只剩 1.6px。
-      // 若用线性 ×7px，中段会出现一个糊成一团的大标题，像渲染故障而不是动效。
-      if (canBlur && el.tagName === "H1"){
-        var bl = Math.pow(1 - e, 1.6) * 5;
-        el.style.filter = bl > 0.15 ? "blur(" + bl.toFixed(2) + "px)" : "";
+      /* ---------- 基础工具 ---------- */
+      function clamp(v, a, b) { return v < a ? a : (v > b ? b : v); }
+      function smooth(t) { return t * t * (3 - 2 * t); }          // smoothstep
+      function ramp(p, a, b) {
+        if (b <= a) return p >= b ? 1 : 0;
+        return smooth(clamp((p - a) / (b - a), 0, 1));
       }
-    }
-
-    // 以按钮自身的可见度决定是否可点：它刚够看清就能点，开始淡出就失效
-    var interactive = ctaO > 0.55;
-    P.el.style.pointerEvents = interactive ? "auto" : "none";
-
-    // 隐藏的面板从键盘与读屏里摘出去（opacity:0 并不会移除可聚焦性）
-    var hidden = pv < 0.15;
-    if (hidden !== P.lastInert){
-      P.lastInert = hidden;
-      if ("inert" in HTMLElement.prototype) P.el.inert = hidden;
-      if (hidden) P.el.setAttribute("aria-hidden", "true");
-      else P.el.removeAttribute("aria-hidden");
-    }
-  }
-
-  if (best >= 0){
-    for (var k = 0; k < railLis.length; k++){
-      railLis[k].classList.toggle("on", k === best);
-    }
-    idxNum.textContent = "0" + (best + 1);
-  }
-  if (duration){
-    idxTime.textContent = (progress * duration).toFixed(1) + " / " + duration.toFixed(1) + "s";
-  }
-}
-
-/* ---------- rAF 主循环（永不取消） ---------- */
-function frame(){
-  if (ready && duration){
-    var gap = seekTo - seekAt;
-    if (Math.abs(gap) > 0.0008){
-      seekAt += gap * 0.115;                 // 缓动系数：把跳跃的擦动磨顺
-      if (clip.readyState >= 2 && !clip.seeking){
-        try { clip.currentTime = seekAt; } catch (e) {}
+      /* 同一块面板内，按元素序号错峰入场：让文案一行一行地浮出来 */
+      function stagedEnter(p, c0, c1, j, n) {
+        var span = c1 - c0;
+        if (span <= 0) return p >= c1 ? 1 : 0;
+        var k = n > 1 ? j / (n - 1) : 0;
+        var a = c0 + span * 0.45 * k;
+        var b = c0 + span * 0.55 + span * 0.45 * k;
+        return ramp(p, a, b);
       }
-    }
-  }
-  paint();
-  requestAnimationFrame(frame);
-}
 
-/* ---------- 预加载读数 ---------- */
-function setProgress(f){
-  f = clamp(f, 0, 1);
-  bootPct.textContent = ("0" + Math.round(f * 100)).slice(-2);
-  bootRing.style.strokeDashoffset = (RING_LEN * (1 - f)).toFixed(1);
-}
+      /* ---------- 状态 ---------- */
+      var progress = 0, seekTo = 0, seekAt = 0, duration = 0, sunY = 62;
+      var VSTART = 0;      // 视频定格在开头这一帧，画面不再随滚动变化
+      var ready = false, started = false, attached = false;
+      var maxScroll = 1;
+      var SUN_Y0 = 62, SUN_Y1 = 16;   // 太阳纵向行程：海平线上 → 高空（%）
+      var lastDusk = -1, lastSunY = -1;
 
-/* ---------- 启动 ---------- */
-function start(){
-  if (started) return;
-  started = true;
-  ready = true;
-  stage.classList.add("is-ready");
-  boot.classList.add("done");
-  readScroll();
-  seekAt = seekTo;
-}
+      function readScroll() {
+        maxScroll = Math.max(1, docEl.scrollHeight - window.innerHeight);
+        progress = clamp(window.pageYOffset / maxScroll, 0, 1);
+        seekTo = 0;                      // 定格：不再擦帧
+        sunY = SUN_Y0 - (SUN_Y0 - SUN_Y1) * progress;   // 滚动只升降太阳
+      }
 
-/* ---------- 挂载视频源：先绑监听，再设 src ---------- */
-function attach(src){
-  if (attached) return;
-  attached = true;
+      /* ---------- 每帧绘制 ---------- */
+      var canBlur = !reduced && window.matchMedia("(min-width: 721px)").matches;
 
-  clip.addEventListener("loadedmetadata", function(){
-    duration = clip.duration || 0;
-    clip.pause();
-    readScroll();
-    seekAt = seekTo;
-    try { clip.currentTime = seekAt; } catch (e) {}
-  });
-  clip.addEventListener("loadeddata", start);
-  clip.addEventListener("canplaythrough", start);
-  clip.addEventListener("error", start);
+      function paint() {
+        // 只在数值真的变了才写回去：rAF 每帧都跑，避免无谓的样式重算
+        if (progress !== lastDusk) {
+          lastDusk = progress;
+          docEl.style.setProperty("--dusk", progress.toFixed(4));
+          docEl.style.setProperty("--sunp", progress.toFixed(4));
+          railFill.style.transform = "scaleY(" + progress.toFixed(4) + ")";
+          if (hint) hint.style.opacity = progress > 0.035 ? "0" : "1";
+        }
+        if (sunY !== lastSunY) {
+          lastSunY = sunY;
+          docEl.style.setProperty("--suny", sunY.toFixed(2) + "%");
+        }
 
-  clip.src = src;
-  clip.load();
-  setTimeout(start, 12000);   // 解码卡死也不要把页面永远锁在预加载器后面
-}
+        var best = -1, bestV = 0.02;
 
-/* ---------- 取视频：先整段缓冲成 blob ----------
-   在已缓冲的 blob 内 seek 近乎瞬时；走网络 range 请求则是一格一格地等。
-   代价是首屏要等下载完成，所以设了 15s 的兜底：超时就改为直接流式播放。 */
-function preload(){
-  if (reduced){
-    // 尊重「减少动态效果」：不下载视频，直接用静帧当背景
-    setProgress(1);
-    stage.style.backgroundImage = "url(" + POSTER + ")";
-    stage.style.backgroundSize = "cover";
-    stage.style.backgroundPosition = "center";
-    start();
-    return;
-  }
+        for (var i = 0; i < panels.length; i++) {
+          var c = CUES[i];
+          var P = panels[i];
+          var n = P.items.length;
 
-  var ctrl = (typeof AbortController !== "undefined") ? new AbortController() : null;
-  var bailed = false;
-  var bail = setTimeout(function(){
-    if (!attached){
-      bailed = true;
-      if (ctrl) ctrl.abort();
-      setProgress(1);
-      attach(VIDEO);
-    }
-  }, 15000);
+          // 面板整体：用于指针事件与可访问性，不做视觉淡出（避免与子元素双重叠加）
+          var pv = ramp(progress, c[0], c[1]) * (1 - ramp(progress, c[2], c[3]));
+          if (pv > bestV) { bestV = pv; best = i; }
 
-  function done(src){
-    clearTimeout(bail);
-    setProgress(1);
-    attach(src);
-  }
+          var leave = ramp(progress, c[2], c[3]);
+          var ctaO = 0;
+          for (var j = 0; j < n; j++) {
+            var el = P.items[j];
+            var e = stagedEnter(progress, c[0], c[1], j, n);
+            var o = e * (1 - leave);
+            if (el === P.cta) ctaO = o;
+            el.style.opacity = o.toFixed(3);
+            el.style.transform = "translate3d(0," +
+              ((1 - e) * DRIFT - leave * DRIFT * 0.55).toFixed(2) + "px,0)";
+            // 模糊只保留「远处的鸟逐渐聚焦」这一下，且衰减要快：
+            // 用 (1-e)^1.6 × 5px，e≈0.5 时就只剩 1.6px。
+            // 若用线性 ×7px，中段会出现一个糊成一团的大标题，像渲染故障而不是动效。
+            if (canBlur && el.tagName === "H1") {
+              var bl = Math.pow(1 - e, 1.6) * 5;
+              el.style.filter = bl > 0.15 ? "blur(" + bl.toFixed(2) + "px)" : "";
+            }
+          }
 
-  if (typeof fetch !== "function" || !ctrl){
-    done(VIDEO);
-    return;
-  }
+          // 以按钮自身的可见度决定是否可点：它刚够看清就能点，开始淡出就失效
+          var interactive = ctaO > 0.55;
+          P.el.style.pointerEvents = interactive ? "auto" : "none";
 
-  fetch(VIDEO, { signal: ctrl.signal })
-    .then(function(res){
-      if (!res.ok || !res.body) throw new Error("bad response");
-      var total = parseInt(res.headers.get("content-length") || "0", 10) || 0;
-      var reader = res.body.getReader();
-      var chunks = [], got = 0;
+          // 隐藏的面板从键盘与读屏里摘出去（opacity:0 并不会移除可聚焦性）
+          var hidden = pv < 0.15;
+          if (hidden !== P.lastInert) {
+            P.lastInert = hidden;
+            if ("inert" in HTMLElement.prototype) P.el.inert = hidden;
+            if (hidden) P.el.setAttribute("aria-hidden", "true");
+            else P.el.removeAttribute("aria-hidden");
+          }
+        }
 
-      return (function pump(){
-        return reader.read().then(function(r){
-          if (r.done) return new Blob(chunks, { type: "video/mp4" });
-          chunks.push(r.value);
-          got += r.value.length;
-          // 没有 content-length 时按本片实际体积（约 6.0MB）估算，封顶 0.95 以免卡在 100%
-          setProgress(total ? got / total : Math.min(got / 6.1e6, 0.95));
-          return pump();
+        if (best >= 0) {
+          for (var k = 0; k < railLis.length; k++) {
+            railLis[k].classList.toggle("on", k === best);
+          }
+          idxNum.textContent = "0" + (best + 1);
+        }
+        idxTime.textContent = "太阳 " + Math.round(progress * 100) + "%";
+      }
+
+      /* ---------- rAF 主循环（永不取消） ---------- */
+      function frame() {
+        if (ready && duration && !clip.seeking && clip.currentTime > 0.02) {
+          try { clip.currentTime = 0; } catch (e) { }   // 定格：任何漂帧都拉回开头
+        }
+        if (ready && duration) {
+          var gap = seekTo - seekAt;
+          if (Math.abs(gap) > 0.0008) {
+            seekAt += gap * 0.115;                 // 缓动系数：把跳跃的擦动磨顺
+            if (clip.readyState >= 2 && !clip.seeking) {
+              try { clip.currentTime = seekAt; } catch (e) { }
+            }
+          }
+        }
+        paint();
+        requestAnimationFrame(frame);
+      }
+
+      /* ---------- 预加载读数 ---------- */
+      function setProgress(f) {
+        f = clamp(f, 0, 1);
+        bootPct.textContent = ("0" + Math.round(f * 100)).slice(-2);
+        bootRing.style.strokeDashoffset = (RING_LEN * (1 - f)).toFixed(1);
+      }
+
+      /* ---------- 启动 ---------- */
+      function start() {
+        if (started) return;
+        started = true;
+        ready = true;
+        stage.classList.add("is-ready");
+        boot.classList.add("done");
+        readScroll();
+        seekAt = seekTo;
+      }
+
+      /* ---------- 挂载视频源：先绑监听，再设 src ---------- */
+      function attach(src) {
+        if (attached) return;
+        attached = true;
+
+        clip.addEventListener("loadedmetadata", function () {
+          duration = clip.duration || 0;
+          clip.pause();
+          readScroll();
+          seekAt = seekTo;
+          try { clip.currentTime = seekAt; } catch (e) { }
         });
-      })();
-    })
-    .then(function(blob){
-      if (bailed) return;
-      done(URL.createObjectURL(blob));
-    })
-    .catch(function(){
-      if (bailed) return;
-      done(VIDEO);   // 覆盖 CORS 失败、被 abort、离线
-    });
-}
+        clip.addEventListener("loadeddata", start);
+        clip.addEventListener("canplaythrough", start);
+        clip.addEventListener("error", start);
 
-/* ---------- iOS 解锁 ── iOS 不会从一个从未播放过的视频里绘制帧 ---------- */
-function unlock(){
-  var p = clip.play();
-  if (p && p.then) p.then(function(){ clip.pause(); }).catch(function(){});
-  else clip.pause();
-}
-["touchstart","pointerdown","wheel","keydown"].forEach(function(ev){
-  window.addEventListener(ev, unlock, { once: true, passive: true });
-});
+        clip.src = src;
+        clip.load();
+        setTimeout(start, 12000);   // 解码卡死也不要把页面永远锁在预加载器后面
+      }
 
-/* ---------- 把导航/CTA 变成真正的章节跳转（锚点在 fixed 布局里不会滚动） ---------- */
-function goChapter(i){
-  var c = CUES[i];
-  if (!c) return;
-  maxScroll = Math.max(1, docEl.scrollHeight - window.innerHeight);
-  var y = ((c[0] + c[1]) / 2) * maxScroll;
-  window.scrollTo({ top: y, behavior: reduced ? "auto" : "smooth" });
-}
-document.addEventListener("click", function(ev){
-  var t = ev.target.closest("[data-go]");
-  if (!t) return;
-  ev.preventDefault();
-  goChapter(parseInt(t.getAttribute("data-go"), 10));
-});
+      /* ---------- 取视频：先整段缓冲成 blob ----------
+         在已缓冲的 blob 内 seek 近乎瞬时；走网络 range 请求则是一格一格地等。
+         代价是首屏要等下载完成，所以设了 15s 的兜底：超时就改为直接流式播放。 */
+      function preload() {
+        if (reduced) {
+          // 尊重「减少动态效果」：不下载视频，直接用静帧当背景
+          setProgress(1);
+          stage.style.backgroundImage = "url(" + POSTER + ")";
+          stage.style.backgroundSize = "cover";
+          stage.style.backgroundPosition = "center";
+          start();
+          return;
+        }
 
-/* ---------- 接线 ---------- */
-window.addEventListener("scroll", readScroll, { passive: true });
-window.addEventListener("resize", function(){
-  readScroll();
-  canBlur = !reduced && window.matchMedia("(min-width: 721px)").matches;
-});
+        var ctrl = (typeof AbortController !== "undefined") ? new AbortController() : null;
+        var bailed = false;
+        var bail = setTimeout(function () {
+          if (!attached) {
+            bailed = true;
+            if (ctrl) ctrl.abort();
+            setProgress(1);
+            attach(VIDEO);
+          }
+        }, 15000);
 
-readScroll();
-paint();
-preload();
-requestAnimationFrame(frame);
+        function done(src) {
+          clearTimeout(bail);
+          setProgress(1);
+          attach(src);
+        }
 
-})();
-</script>
+        if (typeof fetch !== "function" || !ctrl) {
+          done(VIDEO);
+          return;
+        }
+
+        fetch(VIDEO, { signal: ctrl.signal })
+          .then(function (res) {
+            if (!res.ok || !res.body) throw new Error("bad response");
+            var total = parseInt(res.headers.get("content-length") || "0", 10) || 0;
+            var reader = res.body.getReader();
+            var chunks = [], got = 0;
+
+            return (function pump() {
+              return reader.read().then(function (r) {
+                if (r.done) return new Blob(chunks, { type: "video/mp4" });
+                chunks.push(r.value);
+                got += r.value.length;
+                // 没有 content-length 时按本片实际体积（约 6.0MB）估算，封顶 0.95 以免卡在 100%
+                setProgress(total ? got / total : Math.min(got / 6.1e6, 0.95));
+                return pump();
+              });
+            })();
+          })
+          .then(function (blob) {
+            if (bailed) return;
+            done(URL.createObjectURL(blob));
+          })
+          .catch(function () {
+            if (bailed) return;
+            done(VIDEO);   // 覆盖 CORS 失败、被 abort、离线
+          });
+      }
+
+      /* ---------- iOS 解锁 ── iOS 不会从一个从未播放过的视频里绘制帧 ---------- */
+      function unlock() {
+        var p = clip.play();
+        if (p && p.then) p.then(function () { clip.pause(); }).catch(function () { });
+        else clip.pause();
+      }
+      ["touchstart", "pointerdown", "wheel", "keydown"].forEach(function (ev) {
+        window.addEventListener(ev, unlock, { once: true, passive: true });
+      });
+
+      /* ---------- 把导航/CTA 变成真正的章节跳转（锚点在 fixed 布局里不会滚动） ---------- */
+      function goChapter(i) {
+        var c = CUES[i];
+        if (!c) return;
+        maxScroll = Math.max(1, docEl.scrollHeight - window.innerHeight);
+        var y = ((c[0] + c[1]) / 2) * maxScroll;
+        window.scrollTo({ top: y, behavior: reduced ? "auto" : "smooth" });
+      }
+      document.addEventListener("click", function (ev) {
+        var t = ev.target.closest("[data-go]");
+        if (!t) return;
+        ev.preventDefault();
+        goChapter(parseInt(t.getAttribute("data-go"), 10));
+      });
+
+      /* ---------- 接线 ---------- */
+      window.addEventListener("scroll", readScroll, { passive: true });
+      window.addEventListener("resize", function () {
+        readScroll();
+        canBlur = !reduced && window.matchMedia("(min-width: 721px)").matches;
+      });
+
+      readScroll();
+      paint();
+      preload();
+      requestAnimationFrame(frame);
+
+    })();
+  </script>
 </body>
+
 </html>

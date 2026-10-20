@@ -1,0 +1,1398 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-page-node-id="RvcIMxQrPJVT9s9DA8fjYt">
+<head data-page-node-id="Uld5yg3jw4OHo0SqE1GWXj">
+<meta charset="UTF-8" data-page-node-id="LkWA6TMpyq3KMVSKA33tGb">
+<meta name="viewport" content="width=device-width, initial-scale=1" data-page-node-id="8hFjLX9FMjHMD1RPOHmGaS">
+<title>AI 行业日报 · 5 分钟看懂今天 AI 圈发生了什么</title>
+<style>
+/* ============ 设计变量：复古技术刊物 × 新粗野主义 ============ */
+:root{
+  --paper:#F2EEE4;
+  --paper-2:#FFFDF7;
+  --paper-3:#E8E2D4;
+  --ink:#141210;
+  --red:#FF4A1C;
+  --lime:#DFFF29;
+  --blue:#1F3CFF;
+  --muted:#6E675C;
+  --sans:"PingFang SC","HarmonyOS Sans SC","Source Han Sans SC","Noto Sans SC","Microsoft YaHei",system-ui,sans-serif;
+  --mono:ui-monospace,"SFMono-Regular","Cascadia Mono",Consolas,"Liberation Mono",monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{
+  font-family:var(--sans);
+  color:var(--ink);
+  background-color:var(--paper);
+  background-image:
+    linear-gradient(rgba(20,18,16,.055) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(20,18,16,.055) 1px,transparent 1px);
+  background-size:28px 28px,28px 28px;
+  min-height:100vh;
+  padding:0 0 64px;
+  overflow-x:hidden;
+}
+/* 纸张噪点质感（内联 SVG，无任何外部请求） */
+body::before{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:999;opacity:.28;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");
+}
+.shell{max-width:1280px;margin:0 auto;padding:0 28px}
+
+/* ============ 报头 ============ */
+.masthead{padding:40px 0 0}
+.masthead__meta{
+  display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+  font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--ink);
+}
+.masthead__meta .dot{width:8px;height:8px;background:var(--red);border:2px solid var(--ink)}
+.masthead__rule{height:6px;background:var(--ink);margin:14px 0 4px}
+.masthead__rule--thin{height:2px;background:var(--ink);margin-bottom:22px}
+.masthead__title{
+  font-size:clamp(3.2rem,11vw,8.4rem);
+  font-weight:900;line-height:.92;letter-spacing:-.035em;
+  text-shadow:6px 6px 0 var(--lime);
+}
+.masthead__title span{color:var(--red)}
+.masthead__foot{
+  margin-top:20px;display:flex;align-items:center;justify-content:space-between;gap:22px;flex-wrap:wrap;
+}
+.masthead__sub{
+  display:inline-block;
+  background:var(--ink);color:var(--paper);
+  font-family:var(--mono);font-size:clamp(13px,1.6vw,17px);letter-spacing:.06em;
+  padding:11px 20px;transform:rotate(-.6deg);
+  box-shadow:5px 5px 0 var(--red);
+}
+/* 期号印章（纯 CSS 装饰） */
+.stamp{
+  position:relative;flex:none;
+  width:108px;height:108px;border-radius:50%;
+  border:3px solid var(--red);color:var(--red);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  font-family:var(--mono);text-align:center;transform:rotate(-11deg);
+  transition:transform .25s ease;
+}
+.stamp:hover{transform:rotate(0deg) scale(1.04)}
+.stamp::before{content:"";position:absolute;inset:7px;border:1.5px dashed var(--red);border-radius:50%}
+.stamp strong{font-size:26px;line-height:1;letter-spacing:.02em}
+.stamp span{font-size:9px;letter-spacing:.22em;margin-top:5px}
+.stamp em{font-style:normal;font-size:8.5px;letter-spacing:.14em;margin-top:3px;opacity:.85}
+
+/* ---- 今日速览数据条 ---- */
+.pulse{
+  margin:24px 0 30px;display:grid;grid-template-columns:repeat(4,1fr);
+  border-top:3px solid var(--ink);border-bottom:3px solid var(--ink);
+  background:var(--paper-2);
+}
+.pulse__cell{
+  padding:16px 18px;border-left:3px solid var(--ink);
+  display:flex;flex-direction:column;gap:5px;
+}
+.pulse__cell:first-child{border-left:none}
+.pulse__num{font-family:var(--mono);font-weight:700;font-size:clamp(1.3rem,2.4vw,1.85rem);letter-spacing:-.01em}
+.pulse__cell:nth-child(2) .pulse__num{color:var(--red)}
+.pulse__label{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;color:var(--muted);text-transform:uppercase}
+.masthead__bar{
+  margin-top:26px;height:14px;
+  background:repeating-linear-gradient(90deg,var(--ink) 0 3px,transparent 3px 8px,var(--ink) 8px 9px,transparent 9px 15px);
+  opacity:.75;
+}
+
+/* ============ 今日重点摘要 ============ */
+.summary{
+  margin:30px 0 34px;background:var(--paper-2);
+  border:3px solid var(--ink);box-shadow:8px 8px 0 var(--ink);
+  display:grid;grid-template-columns:auto 1fr;
+}
+.summary__label{
+  background:var(--ink);color:var(--paper);
+  font-family:var(--mono);font-weight:700;font-size:15px;letter-spacing:.12em;
+  padding:22px 20px;writing-mode:vertical-rl;text-orientation:upright;
+  display:flex;align-items:center;justify-content:center;
+}
+.summary__list{list-style:none;padding:20px 24px;display:grid;gap:12px}
+.summary__list li{
+  display:flex;gap:14px;align-items:baseline;
+  font-size:15.5px;line-height:1.6;
+}
+.summary__list b{font-family:var(--mono);font-size:13px;color:var(--red);flex:none;letter-spacing:.05em}
+
+/* ============ 主布局 ============ */
+.layout{display:grid;grid-template-columns:1fr 330px;gap:30px;align-items:start}
+
+/* ---- 筛选栏 ---- */
+.filters{
+  display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+  border:3px solid var(--ink);background:var(--paper-2);
+  box-shadow:6px 6px 0 var(--ink);padding:12px 14px;margin-bottom:26px;
+}
+.filters__tag{
+  font-family:var(--mono);font-size:12px;letter-spacing:.14em;color:var(--muted);
+  padding-right:4px;
+}
+.filter{
+  font-family:var(--sans);font-size:14px;font-weight:700;
+  padding:9px 16px;border:2px solid var(--ink);background:transparent;color:var(--ink);
+  cursor:pointer;white-space:nowrap;transition:transform .12s,box-shadow .12s,background .15s,color .15s;
+}
+.filter:hover{transform:translate(-1px,-1px);box-shadow:3px 3px 0 var(--ink)}
+.filter.is-active{background:var(--ink);color:var(--paper);box-shadow:3px 3px 0 var(--red)}
+/* 批量操作按钮（不参与筛选高亮） */
+.filter--action{background:var(--lime);box-shadow:3px 3px 0 var(--ink)}
+.filter--action:hover{transform:translate(-1px,-1px);box-shadow:5px 5px 0 var(--ink)}
+.filter:focus-visible,.read-btn:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
+.filters__progress{
+  margin-left:auto;font-family:var(--mono);font-size:12px;letter-spacing:.1em;color:var(--muted);white-space:nowrap;
+}
+.filters__progress b{color:var(--ink);font-size:14px}
+
+/* ---- 新闻卡片 ---- */
+.cards{display:grid;gap:24px}
+.card{
+  position:relative;background:var(--paper-2);
+  border:3px solid var(--ink);box-shadow:7px 7px 0 var(--ink);
+  padding:24px 26px 22px;
+  transition:transform .18s ease,box-shadow .18s ease,opacity .18s ease;
+  animation:rise .5s cubic-bezier(.2,.8,.3,1) both;
+}
+.card:nth-child(1){animation-delay:.02s}
+.card:nth-child(2){animation-delay:.09s}
+.card:nth-child(3){animation-delay:.16s}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.card:hover{transform:translate(-3px,-3px);box-shadow:11px 11px 0 var(--ink)}
+
+/* 层级一：头条，视觉最大 */
+.card--lead{
+  background:var(--paper-2);padding:30px 32px 26px;box-shadow:12px 12px 0 var(--ink);
+}
+.card--lead::before{
+  content:"";position:absolute;left:0;top:0;height:10px;width:100%;
+  background:linear-gradient(90deg,var(--red) 0 62%,var(--ink) 62% 100%);
+}
+.card--lead:hover{box-shadow:16px 16px 0 var(--ink)}
+.card--lead .card__title{font-size:clamp(1.5rem,2.5vw,2.1rem);line-height:1.25}
+.card--lead .card__desc{font-size:16px;max-width:62ch}
+/* 层级二 */
+.card--mid{padding:22px 24px;box-shadow:7px 7px 0 var(--ink)}
+.card--mid .card__title{font-size:1.32rem}
+/* 层级三：最小 */
+.card--sm{background:var(--paper-3);padding:18px 22px;box-shadow:5px 5px 0 var(--ink)}
+.card--sm .card__title{font-size:1.08rem;font-weight:800}
+.card--sm .card__desc{font-size:14px;color:var(--muted)}
+
+.card__top{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.card__no{
+  font-family:var(--mono);font-weight:700;font-size:13px;letter-spacing:.08em;
+  border:2px solid var(--ink);padding:3px 8px;background:var(--paper);
+}
+.card--lead .card__no{background:var(--ink);color:var(--lime)}
+.badge{
+  font-family:var(--mono);font-size:11.5px;font-weight:700;letter-spacing:.1em;
+  padding:4px 10px;border:2px solid var(--ink);color:#fff;
+}
+.badge--high{background:var(--red)}
+.badge--mid{background:var(--blue)}
+/* 快讯详情里的分类徽章 */
+.badge--cat{background:var(--ink);color:var(--lime)}
+.badge--time{background:var(--paper);color:var(--ink)}
+.card__title{font-weight:900;letter-spacing:-.01em;line-height:1.35;margin-bottom:10px}
+.card__desc{font-size:14.5px;line-height:1.72;color:#3B352C;margin-bottom:18px}
+/* 卡片主题标签 */
+.card__tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.card__tags span{
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;
+  padding:4px 9px;border:2px solid var(--ink);background:var(--paper);color:var(--ink);
+}
+.card--lead .card__tags span:first-child{background:var(--ink);color:var(--lime)}
+/* 编辑一句话点评 */
+.card__note{
+  border-left:5px solid var(--red);background:rgba(255,74,28,.07);
+  padding:12px 14px;margin-bottom:18px;font-size:14px;line-height:1.7;color:#3B352C;
+}
+.card__note b{
+  display:block;font-family:var(--mono);font-size:10px;letter-spacing:.18em;
+  color:var(--red);margin-bottom:5px;
+}
+.card__foot{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.card__src{font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;color:var(--muted);text-transform:uppercase}
+
+/* 阅读完成按钮 */
+.read-btn{
+  font-family:var(--sans);font-size:14px;font-weight:800;letter-spacing:.02em;
+  padding:11px 20px;border:2px solid var(--ink);background:var(--paper);color:var(--ink);
+  cursor:pointer;white-space:nowrap;box-shadow:4px 4px 0 var(--ink);
+  transition:transform .12s,box-shadow .12s,background .18s,color .18s;
+}
+.read-btn:hover{transform:translate(-1px,-1px);box-shadow:6px 6px 0 var(--ink)}
+.read-btn:active{transform:translate(4px,4px);box-shadow:0 0 0 var(--ink)}
+.card.is-read .read-btn{background:var(--ink);color:var(--lime);box-shadow:4px 4px 0 var(--red)}
+
+/* 右上角对勾 */
+.card__check{
+  position:absolute;top:-14px;right:-14px;width:36px;height:36px;
+  display:flex;align-items:center;justify-content:center;
+  background:var(--ink);border:3px solid var(--ink);border-radius:9px;
+  opacity:0;transform:scale(.4) rotate(-20deg);pointer-events:none;
+  transition:opacity .2s ease,transform .28s cubic-bezier(.2,1.5,.4,1);
+}
+.card__check svg{width:20px;height:20px;stroke:var(--lime);fill:none;stroke-width:3.4;stroke-linecap:square;stroke-linejoin:miter}
+.card.is-read .card__check{opacity:1;transform:scale(1) rotate(0)}
+.card.is-read{background:var(--paper-3)}
+.card--lead.is-read{background:var(--paper-3)}
+
+/* ============ 今日趋势面板（深色反差块） ============ */
+.trend{
+  background:var(--ink);color:var(--paper);
+  border:3px solid var(--ink);box-shadow:8px 8px 0 var(--red);
+  padding:24px 22px;position:sticky;top:24px;
+}
+.trend__head{display:flex;align-items:baseline;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:6px}
+.trend__title{font-size:1.15rem;font-weight:900;letter-spacing:.01em}
+.trend__en{font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;color:var(--lime)}
+.trend__rule{height:2px;background:var(--lime);margin:12px 0 18px}
+.trend__item{margin-bottom:16px}
+.trend__row{display:flex;align-items:baseline;justify-content:space-between;gap:8px;margin-bottom:7px}
+.trend__name{font-size:13.5px;font-weight:700}
+.trend__val{font-family:var(--mono);font-size:12.5px;color:var(--lime)}
+.trend__val em{font-style:normal;color:var(--red);font-size:11px;margin-left:5px}
+.trend__bar{height:9px;background:rgba(242,238,228,.14);border:1px solid rgba(242,238,228,.25)}
+.trend__bar i{display:block;height:100%;background:var(--lime)}
+.trend__item.is-down .trend__bar i{background:var(--red)}
+.trend__item.is-down .trend__val{color:var(--red)}
+.trend__item.is-down .trend__val em{color:var(--lime)}
+.trend__tags{border-top:1px dashed rgba(242,238,228,.35);padding-top:16px;margin-top:20px}
+.trend__tags h4{font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;color:var(--lime);margin-bottom:12px;font-weight:700}
+.trend__tags span{
+  display:inline-block;font-size:12px;font-weight:700;padding:5px 10px;margin:0 7px 8px 0;
+  border:1.5px solid var(--paper);background:transparent;
+}
+
+/* ---- 卡片操作区 ---- */
+.card__actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.detail-btn{
+  font-family:var(--sans);font-size:14px;font-weight:800;
+  padding:11px 18px;border:2px solid var(--ink);background:var(--lime);color:var(--ink);
+  cursor:pointer;white-space:nowrap;box-shadow:4px 4px 0 var(--ink);
+  transition:transform .12s,box-shadow .12s,background .18s;
+}
+.detail-btn:hover{transform:translate(-1px,-1px);box-shadow:6px 6px 0 var(--ink)}
+.detail-btn:active{transform:translate(4px,4px);box-shadow:0 0 0 var(--ink)}
+
+/* ============ 详情弹窗（第二个界面） ============ */
+.sheet{position:fixed;inset:0;z-index:1200;display:none}
+.sheet.is-open{display:block}
+.sheet__mask{
+  position:absolute;inset:0;background:rgba(20,18,16,.74);
+  backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);
+}
+.sheet__panel{
+  position:absolute;left:50%;top:50%;
+  width:min(780px,calc(100vw - 32px));max-height:calc(100vh - 64px);
+  display:flex;flex-direction:column;overflow:hidden;
+  background:var(--paper);border:3px solid var(--ink);box-shadow:16px 16px 0 var(--red);
+  animation:sheetIn .3s cubic-bezier(.2,.9,.3,1) both;
+}
+@keyframes sheetIn{
+  from{opacity:0;transform:translate(-50%,-45%) scale(.97)}
+  to{opacity:1;transform:translate(-50%,-50%) scale(1)}
+}
+.sheet__head{
+  background:var(--ink);color:var(--paper);padding:16px 20px;
+  display:flex;align-items:center;gap:12px;flex-wrap:wrap;flex:none;
+}
+.sheet__no{
+  font-family:var(--mono);font-weight:700;font-size:13px;letter-spacing:.08em;
+  border:2px solid var(--lime);color:var(--lime);padding:3px 9px;
+}
+.sheet__head .badge{flex:none}
+.sheet__kind{margin-left:4px;font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;color:var(--lime)}
+.sheet__close{
+  margin-left:auto;width:34px;height:34px;flex:none;
+  background:var(--paper);border:2px solid var(--paper);color:var(--ink);
+  font-family:var(--mono);font-size:17px;font-weight:700;line-height:1;cursor:pointer;
+}
+.sheet__close:hover{background:var(--red);color:#fff;border-color:var(--red)}
+.sheet__body{padding:26px 30px 8px;overflow:auto}
+.sheet__title{font-size:clamp(1.35rem,2.6vw,1.85rem);font-weight:900;line-height:1.3;margin-bottom:10px}
+.sheet__meta{font-family:var(--mono);font-size:11px;letter-spacing:.12em;color:var(--muted);margin-bottom:18px}
+.sheet__rule{height:2px;background:var(--ink);margin-bottom:18px}
+.sheet__lead{
+  font-size:16px;line-height:1.85;font-weight:700;margin-bottom:16px;
+  padding-left:14px;border-left:5px solid var(--red);
+}
+.sheet__body p.body-p{font-size:14.5px;line-height:1.85;color:#3B352C;margin-bottom:14px}
+.sheet__h4{
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;color:var(--ink);
+  margin:22px 0 12px;padding-bottom:6px;border-bottom:2px solid var(--ink);
+}
+.sheet__facts{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.sheet__fact{border:2px solid var(--ink);background:var(--paper-2);padding:12px 14px}
+.sheet__fact span{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.12em;color:var(--muted);margin-bottom:6px}
+.sheet__fact strong{font-family:var(--mono);font-size:1.05rem;letter-spacing:-.01em}
+.sheet__impact{
+  background:var(--ink);color:var(--paper);padding:16px 18px;font-size:14px;line-height:1.8;
+}
+.sheet__impact b{display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;color:var(--lime);margin-bottom:7px}
+.sheet__tags{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0 22px}
+.sheet__tags span{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;padding:4px 9px;border:2px solid var(--ink)}
+.sheet__foot{
+  flex:none;border-top:3px solid var(--ink);background:var(--paper-2);
+  padding:14px 20px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+}
+.sheet__nav{
+  font-family:var(--sans);font-size:13px;font-weight:800;padding:9px 15px;
+  border:2px solid var(--ink);background:transparent;color:var(--ink);cursor:pointer;white-space:nowrap;
+}
+.sheet__nav:hover{background:var(--ink);color:var(--paper)}
+.sheet__nav:disabled{opacity:.35;cursor:not-allowed}
+.sheet__foot .read-btn{margin-left:auto}
+.sheet__hint{width:100%;font-family:var(--mono);font-size:10px;letter-spacing:.12em;color:var(--muted)}
+body.sheet-open{overflow:hidden}
+
+/* ============ 右侧栏容器 ============ */
+.side{display:grid;gap:22px}
+
+/* ============ 今日快讯 ============ */
+.brief{margin-top:32px}
+.brief__head{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.brief__head h3{font-size:1.15rem;font-weight:900}
+.brief__head span{font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;color:var(--muted)}
+.brief__rule{height:2px;background:var(--ink);margin:10px 0 0}
+.brief__list{list-style:none}
+.brief__row{border-bottom:1px dashed rgba(20,18,16,.32)}
+/* 每条快讯都是一个可点击按钮：点开看详情 */
+.brief__item{
+  display:flex;gap:13px;align-items:baseline;flex-wrap:wrap;width:100%;
+  padding:13px 4px;border:0;background:transparent;color:inherit;
+  font-family:inherit;text-align:left;cursor:pointer;
+  transition:background .15s ease,padding-left .15s ease;
+}
+.brief__item:hover,.brief__item:focus-visible{background:rgba(255,255,255,.6);padding-left:10px}
+.brief__item:focus-visible{outline:3px solid var(--blue);outline-offset:-3px}
+.brief__time{font-family:var(--mono);font-size:11.5px;color:var(--red);flex:none;letter-spacing:.06em}
+.brief__cat{
+  font-family:var(--mono);font-size:10.5px;border:2px solid var(--ink);
+  padding:2px 7px;flex:none;background:var(--paper-2);
+}
+.brief__txt{font-size:14.5px;line-height:1.62;flex:1 1 260px}
+.brief__more{
+  margin-left:auto;flex:none;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;
+  color:var(--red);opacity:0;transition:opacity .15s ease;
+}
+.brief__item:hover .brief__more,.brief__item:focus-visible .brief__more{opacity:1}
+.brief__done{flex:none;font-family:var(--mono);font-size:11px;color:var(--blue);display:none}
+.brief__item.is-read .brief__done{display:inline}
+.brief__item.is-read .brief__txt{opacity:.58}
+.brief__hint{margin-left:auto;font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;color:var(--muted)}
+.brief__hint b{color:var(--red)}
+
+/* ============ 投融资速览 ============ */
+.fund{margin-top:34px}
+.fund__head{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:4px}
+.fund__head h3{font-size:1.15rem;font-weight:900}
+.fund__head span{font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;color:var(--muted)}
+.fund__grid{
+  border:3px solid var(--ink);background:var(--paper-2);box-shadow:7px 7px 0 var(--ink);
+}
+.fund__row{display:grid;grid-template-columns:1.5fr .8fr 1fr 1.3fr;border-bottom:2px solid var(--ink)}
+.fund__row:last-child{border-bottom:none}
+.fund__row>span{padding:12px 15px;font-size:14px;border-left:2px solid var(--ink)}
+.fund__row>span:first-child{border-left:none;font-weight:800}
+.fund__row--head{background:var(--ink);color:var(--paper);font-family:var(--mono);font-size:11px;letter-spacing:.14em}
+.fund__row--head>span{padding:9px 15px;font-weight:400}
+.fund__row:not(.fund__row--head):hover{background:var(--paper-3)}
+.fund__amt{font-family:var(--mono);color:var(--red);font-weight:700}
+
+/* ============ 术语小课堂 ============ */
+.term{border:3px solid var(--ink);background:var(--paper-2);box-shadow:7px 7px 0 var(--ink);padding:20px 20px 22px}
+.term__kicker{font-family:var(--mono);font-size:10px;letter-spacing:.18em;color:var(--red)}
+.term__name{font-size:1.32rem;font-weight:900;margin:7px 0 3px}
+.term__en{font-family:var(--mono);font-size:11px;letter-spacing:.1em;color:var(--muted)}
+.term__rule{height:2px;background:var(--ink);margin:14px 0}
+.term p{font-size:14px;line-height:1.78;color:#3B352C;margin-bottom:10px}
+.term__eg{
+  font-family:var(--mono);font-size:12px;line-height:1.7;
+  background:var(--ink);color:var(--lime);padding:11px 13px;
+}
+
+/* ============ 热搜榜 / 情绪指数（趋势面板内） ============ */
+.rank{border-top:1px dashed rgba(242,238,228,.35);padding-top:16px;margin-bottom:18px}
+.rank h4{font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;color:var(--lime);margin-bottom:12px;font-weight:700}
+.rank__item{display:flex;align-items:center;gap:10px;margin-bottom:9px}
+.rank__no{font-family:var(--mono);font-size:12px;width:16px;flex:none;color:var(--lime)}
+.rank__word{font-size:13px;flex:none;width:92px;font-weight:700}
+.rank__bar{flex:1;height:7px;background:rgba(242,238,228,.14);border:1px solid rgba(242,238,228,.25)}
+.rank__bar i{display:block;height:100%;background:var(--lime)}
+.rank__item:nth-child(2) .rank__bar i,.rank__item:nth-child(3) .rank__bar i{background:var(--red)}
+.rank__hot{font-family:var(--mono);font-size:10.5px;color:var(--paper);width:36px;text-align:right;flex:none}
+.mood{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;
+  border:2px solid var(--lime);padding:13px 15px;margin-bottom:18px;
+}
+.mood__val{font-family:var(--mono);font-size:1.7rem;color:var(--lime);line-height:1}
+.mood__label{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;color:var(--lime)}
+.mood__hint{font-size:12px;color:rgba(242,238,228,.72);width:100%}
+
+/* ============ 详情弹窗：时间线 / 相关阅读 ============ */
+.tl{list-style:none;margin:2px 0 0}
+.tl li{position:relative;padding:0 0 15px 20px;border-left:2px solid var(--ink);margin-left:6px}
+.tl li:last-child{border-left-color:transparent;padding-bottom:0}
+.tl li::before{content:"";position:absolute;left:-7px;top:4px;width:12px;height:12px;background:var(--red);border:2px solid var(--ink)}
+.tl time{display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;color:var(--red);margin-bottom:4px}
+.tl p{font-size:14px;line-height:1.72;color:#3B352C}
+.rel{display:grid;gap:10px}
+.rel__item{
+  border:2px solid var(--ink);padding:11px 14px;background:var(--paper-2);
+  display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap;
+  transition:transform .15s ease,box-shadow .15s ease;
+}
+.rel__item:hover{transform:translate(-2px,-2px);box-shadow:4px 4px 0 var(--ink)}
+.rel__item b{font-size:14px}
+.rel__item i{font-style:normal;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;color:var(--muted)}
+
+/* ============ 明日关注 ============ */
+.next{margin-top:34px}
+.next__head{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:4px}
+.next__head h3{font-size:1.15rem;font-weight:900}
+.next__head span{font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;color:var(--muted)}
+.next__rule{height:2px;background:var(--ink);margin-bottom:18px}
+.next__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.next__item{
+  border:3px dashed var(--ink);padding:16px 18px;background:rgba(255,255,255,.35);
+  transition:background .18s ease,transform .18s ease;
+}
+.next__item:hover{background:var(--paper-2);transform:translate(-2px,-2px)}
+.next__date{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;color:var(--red);display:block;margin-bottom:7px}
+.next__item p{font-size:14px;line-height:1.65;font-weight:700}
+
+/* ============ 页脚 ============ */
+.foot{
+  margin-top:38px;padding-top:16px;border-top:3px solid var(--ink);
+  display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
+  font-family:var(--mono);font-size:11px;letter-spacing:.12em;color:var(--muted);text-transform:uppercase;
+}
+
+/* ============ 移动端（桌面端完全不受影响） ============ */
+@media (max-width:900px){
+  .shell{padding:0 18px}
+  .layout{grid-template-columns:1fr;gap:26px}
+  .trend{position:static;box-shadow:7px 7px 0 var(--red)}
+  .masthead{padding-top:26px}
+  .masthead__title{font-size:clamp(2.7rem,13vw,4.4rem);text-shadow:4px 4px 0 var(--lime)}
+  .masthead__sub{transform:none;box-shadow:4px 4px 0 var(--red);font-size:13px}
+  .stamp{display:none}
+  .pulse{grid-template-columns:repeat(2,1fr)}
+  .pulse__cell:nth-child(3){border-left:none}
+  .pulse__cell:nth-child(3),.pulse__cell:nth-child(4){border-top:3px solid var(--ink)}
+  .next__grid{grid-template-columns:1fr}
+  /* 投融资表：移动端改成两列带标签的卡片式 */
+  .fund__row{grid-template-columns:1fr 1fr;border-bottom:2px solid var(--ink)}
+  .fund__row--head{display:none}
+  .fund__row>span{border-left:2px solid var(--ink);border-top:1px dashed rgba(20,18,16,.2);padding:11px 12px}
+  .fund__row>span:nth-child(odd){border-left:none}
+  .fund__row>span::before{
+    content:attr(data-label);display:block;font-family:var(--mono);
+    font-size:9.5px;letter-spacing:.12em;color:var(--muted);margin-bottom:4px;
+  }
+  .foot{row-gap:6px}
+  .summary{grid-template-columns:1fr}
+  .summary__label{writing-mode:horizontal-tb;padding:11px 18px;letter-spacing:.18em;justify-content:flex-start}
+  .summary__list{padding:18px 18px}
+  .card--lead{padding:24px 20px 20px}
+  .card{padding:20px 20px 18px}
+  .card__foot{gap:10px}
+  .card__src{width:100%}
+  .card__actions{width:100%;gap:8px}
+  .card__actions .detail-btn,.card__actions .read-btn{flex:1 1 0;text-align:center;padding:11px 10px}
+  /* 详情弹窗：移动端铺满 */
+  .sheet__panel{width:calc(100vw - 20px);max-height:calc(100vh - 32px);box-shadow:8px 8px 0 var(--red)}
+  .sheet__body{padding:20px 18px 4px}
+  .sheet__facts{grid-template-columns:1fr}
+  .sheet__foot{padding:12px 16px}
+  .sheet__foot .read-btn{margin-left:0;flex:1 1 100%;text-align:center}
+  .sheet__nav{flex:1 1 0;text-align:center}
+  .filters{padding:11px 12px;gap:9px}
+  .filter{flex:1 1 auto;text-align:center;padding:9px 12px}
+  .filters__progress{margin-left:0;width:100%;padding-top:2px}
+  .card__check{top:-12px;right:-8px;width:32px;height:32px}
+}
+@media (max-width:420px){
+  .masthead__title{text-shadow:3px 3px 0 var(--lime)}
+  .filter{flex:1 1 100%}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+}
+
+/* ============ 打印样式：直接打印成纸质日报 ============ */
+@media print{
+  body{background:#fff;background-image:none;padding:0}
+  body::before{display:none}
+  .filters,.read-btn,.detail-btn,.sheet,.trend__tags,.brief__more{display:none}
+  .card,.summary,.trend,.pulse,.next__item{box-shadow:none;border-color:#000;break-inside:avoid}
+  .trend{background:#fff;color:#000}
+  .trend__title,.trend__name,.trend__val,.trend__en,.trend__tags h4{color:#000}
+  .trend__bar{background:#eee;border-color:#000}
+  .trend__bar i{background:#000}
+  .card__check{display:none}
+  .layout{grid-template-columns:1fr 260px}
+}
+</style>
+</head>
+<body data-page-node-id="zoNzrdLCl2uVWOFAyUnBN8">
+
+<div class="shell" data-page-node-id="rePif81OANjF3ToKtyXtjA">
+
+  <!-- ========== 报头 ========== -->
+  <header class="masthead" data-page-node-id="HbRUFeXy1zOQLL1IFNIyXk">
+    <div class="masthead__meta" data-page-node-id="mThHPj72ReY50xM4ArUKSg">
+      <span class="dot" data-page-node-id="cTFRGW8FQKUouJ03BvfdsN"></span>
+      <span data-page-node-id="W6BsUi1UemylQUna8XbXr6"><a href="index.html" style="color:inherit;text-decoration:none;border-bottom:1px solid currentColor;" data-page-node-id="yLyA7WUQ4WMk9UrjXGYYDo">← 返回主页</a></span>
+      <span data-page-node-id="DhUAKdhXgJH6oXnPgo5IlQ">2026.09.09 · Wednesday</span>
+      <span data-page-node-id="FHd85bJRrjTjScJaxC2nX2">Issue No.042</span>
+      <span data-page-node-id="GUFVPX5JcYXcLZspIfDenr">AI Daily Brief</span>
+    </div>
+    <div class="masthead__rule" data-page-node-id="Yllw6U1PoVDZFPZRkfwFAD"></div>
+    <div class="masthead__rule--thin" data-page-node-id="XQ3X0ospZOb0EIzAKBuFtB"></div>
+    <h1 class="masthead__title" data-page-node-id="evIdXw9S7GUWkf74CXqOtq">AI 行业<span data-page-node-id="SJrglyoWqWHFDiV0g56IdP">日报</span></h1>
+    <div class="masthead__foot" data-page-node-id="RGmW2asZ0xEkLRNOAUnM41">
+      <p class="masthead__sub" data-page-node-id="8bJIEGkr04TyweFqGfiB1T">5 分钟看懂今天 AI 圈发生了什么</p>
+      <div class="stamp" aria-hidden="true" data-page-node-id="cuZ4UxWhXZKyjpgbP7KfEC">
+        <strong data-page-node-id="UXpeFWC0ANgOnbO9Yp5XNK">No.042</strong>
+        <span data-page-node-id="0pylyl0IWsfGsCjv0Vdh6M">Daily Brief</span>
+        <em data-page-node-id="f9n57WpH6926tOQQstAaYh">Verified</em>
+      </div>
+    </div>
+    <div class="masthead__bar" data-page-node-id="s7JKXplA3qggr5YjKP1aus"></div>
+  </header>
+
+  <!-- ========== 今日速览数据条 ========== -->
+  <section class="pulse" data-page-node-id="D9xOcsfmnnH3ujR4fSiIGo">
+    <div class="pulse__cell" data-page-node-id="x1FZq40otNyyliRIt4mQ2q"><span class="pulse__num" data-page-node-id="NqPey1TGoSAia0mHdlOQAl">3</span><span class="pulse__label" data-page-node-id="8MRr5rjomv09OnPqsefnbW">今日要闻</span></div>
+    <div class="pulse__cell" data-page-node-id="qbHS9v67aJ6FWCYY5Amgmi"><span class="pulse__num" data-page-node-id="c1v6rxqoGSs8LhZoYZSUxw">12</span><span class="pulse__label" data-page-node-id="AoEweFxpORFiNAQwDmrHDL">模型发布 / 起</span></div>
+    <div class="pulse__cell" data-page-node-id="VTnw6qaru1tFKNkRHksHHK"><span class="pulse__num" data-page-node-id="xLZGbz6azLaSUKeIxE0XD1">¥48 亿</span><span class="pulse__label" data-page-node-id="AHQyoCU0dEHZYf89NEhkWa">披露融资</span></div>
+    <div class="pulse__cell" data-page-node-id="mCep8gqHMPB3IkR5qlZ3up"><span class="pulse__num" data-page-node-id="rGdEg5wMadawe8MmNEP0Vb">1,204</span><span class="pulse__label" data-page-node-id="k5hzxPF9DKpg75xed5LfbD">开源新增</span></div>
+  </section>
+
+  <!-- ========== 今日重点摘要 ========== -->
+  <section class="summary" data-page-node-id="BdhREaQZ1qpSWpI5IBBFIK">
+    <div class="summary__label" data-page-node-id="eVwhor1EQby7ErnFRdiHFl">今日重点</div>
+    <ul class="summary__list" data-page-node-id="PIgUDufpV9wIUFb9IHEBre">
+      <li data-page-node-id="ElXdK3o8uOC6Cv0Dm0VFoa"><b data-page-node-id="ZEOIqopfqbBqCIerjwAzz3">01</b><span data-page-node-id="nUY0tdWEx1SZ8eddM4sVDy">多模态大模型进入「推理成本战」阶段，头部厂商单次调用价格一个月内再降四成。</span></li>
+      <li data-page-node-id="rdJAi6DsQELlmLM273e210"><b data-page-node-id="31LxHrQkjBppWBIJ2YjX9j">02</b><span data-page-node-id="dLoHlQzPO2dwcKTLydjbe4">国产算力集群完成万卡级互联实测，长上下文训练的稳定性问题出现明确解法。</span></li>
+      <li data-page-node-id="a4Fvrae9tmAvPZgsJi5sRI"><b data-page-node-id="8koVP0H5tvVC76aB9Td2j1">03</b><span data-page-node-id="AjfYaQ9gY1E5hqgifcO4NK">Agent 类应用从演示走向生产环境，企业侧开始关注可观测性与失败回滚机制。</span></li>
+    </ul>
+  </section>
+
+  <!-- ========== 主体：新闻 + 趋势 ========== -->
+  <div class="layout" data-page-node-id="0FAKMFIZdUhYPW18g3rA3d">
+
+    <section class="news" data-page-node-id="ne68WAA8hKh5Zq0T9bTNa9">
+      <!-- 重要程度筛选 -->
+      <div class="filters" data-page-node-id="UCD5AktZAwKKQxXyGW9iGv">
+        <span class="filters__tag" data-page-node-id="7PrpP0lxM7lMMeNjvNjENc">重要程度筛选</span>
+        <button class="filter is-active" data-filter="all" data-page-node-id="GZE7AAViQSgKSuyMccn0x9">全部</button>
+        <button class="filter" data-filter="high" data-page-node-id="mGwXIVUTfVjadn3bYPYaYE">高优先级</button>
+        <button class="filter" data-filter="mid" data-page-node-id="DBZULz5LAawfRtycp7sRqh">中优先级</button>
+        <button class="filter filter--action" id="readAll" type="button" data-page-node-id="wBwLxqk80DWCrDTo4TUbAT">全部标记已读</button>
+        <span class="filters__progress" data-page-node-id="0zrDrPrnPTOYxoSUjOOrLz">显示 <b id="visibleCount" data-page-node-id="qZ7d6VE3IpECDLwf9eJRmD">3</b> 条 · 已读 <b id="readCount" data-page-node-id="B5OC78Nf5DTlMJFC1EhgGy">0</b> / 3</span>
+      </div>
+
+      <div class="cards" id="cards" data-page-node-id="YCsIPUnw5JDMPFG9HfEq9v">
+
+        <!-- 卡片 1：头条，视觉最大 -->
+        <article class="card card--lead" data-id="1" data-priority="high" data-page-node-id="O79B1omKF1lFxd5g9Xe0Ye">
+          <span class="card__check" aria-hidden="true" data-page-node-id="JtOeSjafWdc1CBtZJJU5Qr">
+            <svg viewBox="0 0 24 24" data-page-node-id="11NZiYqnTMXdNVezjGGav9"><path d="M4 12.5 L9.5 18 L20 6.5" data-page-node-id="lT1HrAviE80mNH2L6dJ1zJ"/></svg>
+          </span>
+          <div class="card__top" data-page-node-id="ykYIKIFmFCbEhsEIJUBHGZ">
+            <span class="card__no" data-page-node-id="h87GrhPgOTbSeSuUttUnTv">01</span>
+            <span class="badge badge--high" data-page-node-id="lkaLPjDkPjAuyJCx4v6ldg">高优先级</span>
+          </div>
+          <h2 class="card__title" data-page-node-id="rIZzqofgO7OD1vNeSdB3Hz">新一代多模态大模型发布，推理成本较上一代下降 40%</h2>
+          <p class="card__desc" data-page-node-id="Owf4DIG6FlXllM2703o7M7">官方技术报告显示，新模型在图文混排理解与长文档检索上均有明显提升，同时通过稀疏激活与蒸馏方案把单位 token 成本压到新低。对中小团队而言，过去跑不起的实时多模态应用现在具备了可行性。</p>
+          <div class="card__tags" data-page-node-id="CBUzpVSnp5CdtfOgrnk1AG"><span data-page-node-id="W7o4F3LEobAnVmXiKZ4gZG">多模态</span><span data-page-node-id="6a0r3OiYAwuSh1u0MwmCww">推理成本</span><span data-page-node-id="Jh4LQi8OGCG6TTEOlNSOTr">模型发布</span><span data-page-node-id="Q3qaYi5Ay5s5gGOsRs5DYU">约 3 分钟</span></div>
+          <p class="card__note" data-page-node-id="DTwXTnbpaXwPH6n87PpGWh"><b data-page-node-id="YTez3KO1twXg34pNgHhYsG">编辑视角</b>这轮真正的信号不是参数规模，而是单位 token 价格——它决定谁有能力把多模态应用真正跑在生产环境里。</p>
+          <div class="card__foot" data-page-node-id="TbRu9vniNyTdYtiG7F2Bzb">
+            <span class="card__src" data-page-node-id="aqjuwuFMpQ2SsuD4Awy71T">来源 · 综合报道 / 2026-09-09</span>
+            <div class="card__actions" data-page-node-id="RDwoKz02rTNMx26u4UAFQp">
+              <button class="detail-btn" type="button" data-page-node-id="QqiJ7FzIIWlGT1x2DWKCNz">查看详情</button>
+              <button class="read-btn" type="button" aria-pressed="false" data-page-node-id="KWKOIRPJ5FLnBT1twAcdvq">阅读完成</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- 卡片 2：次级 -->
+        <article class="card card--mid" data-id="2" data-priority="high" data-page-node-id="5XBCScLXB62hFyUEWs2UJ5">
+          <span class="card__check" aria-hidden="true" data-page-node-id="1B9BypO7ijuWSdp93xNCUz">
+            <svg viewBox="0 0 24 24" data-page-node-id="a3UWGn7PlkOnebnwEnQ4bL"><path d="M4 12.5 L9.5 18 L20 6.5" data-page-node-id="50r1r25EanKRO0DL0tUbLC"/></svg>
+          </span>
+          <div class="card__top" data-page-node-id="kDkEcbARyCyrtumzRE3lj0">
+            <span class="card__no" data-page-node-id="61ndAJ9VS8Zpdr0X61hIXk">02</span>
+            <span class="badge badge--high" data-page-node-id="nVCEo2G7C9kzhVHjYQ5zVb">高优先级</span>
+          </div>
+          <h2 class="card__title" data-page-node-id="KjlQnT7na8u8jLaZrpqw5o">国产算力集群完成万卡互联实测，训练效率提升 27%</h2>
+          <p class="card__desc" data-page-node-id="mlkhAHe6SMjFLzvbKMyYAK">互联方案重点解决了长上下文训练中的通信抖动问题，官方给出的线性加速比数据已接近同规模国际方案。配套的调度框架同步开源。</p>
+          <div class="card__tags" data-page-node-id="ry9vxGHNpNDbVTQLNGA7OL"><span data-page-node-id="3gVNo1iHKlm0siAD6G7S1C">算力</span><span data-page-node-id="DsVpU1LGLecdQc4OO1QiI7">芯片互联</span><span data-page-node-id="ZGMgg01LhR59GLNDTMjVIl">约 2 分钟</span></div>
+          <div class="card__foot" data-page-node-id="rsXNQp0nQcXlf8Nsp7JF0P">
+            <span class="card__src" data-page-node-id="kLlqOWQRrCpuC2ZeDrF9lF">来源 · 算力观察 / 2026-09-09</span>
+            <div class="card__actions" data-page-node-id="S7S2gyQrNxtfQLiuJQU2z5">
+              <button class="detail-btn" type="button" data-page-node-id="L9d5tdRujijxZalNUKbWTg">查看详情</button>
+              <button class="read-btn" type="button" aria-pressed="false" data-page-node-id="gyjBtgK0Jv1iotzlvrCCzJ">阅读完成</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- 卡片 3：最小 -->
+        <article class="card card--sm" data-id="3" data-priority="mid" data-page-node-id="tceH0FzQcQMHLroH6mVmzi">
+          <span class="card__check" aria-hidden="true" data-page-node-id="58M7mCf9jyzN397hqZGV8u">
+            <svg viewBox="0 0 24 24" data-page-node-id="KOYipYuCJDCMnoDEMjD4eY"><path d="M4 12.5 L9.5 18 L20 6.5" data-page-node-id="GYo9eatJyTV4JRyyQi7ESn"/></svg>
+          </span>
+          <div class="card__top" data-page-node-id="9oHc1Q2bzXFMYBUdaAES1L">
+            <span class="card__no" data-page-node-id="tqraAGOEXF8HuJAmC3hkDr">03</span>
+            <span class="badge badge--mid" data-page-node-id="zCZciEZ690CxlkicBh8QwG">中优先级</span>
+          </div>
+          <h2 class="card__title" data-page-node-id="LFizfJlI4HmmBTj7Dc35RQ">开源社区一周新增 1204 个 Agent 相关项目</h2>
+          <p class="card__desc" data-page-node-id="AzlJuLjyJysA0x7GyLDguq">热度集中在工具调用编排与沙箱执行两个方向，但真正进入生产环境的仍是少数。社区开始讨论统一的失败回滚与审计标准。</p>
+          <div class="card__tags" data-page-node-id="tCaUdgn4ilAxADYH7OWqPv"><span data-page-node-id="dpfnEqrqOOKHZTWM6QkSqb">开源</span><span data-page-node-id="IZSZPbBwQ7Sa0IYprFh9IM">Agent</span><span data-page-node-id="wWIuiy81bhsZ1C8IA3U2HU">约 1 分钟</span></div>
+          <div class="card__foot" data-page-node-id="XQNDMs8oIzYTeJjHCo2v9t">
+            <span class="card__src" data-page-node-id="FKwg0CJFbRlSNWpo5n3Roj">来源 · 开源速递 / 2026-09-09</span>
+            <div class="card__actions" data-page-node-id="Tvb9Ic7VL48J4EQdK2E012">
+              <button class="detail-btn" type="button" data-page-node-id="LYOobIjGM0sYlLIpFtgaxM">查看详情</button>
+              <button class="read-btn" type="button" aria-pressed="false" data-page-node-id="uYU5iPDyqLP2pH3ElP3C48">阅读完成</button>
+            </div>
+          </div>
+        </article>
+
+      </div>
+
+      <!-- ========== 今日快讯（一句话短讯流） ========== -->
+      <section class="brief" data-page-node-id="G5YkkaNKlLCQAkJaK0aGLm">
+        <div class="brief__head" data-page-node-id="V9u1Tbn8xFNk3S6uqyGbIo">
+          <h3 data-page-node-id="JMGr5ihDKobJesWcUVg9hm">今日快讯</h3>
+          <span data-page-node-id="zJgwfEQbRXDTd234ZTiiqc">Breaking · 6 条</span>
+          <span class="brief__hint" data-page-node-id="pclZzmRVPSXugb5alxlUgh">点击任意一条查看详情 · 已读 <b id="briefReadCount" data-page-node-id="AI9LA6qYhvPxhNnwaPIFbT">0</b> / 6</span>
+        </div>
+        <div class="brief__rule" data-page-node-id="7kgHQNskKi803ughQrXy1b"></div>
+        <ul class="brief__list" data-page-node-id="wzcoN29o4GLHSKCb3hzdor">
+          <li class="brief__row" data-page-node-id="qNIpv5m32IsvScAbicsig0"><button class="brief__item" type="button" data-brief="b1" aria-haspopup="dialog" data-page-node-id="P9A8OU0e5RBcMpN80a1AOC"><span class="brief__time" data-page-node-id="4p3c1gcHXtXAzosC5NCZ8W">09:12</span><span class="brief__cat" data-page-node-id="NJftsA1ShgLHuIN8jkwDDL">模型</span><span class="brief__txt" data-page-node-id="6PFGkoJ68jRHvbmXV4wh6N">某厂商开源 7B 端侧模型，手机端推理速度较上代提升约 2 倍。</span><span class="brief__done" aria-hidden="true" data-page-node-id="n7ZwPFjDPmDFYNNr7SbCKS">✓ 已读</span><span class="brief__more" data-page-node-id="9mkNBbosawzRCOZElrqHb9">详情 →</span></button></li>
+          <li class="brief__row" data-page-node-id="A8UcBgqgdXeuPa4aXahp2Q"><button class="brief__item" type="button" data-brief="b2" aria-haspopup="dialog" data-page-node-id="ZEhFZykC1oYoDenqJsufBo"><span class="brief__time" data-page-node-id="nPRBQXYF9FGB4kBy7y70OJ">10:05</span><span class="brief__cat" data-page-node-id="F4zC7QpTvaHdi6U6LW7ISG">应用</span><span class="brief__txt" data-page-node-id="i5ZCA7gfeAFkLMgXcEnp1E">主流 AI 编程工具上线跨文件重构能力，支持一次改动同步更新引用。</span><span class="brief__done" aria-hidden="true" data-page-node-id="eW4AvXDrwRrveWUPHCUlyl">✓ 已读</span><span class="brief__more" data-page-node-id="FyOD0d5FTYcAlJlnmqHn56">详情 →</span></button></li>
+          <li class="brief__row" data-page-node-id="wyw90aqaD5A0872M1dzh2q"><button class="brief__item" type="button" data-brief="b3" aria-haspopup="dialog" data-page-node-id="IU50m2rfsve9jDCJzA0cWg"><span class="brief__time" data-page-node-id="T51a91ji62EUq5K0yXoGbX">11:30</span><span class="brief__cat" data-page-node-id="TmaxThWBBFjmNAc2L5BzP8">监管</span><span class="brief__txt" data-page-node-id="5xyxy5Gl2dBD5kJZcS9ji7">生成式内容标识规范征求意见进入最后阶段，平台侧改造窗口约两个月。</span><span class="brief__done" aria-hidden="true" data-page-node-id="aJ6ubbPL8REBaTiHCrmqmA">✓ 已读</span><span class="brief__more" data-page-node-id="Rs1Ekt6VzDEO2AQJZEa30o">详情 →</span></button></li>
+          <li class="brief__row" data-page-node-id="5fICfJMuCIGLsfAxNH1eu6"><button class="brief__item" type="button" data-brief="b4" aria-haspopup="dialog" data-page-node-id="33DOBJWzFpIyK0MRY4oNxA"><span class="brief__time" data-page-node-id="aG0vWGeU1A5gBgyeZhIMDg">13:48</span><span class="brief__cat" data-page-node-id="zBlF25YYntGfjbsoWEqftt">硬件</span><span class="brief__txt" data-page-node-id="dcmHZpb9p2Fz0sXVr7VSDF">新一代推理卡进入量产，显存带宽提升 35%，交付周期缩短至六周。</span><span class="brief__done" aria-hidden="true" data-page-node-id="Cm5MwsER57eOuTrqOKzEML">✓ 已读</span><span class="brief__more" data-page-node-id="9Kh28Z7XiJhH9CRH9lC9QR">详情 →</span></button></li>
+          <li class="brief__row" data-page-node-id="Y8Q2BQs1C1AmyfzloJzaRC"><button class="brief__item" type="button" data-brief="b5" aria-haspopup="dialog" data-page-node-id="KcO6kkXQ0R3OndosdWmUP6"><span class="brief__time" data-page-node-id="zPh7HLFyN4UCk6PFGuweHM">15:20</span><span class="brief__cat" data-page-node-id="fKN1BcEy22fZWg3okTohfo">学术</span><span class="brief__txt" data-page-node-id="PCQoE6gQla5K4B6ekfPMGT">顶会录用结果公布，Agent 方向论文占比创下新高，评审开始关注可复现性。</span><span class="brief__done" aria-hidden="true" data-page-node-id="DM3nkmHQ3jdFYNscG9lB8H">✓ 已读</span><span class="brief__more" data-page-node-id="V5C4vFfysZBIrLbYEOKHRK">详情 →</span></button></li>
+          <li class="brief__row" data-page-node-id="JTRTkfHfnZCEEaJALHt7hl"><button class="brief__item" type="button" data-brief="b6" aria-haspopup="dialog" data-page-node-id="gILH98X1RV2eH1ELLilFIp"><span class="brief__time" data-page-node-id="xgVaEgjFO0PmBNkqw4ABKs">17:02</span><span class="brief__cat" data-page-node-id="DMmLQxAUZiyZloMX9vh5rE">人才</span><span class="brief__txt" data-page-node-id="dXZtzuNYpWOiJRGokXXc6C">头部企业秋招算法岗缩招，模型工程与数据工程岗位需求逆势上升。</span><span class="brief__done" aria-hidden="true" data-page-node-id="O8x5kMtC9wqyv9B5gmkcOE">✓ 已读</span><span class="brief__more" data-page-node-id="pbxDaCxHtbckXmreDx0pcb">详情 →</span></button></li>
+        </ul>
+      </section>
+    </section>
+
+    <!-- ========== 右侧栏：今日趋势（桌面在右 / 移动端在下方） ========== -->
+    <div class="side" data-page-node-id="w3ncxw0YST8qHLCLmMHIUH">
+    <aside class="trend" data-page-node-id="vjtex9sWLPJZ704bpfip0L">
+      <div class="trend__head" data-page-node-id="Fk3Vdg85vgrVBP0c9PdEWI">
+        <h3 class="trend__title" data-page-node-id="dCLR9mb8AbdY5OrHyWdxjN">今日趋势</h3>
+        <span class="trend__en" data-page-node-id="esmetrjsnOWp7jwzcOWTnK">Today's Trend</span>
+      </div>
+      <div class="trend__rule" data-page-node-id="SSxThySpx3Q7vwDpEofoER"></div>
+
+      <div class="trend__item" data-page-node-id="2qHe3BCOoE4TUPrMFbyn5W">
+        <div class="trend__row" data-page-node-id="aE9AuR6ZrhHYZyMhjr5Ism"><span class="trend__name" data-page-node-id="2BYnGpcR0CidlJ1LamZeQm">模型发布</span><span class="trend__val" data-page-node-id="c9byGfkXQeHF8nVLmCCI6F">12 起<em data-page-node-id="TbBUFI5Bgr8wSJ1E3ry6zr">+8</em></span></div>
+        <div class="trend__bar" data-page-node-id="M0UxI1omrNhTZ5H8Cd7XhA"><i style="width:78%" data-page-node-id="3lbHWH0ovKuKjTF3w4F2i1"></i></div>
+      </div>
+      <div class="trend__item" data-page-node-id="hQNMZsxVJJdwQHqoe0zuBa">
+        <div class="trend__row" data-page-node-id="GDTEWUk5IA2H4wCyTBWVYH"><span class="trend__name" data-page-node-id="uTahHdpNoAWtL3pgRAslIQ">融资总额</span><span class="trend__val" data-page-node-id="cecGruqjSvBrfknV611vof">¥48 亿<em data-page-node-id="eyVIrlg61FDsKi5LJe4Ays">+12%</em></span></div>
+        <div class="trend__bar" data-page-node-id="nb2hHTl1TXJPezkhdVITBy"><i style="width:64%" data-page-node-id="zW0CQZh9M02pYbLYeFZZZ2"></i></div>
+      </div>
+      <div class="trend__item" data-page-node-id="xBewYfEKFWNW6wUmYxPatt">
+        <div class="trend__row" data-page-node-id="K9dpd7X27nPxg2onI9ZHFz"><span class="trend__name" data-page-node-id="9WYgwG3aJKFbW7vbGfe2nM">开源新增</span><span class="trend__val" data-page-node-id="sNclZ09cNCQUn15Ol5y55R">1,204<em data-page-node-id="FokYs9AgNS0mIiJUoBILTy">+31%</em></span></div>
+        <div class="trend__bar" data-page-node-id="Kvfw0MDQJzg8SoQK5lqPCY"><i style="width:88%" data-page-node-id="WX28gHsoa9pZVQl6egBRjR"></i></div>
+      </div>
+      <div class="trend__item" data-page-node-id="bgU5R3d5fsNzk35WlPmecg">
+        <div class="trend__row" data-page-node-id="cmlU01zFFjSDCDSziWIGBb"><span class="trend__name" data-page-node-id="kvo9faAEKiTkNksvq8qeaM">算力需求</span><span class="trend__val" data-page-node-id="XZPxwAF8vPD3yGYABhAv7P">高位<em data-page-node-id="GXzFb4hov3LLjsjp8pBhhg">持平</em></span></div>
+        <div class="trend__bar" data-page-node-id="cMYFa1SCaB8z0G79ORuaWB"><i style="width:70%" data-page-node-id="LBA9PcSKjWPwg2wRlPzAis"></i></div>
+      </div>
+      <div class="trend__item is-down" data-page-node-id="OzbBDdmOkJ2Fd3yD575RAs">
+        <div class="trend__row" data-page-node-id="Lir4Vt2ZtflN3nBSz0CAS3"><span class="trend__name" data-page-node-id="72QfNKnqviw5QvTTo6Ykb3">岗位需求</span><span class="trend__val" data-page-node-id="NIg0KIB0fr1CzsLblgCL7K">-3.2%<em data-page-node-id="IKpBvBrKz3i3jhUgZ4SGXh">回落</em></span></div>
+        <div class="trend__bar" data-page-node-id="RULUGXDC6SbQX4PdL3nzpu"><i style="width:34%" data-page-node-id="eSf8SvSeykrkCcio8sooLm"></i></div>
+      </div>
+
+      <div class="mood" data-page-node-id="3EysBaPC5yQwsRLyEm0gWO">
+        <span class="mood__val" data-page-node-id="HZfJCIfrKvmuVlbxq8VbhQ">72</span>
+        <span class="mood__label" data-page-node-id="ciBTdANzSGVKzfTmylTEWj">Market Mood · 偏乐观</span>
+        <span class="mood__hint" data-page-node-id="8LAn0S1XupO5WxDtMYBpmG">基于当日舆情与融资数据的情绪读数，50 为中性</span>
+      </div>
+
+      <div class="rank" data-page-node-id="uTMaZLByn00kvH6QUCODsW">
+        <h4 data-page-node-id="SYT57XwFRlrHa89FOKlZuR">Top 5 · 热搜榜</h4>
+        <div class="rank__item" data-page-node-id="6YMZOTwa9JvzHJW6KsGAyX"><span class="rank__no" data-page-node-id="JZqD5bkBsIJYE8mUQWtk0B">1</span><span class="rank__word" data-page-node-id="Srt2ctkQ3umNdgCtNK46Ha">多模态</span><span class="rank__bar" data-page-node-id="2qrIEk2fYH5F0CpHgbrpGo"><i style="width:96%" data-page-node-id="K9oeTRGLOOBnO6wOvMuviE"></i></span><span class="rank__hot" data-page-node-id="BBYH7WJWlcPsNxYts5t8AE">9.6k</span></div>
+        <div class="rank__item" data-page-node-id="vA5sR85PBjYWh527g2d4Go"><span class="rank__no" data-page-node-id="IBCDDsnd8mpunF9DwjYJjc">2</span><span class="rank__word" data-page-node-id="OZIJCXO4g5TUMjuwATiiZM">推理成本</span><span class="rank__bar" data-page-node-id="pSaGR3d6N4GuP7dA7CJhCO"><i style="width:88%" data-page-node-id="m8fozIqGGlm5voTYqGgtgm"></i></span><span class="rank__hot" data-page-node-id="Lz3Q69JiKTAi0ugm7p0TNn">8.1k</span></div>
+        <div class="rank__item" data-page-node-id="b2DdG3SREyWLrvwG7gvQow"><span class="rank__no" data-page-node-id="8WUczZzBSOCrtRCpGLO44R">3</span><span class="rank__word" data-page-node-id="PlyWrk3uM7xkQ8wO0v0G8N">万卡集群</span><span class="rank__bar" data-page-node-id="C7ehmDMKfVNWUOSKQQvI1I"><i style="width:74%" data-page-node-id="T44LxF4kDDYABtgLhEf0db"></i></span><span class="rank__hot" data-page-node-id="TbCfixMcFfEBQT25KV0xjd">6.4k</span></div>
+        <div class="rank__item" data-page-node-id="GCuHAdFAoLi94NVZQAgtx0"><span class="rank__no" data-page-node-id="f4VHTwD2smihSojSx2qPBB">4</span><span class="rank__word" data-page-node-id="GmlzdgSfHph4eDCucwC6B0">端侧模型</span><span class="rank__bar" data-page-node-id="RW7lcnFxrlHPsPLqPAFjG2"><i style="width:58%" data-page-node-id="YrVTsVsH1ikZq65l4efHyT"></i></span><span class="rank__hot" data-page-node-id="91FKAU2worO07Suaa17dTF">4.2k</span></div>
+        <div class="rank__item" data-page-node-id="8ccSFMxQszZVY5BqjygsPS"><span class="rank__no" data-page-node-id="x9ZlMzC7YD1FWJjQ4rg3OG">5</span><span class="rank__word" data-page-node-id="mY78es76ew44RKuDTPydHA">Agent 编排</span><span class="rank__bar" data-page-node-id="1aIMjFTNVYahoDKHBBY4XF"><i style="width:46%" data-page-node-id="xH40WJODaZBSvNlCUBLZ2r"></i></span><span class="rank__hot" data-page-node-id="kGcn16d8rF1D5MwkizljCP">3.3k</span></div>
+      </div>
+
+      <div class="trend__tags" data-page-node-id="dkS6NSILfQ1dV339XJYDIE">
+        <h4 data-page-node-id="BNG18JXzoCNGy0acBzGfne">HOT KEYWORDS</h4>
+        <span data-page-node-id="8ghN54HAnCG8NQxWWOHUUS">Agent 编排</span>
+        <span data-page-node-id="wPBZLsgajzA7NTbm0wQ4WU">多模态</span>
+        <span data-page-node-id="BjXNaSF08cvqbfVdhmrszD">端侧推理</span>
+        <span data-page-node-id="OA8SysBucq1ci1fY6AcsvP">长上下文</span>
+        <span data-page-node-id="elzkBCa0tNO6ePPPqxIePJ">具身智能</span>
+        <span data-page-node-id="K6DVFAuyGL3TweqDRuYdaI">RAG</span>
+      </div>
+    </aside>
+
+    <!-- ========== 术语小课堂 ========== -->
+    <section class="term" data-page-node-id="IH6plBBDqfIpdEqxYFqTht">
+      <div class="term__kicker" data-page-node-id="vLrpWhkrSqOsUVgPAXYMI2">Term of the Day</div>
+      <h3 class="term__name" data-page-node-id="XkOStgpQAdQ9zQhS8VoaFe">稀疏激活 MoE</h3>
+      <div class="term__en" data-page-node-id="hnIceDnJqaIn0UXnUNS4Kn">Sparse Mixture of Experts</div>
+      <div class="term__rule" data-page-node-id="9FO6aLG2Eo1zKCBoSsB26Y"></div>
+      <p data-page-node-id="PZKfJ4V5PbHNrzaNhuUDUv">把大模型拆成多个「专家」子网络，每次推理只唤醒其中一小部分。参数总量可以很大，但单次计算量只按被激活的专家算。</p>
+      <p data-page-node-id="JvDhm99fde75GUVJM8s1YU">这正是本轮推理成本能下降四成的技术前提——模型看起来更大了，实际跑起来却更便宜。</p>
+      <div class="term__eg" data-page-node-id="mJ4KHrFX8wg6YhBjNKo3Fw">≈ 总参数 1T / 每次仅激活 8% → 效果接近稠密大模型，成本接近小模型</div>
+    </section>
+    </div>
+
+  </div>
+
+  <!-- ========== 投融资速览 ========== -->
+  <section class="fund" data-page-node-id="REAetqG5cifsIA3OyfSp1m">
+    <div class="fund__head" data-page-node-id="aGKewL8eDIDxb0Iiqioh94">
+      <h3 data-page-node-id="cu6hHI2K8VYWuYeRkXywxF">投融资速览</h3>
+      <span data-page-node-id="QAanDZJdgkPfQJyR26g55x">Funding · 2026-09-09</span>
+    </div>
+    <div class="fund__grid" data-page-node-id="EwVV7a22hLbd8sN3eAiktY">
+      <div class="fund__row fund__row--head" data-page-node-id="YGjZFMAJh8sPtaeXGYEXHV">
+        <span data-page-node-id="ABGwZ2pGIlaafnLihduLiD">公司 / 项目</span><span data-page-node-id="SPHx5kmEsLcCgd9HAgSWdu">轮次</span><span data-page-node-id="tERKURIyeDIWpzrIQG3W7C">金额</span><span data-page-node-id="MpcRsTBx7kKpj7HBsjqqgu">赛道</span>
+      </div>
+      <div class="fund__row" data-page-node-id="H8y3dlSHiMKqHrk3Dtumja">
+        <span data-label="公司 / 项目" data-page-node-id="QGMocnohCKCLxjiah4fWe4">星野智能</span><span data-label="轮次" data-page-node-id="tVpiBqYPnmCjLlQXld23nl">B+ 轮</span><span class="fund__amt" data-label="金额" data-page-node-id="AHUXbpoCtoj3OJVxXCRU9q">¥12 亿</span><span data-label="赛道" data-page-node-id="MYQGeYHECnMulkEL9gwouN">多模态大模型</span>
+      </div>
+      <div class="fund__row" data-page-node-id="8L4pynfOwW1vCpAtxPd21W">
+        <span data-label="公司 / 项目" data-page-node-id="a5qH3AqbYdE1QhczlTMPYc">磐石算力</span><span data-label="轮次" data-page-node-id="EAahjHhBAx6Me7s8AwZtNz">C 轮</span><span class="fund__amt" data-label="金额" data-page-node-id="nDERiLtk2qF03oNzQlV9VX">¥18 亿</span><span data-label="赛道" data-page-node-id="NUOaGnjMzKWI6W3n2sT7vD">智算中心 / 互联</span>
+      </div>
+      <div class="fund__row" data-page-node-id="HgsHqsCnlfJSxAOhG9xH9E">
+        <span data-label="公司 / 项目" data-page-node-id="yMqfTHDOUB2GMp7JOPwaex">轻舟 Agent</span><span data-label="轮次" data-page-node-id="fRm4EBE3VHMO37TXPEOoWz">A 轮</span><span class="fund__amt" data-label="金额" data-page-node-id="wthJKw21CRkRY7tjczHgkt">$50M</span><span data-label="赛道" data-page-node-id="sRbQq1C8V2vFzyhQwUtT0f">企业级 Agent</span>
+      </div>
+      <div class="fund__row" data-page-node-id="mbAHGqv3aZczZ3VMcqS3I5">
+        <span data-label="公司 / 项目" data-page-node-id="SP8x7RKA3zJGoaBKDHhqi7">瞳行机器人</span><span data-label="轮次" data-page-node-id="wRw8BRyJ9H6zIPKXKQcwUB">Pre-A</span><span class="fund__amt" data-label="金额" data-page-node-id="G8HX7RZwDLIA1Wleknppa2">¥3.2 亿</span><span data-label="赛道" data-page-node-id="wR81vOys9DWjNRo6weSqfa">具身智能</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 明日关注 ========== -->
+  <section class="next" data-page-node-id="wudL5gYvPllGQk6ZPFemlQ">
+    <div class="next__head" data-page-node-id="ul5jyHkff00PHSxwrdtRGZ">
+      <h3 data-page-node-id="qRhqkHRE5800x48OqI8lTU">明日关注</h3>
+      <span data-page-node-id="bjaSX1fIbLLdT6g06VcJYe">What's Next · 2026.09.10</span>
+    </div>
+    <div class="next__rule" data-page-node-id="QHMk1hG8jpWzESeo7yaS1t"></div>
+    <div class="next__grid" data-page-node-id="pGpf4wNGdZZ6g6oAF2LGFa">
+      <div class="next__item" data-page-node-id="1uy1bwFAJSLrPP0plFREAR">
+        <span class="next__date" data-page-node-id="2A9v4VR3eTsGdFOX4MITp0">09.10 · 发布会</span>
+        <p data-page-node-id="rTIu7uD2jmgl3fToCCzIYa">头部厂商开发者大会，关注端侧小模型的落地参数与定价。</p>
+      </div>
+      <div class="next__item" data-page-node-id="pBqWnf4lEIcwI8dcQmFl9e">
+        <span class="next__date" data-page-node-id="4bXlboxxIfQBJbs1mWul97">09.10 · 政策</span>
+        <p data-page-node-id="ANGLdwJ3vIQ3KH92PT6p86">生成式内容标识规范征求意见截止，合规成本或被重新评估。</p>
+      </div>
+      <div class="next__item" data-page-node-id="KxFdrgdVQS6AFuhZUyHNvW">
+        <span class="next__date" data-page-node-id="TRKiJsCOnQZVJHPKwh0ybs">本周 · 数据</span>
+        <p data-page-node-id="GW5tiMxQOUWJU2a15507Mh">季度算力采购数据披露，观察国产卡在新增订单中的占比变化。</p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="foot" data-page-node-id="NbOKNOcmogP24IinAu3llQ">
+    <span data-page-node-id="A2JnBLpcFBSwZHiLPtuqF8">AI Daily Brief · Issue No.042 · 2026.09.09</span>
+    <span data-page-node-id="XUfC8ba9NEm2excQDjudyB">单文件网页 · 零依赖 · 双击 index.html 即可打开</span>
+    <span data-page-node-id="lB0qPyfPxzjoeEq7UCZCql">页面内新闻、数据与公司均为示例内容，仅用于演示与录屏展示</span>
+  </footer>
+
+</div><!-- /.shell -->
+
+<!-- ============ 详情弹窗：点「查看详情」进入的第二个界面 ============ -->
+<div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetTitle" data-page-node-id="jZNFN3Dlt5BRuyebcGnL7J">
+  <div class="sheet__mask" data-close="1" data-page-node-id="I3L7d6414Ot1Lh1DYDaDhq"></div>
+  <div class="sheet__panel" data-page-node-id="QGINycjGD3ygcbkEiIXqWY">
+
+    <div class="sheet__head" data-page-node-id="DwygbvMwHgwSAoZwbJJH8I">
+      <span class="sheet__no" id="sheetNo" data-page-node-id="hR5EN4Eb4P43hy0lBk7oKT">01</span>
+      <span class="badge badge--high" id="sheetBadge" data-page-node-id="v5EoGCSLCDey1G4eXHcHDb">高优先级</span>
+      <span class="badge badge--time" id="sheetTime" hidden data-page-node-id="UivfqsoOy5c3k5CMxUSgln"></span>
+      <span class="sheet__kind" id="sheetKind" data-page-node-id="J1rUwXWbovYAAF8EhMCFmA">Detail View</span>
+      <button class="sheet__close" id="sheetClose" type="button" aria-label="关闭详情" data-page-node-id="qGjQ6R7nFRzDa6PE5azljX">×</button>
+    </div>
+
+    <div class="sheet__body" data-page-node-id="vdhb5OcE15TeJ6w9zvjePO">
+      <h2 class="sheet__title" id="sheetTitle" data-page-node-id="FObcUbVGEusPBDa7hivPPB">详情标题</h2>
+      <div class="sheet__meta" id="sheetMeta" data-page-node-id="HwXkeUXcdAMl7TCFcdKpsZ">来源 · 综合报道 / 2026-09-09</div>
+      <div class="sheet__rule" data-page-node-id="QEOdtgA41NtJZIPWCcGpMA"></div>
+      <p class="sheet__lead" id="sheetLead" data-page-node-id="ofBrWAwhBdVizSeVNLqlkc"></p>
+      <div id="sheetBody" data-page-node-id="7vGOmgCUXtLFYM3KLO5xdW"></div>
+
+      <section class="sheet__sec" id="secFacts" data-page-node-id="xh8iP2u1i6pxOlpBMbdNx8">
+        <h4 class="sheet__h4" data-page-node-id="pQPWhrd6F6IRDqSG3LhIBb">关键数据 / Key Facts</h4>
+        <div class="sheet__facts" id="sheetFacts" data-page-node-id="O0kscKCLPpNfcnwh5BgJo4"></div>
+      </section>
+
+      <section class="sheet__sec" id="secTimeline" data-page-node-id="htbxIXvq4YIclfgyMwLujg">
+        <h4 class="sheet__h4" data-page-node-id="TtlfaoXEEiRlm70Ei9SwEO">事件脉络 / Timeline</h4>
+        <ul class="tl" id="sheetTimeline" data-page-node-id="IRUPluiClJ7ObF7dET04ax"></ul>
+      </section>
+
+      <h4 class="sheet__h4" data-page-node-id="I2bgP8auMg9vaVDs4Qj0mx">影响解读 / Why It Matters</h4>
+      <div class="sheet__impact" data-page-node-id="dfu6psPrT60HuBeOZWIu4K"><b data-page-node-id="uU7BCkB4dXxdCnYhlwt01t">Impact</b><span id="sheetImpact" data-page-node-id="AJSN9gzdGPIfTclORjtfVp"></span></div>
+
+      <section class="sheet__sec" id="secRelated" data-page-node-id="kaz9CBsQTOH7s2xGuV2J0u">
+        <h4 class="sheet__h4" data-page-node-id="ddfEdhTc3UURYuW3jlQ9ok">相关阅读 / Related</h4>
+        <div class="rel" id="sheetRelated" data-page-node-id="R9d9djB9tHt6XN2QLaF89v"></div>
+      </section>
+
+      <div class="sheet__tags" id="sheetTags" data-page-node-id="tcne6XELDxNb009btktAGr"></div>
+    </div>
+
+    <div class="sheet__foot" data-page-node-id="2Cgb7rABhhiBYqwRG5iHGg">
+      <button class="sheet__nav" id="sheetPrev" type="button" data-page-node-id="pR12bNnEKxQjHqWyfbywbL">← 上一条</button>
+      <button class="sheet__nav" id="sheetNext" type="button" data-page-node-id="b7fu2ThXPaLuVGN1WV9MHh">下一条 →</button>
+      <button class="read-btn" id="sheetRead" type="button" aria-pressed="false" data-page-node-id="0BBdlZ1tK98WynK1aFdpkG">阅读完成</button>
+      <span class="sheet__hint" data-page-node-id="Juj4m5TGFVazODzTqiva3E">ESC 关闭 · ← → 切换上一条 / 下一条</span>
+    </div>
+
+  </div>
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  // 单一状态源：阅读状态按卡片 data-id 存储，筛选与已读互不干扰
+  var state = {
+    read: { '1': false, '2': false, '3': false },
+    briefRead: { b1: false, b2: false, b3: false, b4: false, b5: false, b6: false },
+    filter: 'all'
+  };
+
+  // 详情数据：与卡片 data-id 对应，新增卡片时在这里补一条即可
+  var NEWS = {
+    '1': {
+      no: '01', priority: 'high', priorityText: '高优先级',
+      title: '新一代多模态大模型发布，推理成本较上一代下降 40%',
+      meta: '来源 · 综合报道 / 2026-09-09 / 阅读约 3 分钟',
+      lead: '官方技术报告显示，新模型在图文混排理解与长文档检索上均有明显提升，同时通过稀疏激活与蒸馏方案把单位 token 成本压到新低。',
+      body: [
+        '本次升级的重心不在参数规模，而在「单位成本」。官方给出的对比数据显示，在同等输出质量下，新模型的单次调用开销比上一代下降约四成，长上下文场景的下降幅度更大。',
+        '能力侧的变化集中在两处：一是图文混排输入的稳定性，过去在多图 + 表格场景中常见的错位与漏读问题明显减少；二是长文档检索的召回率，官方基准上提升了十几个百分点。',
+        '开放节奏上，本周内先向已有企业客户灰度，API 与新定价同步生效；消费级入口预计在下一版本跟进。'
+      ],
+      facts: [
+        { k: '单位 token 成本', v: '-40%' },
+        { k: '上下文长度', v: '256K' },
+        { k: '开放节奏', v: '本周灰度' }
+      ],
+      timeline: [
+        { t: '08-12', d: '社区流出新模型权重命名截图，官方未作回应。' },
+        { t: '09-02', d: '技术报告预印本上线，披露稀疏激活与蒸馏方案的具体细节。' },
+        { t: '09-09', d: '正式发布，API 与新定价同步生效，企业客户先行灰度。' }
+      ],
+      related: [
+        { t: '从参数竞赛到成本竞赛：大模型定价的三个拐点', s: '深度 · 12 min' },
+        { t: '稀疏激活 MoE 为什么又流行起来了', s: '技术 · 8 min' },
+        { t: '多模态 API 选型实测：六家厂商横向对比', s: '评测 · 15 min' }
+      ],
+      impact: '这轮真正的信号不是参数规模，而是价格。当多模态调用的边际成本降到一个量级，过去只在 Demo 里成立的实时应用（实时讲解、工业质检、交互式教学）才第一次具备规模化部署的经济性。中小团队应优先评估「高频短调用」场景，收益最直接。',
+      tags: ['多模态', '推理成本', '模型发布', 'API 定价']
+    },
+    '2': {
+      no: '02', priority: 'high', priorityText: '高优先级',
+      title: '国产算力集群完成万卡互联实测，训练效率提升 27%',
+      meta: '来源 · 算力观察 / 2026-09-09 / 阅读约 2 分钟',
+      lead: '互联方案重点解决了长上下文训练中的通信抖动问题，官方给出的线性加速比数据已接近同规模国际方案，配套的调度框架同步开源。',
+      body: [
+        '万卡规模下真正的瓶颈从来不是单卡算力，而是互联。这次实测的重点是长上下文训练中的通信抖动——它会让整个集群周期性空转，实际吞吐远低于理论值。',
+        '官方公布的方案从拓扑与调度两端入手：拓扑侧减少跨节点跳数，调度侧把通信与计算做更激进的重叠。实测线性加速比接近同规模国际方案，训练效率提升 27%。',
+        '值得注意的是配套调度框架同步开源，这意味着中小机构不必自建整套调度栈即可复用这套优化。'
+      ],
+      facts: [
+        { k: '集群规模', v: '万卡级' },
+        { k: '训练效率', v: '+27%' },
+        { k: '调度框架', v: '已开源' }
+      ],
+      timeline: [
+        { t: '07-20', d: '首批千卡规模互联实测完成，长上下文训练抖动问题暴露。' },
+        { t: '08-28', d: '拓扑调整方案落地，跨节点跳数减少，通信重叠比例提高。' },
+        { t: '09-09', d: '万卡级实测结果公布，配套调度框架同步开源。' }
+      ],
+      related: [
+        { t: '万卡集群的真实瓶颈：不是算力，是互联', s: '深度 · 10 min' },
+        { t: '训练效率怎么算：线性加速比之外的三个指标', s: '技术 · 9 min' },
+        { t: '国产算力 2026 上半年盘点', s: '报告 · 20 min' }
+      ],
+      impact: '算力议题今年从「能不能买到卡」转向「能不能把卡跑满」。效率提升 27% 折算下来相当于凭空多出四分之一的可用算力，对训练预算紧张的团队是实打实的利好。建议关注开源调度框架与现有训练栈的兼容性。',
+      tags: ['算力', '芯片互联', '分布式训练', '开源']
+    },
+    '3': {
+      no: '03', priority: 'mid', priorityText: '中优先级',
+      title: '开源社区一周新增 1204 个 Agent 相关项目',
+      meta: '来源 · 开源速递 / 2026-09-09 / 阅读约 1 分钟',
+      lead: '热度集中在工具调用编排与沙箱执行两个方向，但真正进入生产环境的仍是少数，社区开始讨论统一的失败回滚与审计标准。',
+      body: [
+        '一周新增 1204 个 Agent 相关项目，数量上再创新高，但结构高度集中：工具调用编排与沙箱执行两个方向占了绝大多数。',
+        '真正的分水岭在可观测性。多数项目能跑通 Happy Path，一旦出现工具调用失败、参数错误或超时，缺少回滚与重试策略，难以进入生产环境。',
+        '社区近期开始推动统一的失败回滚与审计日志标准，这被视为 Agent 从演示走向工程化的前提。'
+      ],
+      facts: [
+        { k: '新增项目', v: '1,204' },
+        { k: '生产可用占比', v: '< 5%' },
+        { k: '热点方向', v: '编排 / 沙箱' }
+      ],
+      timeline: [
+        { t: '09-02', d: '多个工具调用编排框架在同一周发布大版本更新。' },
+        { t: '09-06', d: '沙箱执行方向出现三起安全事件讨论，隔离策略受关注。' },
+        { t: '09-09', d: '社区发起统一的失败回滚与审计日志标准提案。' }
+      ],
+      related: [
+        { t: 'Agent 工程化的三道坎：重试、回滚、审计', s: '工程 · 11 min' },
+        { t: '沙箱逃逸防护：五种常见配置错误', s: '安全 · 7 min' },
+        { t: '从 Demo 到生产：Agent 项目的验收清单', s: '实践 · 13 min' }
+      ],
+      impact: '数字热闹，但工程化仍处早期。选型时不要看 Star 增速，重点看三件事：是否支持失败重试与回滚、是否有完整的调用审计、沙箱逃逸防护是否经过验证。这三项决定了它能不能真的上线。',
+      tags: ['开源', 'Agent', '工具调用', '可观测性']
+    }
+  };
+
+  // 快讯详情：与 .brief__item 上的 data-brief 对应，ID 统一以 b 开头
+  var BRIEF = {
+    b1: {
+      no: 'B-01', cat: '模型', time: '09:12',
+      title: '某厂商开源 7B 端侧模型，手机端推理速度较上代提升约 2 倍',
+      meta: '快讯 · 模型 / 09:12 / 阅读约 1 分钟',
+      lead: '7B 参数量的端侧模型正式开源，主打手机与轻薄本可跑，官方实测速度约为上一代的两倍。',
+      body: [
+        '这次开源的重点不只是权重，还包括量化方案与推理运行时。官方提供 4bit 与 8bit 两档量化配置，在主流中端手机上均可常驻内存运行，冷启动控制在两秒以内。',
+        '能力边界也说得比较清楚：通用对话、摘要与检索增强问答表现稳定，复杂多步推理仍建议交给云端模型。官方把它定位为「端侧兜底 + 云端增强」的混合方案，而不是替代关系。',
+        '许可上采用宽松开源协议，允许商用，仅要求保留模型卡与来源声明。'
+      ],
+      facts: [{ k: '参数量', v: '7B' }, { k: '推理速度', v: '+100%' }, { k: '量化档位', v: '4bit / 8bit' }],
+      timeline: [
+        { t: '08-25', d: '内测版本在开发者社区小范围分发，量化方案同步流出。' },
+        { t: '09-09', d: '权重与推理运行时一并开源，商用许可放开。' }
+      ],
+      related: [
+        { t: '端侧模型选型：7B 是不是甜蜜点', s: '评测 · 9 min' },
+        { t: '4bit 量化到底损失了多少效果', s: '技术 · 7 min' }
+      ],
+      impact: '端侧模型的价值不在「跑分超过云端」，而在离线可用与零调用成本。隐私敏感、弱网、高频短调用这三类场景会最先受益，选型时重点关注常驻内存占用与冷启动耗时，而不是峰值吞吐。',
+      tags: ['端侧模型', '开源', '量化', '移动推理']
+    },
+    b2: {
+      no: 'B-02', cat: '应用', time: '10:05',
+      title: '主流 AI 编程工具上线跨文件重构能力，一次改动同步更新所有引用',
+      meta: '快讯 · 应用 / 10:05 / 阅读约 1 分钟',
+      lead: '一次改动自动同步所有引用位置，跨文件重构从「人工搜索替换」变成可逐条复核的批量操作。',
+      body: [
+        '过去的 AI 编程辅助大多局限在单文件内的补全与改写，一旦涉及重命名、接口变更这类跨文件改动，仍要靠开发者自己搜引用、逐个确认。新能力把这一整串动作打包成一次操作。',
+        '实现上依赖项目级索引：工具先构建符号引用图，再生成改动计划，最后以 diff 列表形式呈现，开发者可以逐条接受或拒绝，而不是一次性全量应用。',
+        '目前支持的改动类型集中在重命名、函数签名调整与模块移动三类，跨仓库改动暂不支持。'
+      ],
+      facts: [{ k: '支持改动', v: '3 类' }, { k: '依赖能力', v: '项目级索引' }, { k: '呈现方式', v: '逐条 diff' }],
+      timeline: [
+        { t: '08-10', d: '内测通道开放，初期仅支持符号重命名。' },
+        { t: '09-05', d: '扩展到函数签名调整与模块移动两类改动。' },
+        { t: '09-09', d: '正式版全量推送，与项目索引能力绑定。' }
+      ],
+      related: [
+        { t: '跨文件重构的三种实现路径', s: '技术 · 10 min' },
+        { t: 'AI 改写代码，怎么保证不引入回归', s: '工程 · 8 min' }
+      ],
+      impact: 'AI 编程工具的竞争正从「写得快」转向「改得稳」。跨文件重构是第一个真正需要理解项目全局结构的场景，它的可靠性直接决定开发者敢不敢把改动交给 AI。建议先在测试覆盖率高的模块试用。',
+      tags: ['AI 编程', '重构', '开发者工具']
+    },
+    b3: {
+      no: 'B-03', cat: '监管', time: '11:30',
+      title: '生成式内容标识规范征求意见进入最后阶段，平台改造窗口约两个月',
+      meta: '快讯 · 监管 / 11:30 / 阅读约 1 分钟',
+      lead: '征求意见进入最后阶段，显式与隐式标识的落地细则基本成型，留给平台侧的改造窗口约两个月。',
+      body: [
+        '规范延续「显式标识 + 隐式标识」的双轨思路：显式标识面向用户可见的水印与提示，隐式标识写入文件元数据，用于内容在平台之间流转时的追溯。',
+        '对平台来说，改造工作量集中在两处：一是对历史存量内容的补标，二是对外分发接口的元数据兼容，后者涉及与第三方平台的对接成本。',
+        '争议点仍在成本分摊。中小平台担心改造成本被低估，尤其是短视频与直播这类实时场景，隐式标识的写入时机与性能开销目前还没有成熟方案。'
+      ],
+      facts: [{ k: '改造窗口', v: '约 2 个月' }, { k: '标识方式', v: '显式 + 隐式' }, { k: '主要难点', v: '实时场景' }],
+      timeline: [
+        { t: '07-08', d: '征求意见稿首次公开，双轨标识思路成型。' },
+        { t: '08-20', d: '平台侧反馈集中在本与实时场景的写入时机。' },
+        { t: '09-09', d: '意见征求进入最后阶段，细则基本锁定。' }
+      ],
+      related: [
+        { t: '生成式标识：显式与隐式怎么做分工', s: '政策 · 9 min' },
+        { t: '平台合规改造清单：存量与接口两条线', s: '实践 · 12 min' }
+      ],
+      impact: '两个月窗口听着宽裕，但存量内容补标与接口改造是两条并行的工作线。建议平台优先梳理对外的分发接口——这部分一旦规范落地再改，涉及第三方协同，成本会成倍上升。',
+      tags: ['监管', '内容标识', '合规']
+    },
+    b4: {
+      no: 'B-04', cat: '硬件', time: '13:48',
+      title: '新一代推理卡进入量产，显存带宽提升 35%，交付周期缩短至六周',
+      meta: '快讯 · 硬件 / 13:48 / 阅读约 1 分钟',
+      lead: '新一代推理卡进入量产，显存带宽提升 35%，交付周期从上一代的十余周压缩到六周。',
+      body: [
+        '这一代明显偏向推理场景：算力峰值的提升幅度不大，重点堆在显存带宽与互联带宽上，针对长上下文与大批量的解码负载做了专门优化。',
+        '交付周期是更值得关注的信号。过去两年，推理卡的交期往往比纸面参数更能决定一个项目能不能按时上线，六周意味着中小团队的扩容计划可以做得更激进一些。',
+        '价格尚未公开，渠道反馈是单卡定价与上代持平，靠带宽提升摊薄单位成本。'
+      ],
+      facts: [{ k: '显存带宽', v: '+35%' }, { k: '交付周期', v: '6 周' }, { k: '产品定位', v: '推理专用' }],
+      timeline: [
+        { t: '06-15', d: '样卡送测，重点验证长上下文解码表现。' },
+        { t: '08-30', d: '量产良率达标，供应链锁定产能。' },
+        { t: '09-09', d: '正式进入量产交付，交期压缩至六周。' }
+      ],
+      related: [
+        { t: '推理卡选型：为什么带宽比峰值算力重要', s: '硬件 · 11 min' },
+        { t: '2026 推理硬件供给盘点', s: '报告 · 18 min' }
+      ],
+      impact: '推理卡的竞争维度正从峰值算力转向带宽与供给确定性。对采购方来说，交期缩短的边际价值可能高于带宽提升本身——它把「提前半年锁产能」变成了一件可以按需决策的事。',
+      tags: ['推理卡', '硬件', '显存带宽', '供应链']
+    },
+    b5: {
+      no: 'B-05', cat: '学术', time: '15:20',
+      title: '顶会录用结果公布，Agent 方向论文占比创新高，评审开始关注可复现性',
+      meta: '快讯 · 学术 / 15:20 / 阅读约 1 分钟',
+      lead: '顶会录用结果公布，Agent 方向论文占比创下新高，评审意见中「可复现性」的出现频率明显上升。',
+      body: [
+        'Agent 相关论文在录用名单中的占比再创新高，但结构在变化：单纯的方法创新比例下降，围绕评测基准、失败分析与成本控制的「工程型论文」明显增多。',
+        '评审标准也在调整。多位程序委员会成员公开提到，Agent 论文的复现成本远高于传统任务，缺少环境与成本说明的工作会被要求补充材料，否则难以通过。',
+        '一个被反复讨论的问题是评测基准的可信度：通用基准上的提升，往往无法迁移到真实的工具调用环境。'
+      ],
+      facts: [{ k: 'Agent 占比', v: '创新高' }, { k: '评审焦点', v: '可复现性' }, { k: '增长方向', v: '评测 / 失败分析' }],
+      timeline: [
+        { t: '05-02', d: '投稿量创纪录，Agent 方向增幅最大。' },
+        { t: '07-18', d: '评审阶段引入可复现性检查环节。' },
+        { t: '09-09', d: '录用结果公布，工程型论文占比上升。' }
+      ],
+      related: [
+        { t: 'Agent 评测为什么这么难', s: '学术 · 10 min' },
+        { t: '顶会论文复现清单：环境、成本与基准', s: '实践 · 14 min' }
+      ],
+      impact: '学术界开始给 Agent 研究加上工程约束，这是好事。对企业读者来说，判断一篇 Agent 论文值不值得跟进，先看三件事：是否公开环境与调用成本、是否有失败案例分析、基准是否与自己的场景接近。',
+      tags: ['学术', 'Agent', '可复现性', '评测基准']
+    },
+    b6: {
+      no: 'B-06', cat: '人才', time: '17:02',
+      title: '头部企业秋招算法岗缩招，模型工程与数据工程岗位需求逆势上升',
+      meta: '快讯 · 人才 / 17:02 / 阅读约 1 分钟',
+      lead: '头部企业秋招算法岗整体缩招，但模型工程与数据工程岗位需求逆势上升，薪资结构也在跟着变。',
+      body: [
+        '缩招集中在通用算法研究岗。原因不复杂：基础模型研发集中在少数团队，多数业务线需要的不再是训模型的人，而是把模型稳定跑起来的人。',
+        '逆势上升的是两类岗位：模型工程（推理优化、部署、成本控制）与数据工程（数据管道、评测集构建、标注质量）。它们的共同特点是与实际交付强相关。',
+        '薪资结构上，纯研究岗的溢价在收窄，工程岗的带宽在拉大，部分团队对有推理优化经验的候选人开出高于同级算法的报价。'
+      ],
+      facts: [{ k: '算法岗', v: '缩招' }, { k: '模型工程', v: '需求上升' }, { k: '数据工程', v: '需求上升' }],
+      timeline: [
+        { t: '07-05', d: '多家头部企业开放秋招提前批，算法名额明显收紧。' },
+        { t: '08-22', d: '模型工程岗位占比首次超过算法研究岗。' },
+        { t: '09-09', d: '秋招正式批开放，结构性差异延续。' }
+      ],
+      related: [
+        { t: 'AI 岗位地图：从训模型到跑模型', s: '职业 · 9 min' },
+        { t: '推理优化工程师需要什么技能栈', s: '技术 · 12 min' }
+      ],
+      impact: '这不是 AI 行业在收缩，而是岗位结构在成熟。对求职者来说，「会调模型」的溢价在下降，「能把模型便宜、稳定地跑在生产环境」的溢价在上升——这两个能力栈之间的差距，比想象中大。',
+      tags: ['人才', '秋招', '模型工程', '数据工程']
+    }
+  };
+
+  var cards        = Array.prototype.slice.call(document.querySelectorAll('.card'));
+  var filters      = Array.prototype.slice.call(document.querySelectorAll('.filter[data-filter]'));
+  var readAllBtn   = document.getElementById('readAll');
+  var readCount    = document.getElementById('readCount');
+  var visibleCount = document.getElementById('visibleCount');
+  var news         = document.querySelector('.news');
+  var briefItems   = Array.prototype.slice.call(document.querySelectorAll('.brief__item'));
+  var briefReadCt  = document.getElementById('briefReadCount');
+
+  /* ---------- 详情弹窗（第二个界面） ---------- */
+  var sheet = document.getElementById('sheet');
+  var sEl = {
+    no: document.getElementById('sheetNo'),
+    badge: document.getElementById('sheetBadge'),
+    title: document.getElementById('sheetTitle'),
+    meta: document.getElementById('sheetMeta'),
+    lead: document.getElementById('sheetLead'),
+    body: document.getElementById('sheetBody'),
+    facts: document.getElementById('sheetFacts'),
+    timeline: document.getElementById('sheetTimeline'),
+    related: document.getElementById('sheetRelated'),
+    impact: document.getElementById('sheetImpact'),
+    tags: document.getElementById('sheetTags'),
+    read: document.getElementById('sheetRead'),
+    prev: document.getElementById('sheetPrev'),
+    next: document.getElementById('sheetNext'),
+    kind: document.getElementById('sheetKind'),
+    time: document.getElementById('sheetTime'),
+    secFacts: document.getElementById('secFacts'),
+    secTimeline: document.getElementById('secTimeline'),
+    secRelated: document.getElementById('secRelated'),
+    hint: document.querySelector('.sheet__hint')
+  };
+  var currentId = null;   // 当前详情对应的卡片 ID
+  var lastFocus = null;   // 打开前的焦点元素，关闭后还原
+
+  // 详情数据的两个来源：主卡片 NEWS / 今日快讯 BRIEF
+  function dataOf(id)  { return NEWS[id] || BRIEF[id] || null; }
+  function isBrief(id) { return !!BRIEF[id]; }
+  function toggleSec(sec, has) { if (sec) sec.style.display = has ? '' : 'none'; }
+
+  // 上一条 / 下一条只在同一个集合内循环：卡片在当前筛选可见项之间循环，快讯在六条之间循环
+  function currentList(id) {
+    if (isBrief(id)) return Object.keys(BRIEF);
+    return cards.filter(function (c) {
+      return c.style.display !== 'none';
+    }).map(function (c) { return c.dataset.id; });
+  }
+
+  function openSheet(id) {
+    var d = dataOf(id);
+    if (!d) return;
+    var brief = isBrief(id);
+
+    currentId = id;
+    sEl.no.textContent = d.no;
+
+    // 头部：卡片显示重要程度，快讯显示分类 + 时间
+    if (brief) {
+      sEl.badge.className = 'badge badge--cat';
+      sEl.badge.textContent = d.cat;
+      sEl.time.hidden = false;
+      sEl.time.textContent = d.time;
+      sEl.kind.textContent = 'Brief Detail · 快讯详情';
+    } else {
+      sEl.badge.className = 'badge badge--' + (d.priority === 'high' ? 'high' : 'mid');
+      sEl.badge.textContent = d.priorityText;
+      sEl.time.hidden = true;
+      sEl.kind.textContent = 'Detail View';
+    }
+
+    sEl.title.textContent = d.title;
+    sEl.meta.textContent = d.meta;
+    sEl.lead.textContent = d.lead;
+
+    sEl.body.innerHTML = '';
+    d.body.forEach(function (p) {
+      var el = document.createElement('p');
+      el.className = 'body-p';
+      el.textContent = p;
+      sEl.body.appendChild(el);
+    });
+
+    sEl.facts.innerHTML = '';
+    d.facts.forEach(function (f) {
+      var box = document.createElement('div');
+      box.className = 'sheet__fact';
+      var k = document.createElement('span'); k.textContent = f.k;
+      var v = document.createElement('strong'); v.textContent = f.v;
+      box.appendChild(k); box.appendChild(v);
+      sEl.facts.appendChild(box);
+    });
+
+    sEl.timeline.innerHTML = '';
+    (d.timeline || []).forEach(function (it) {
+      var li = document.createElement('li');
+      var t = document.createElement('time'); t.textContent = it.t;
+      var p = document.createElement('p'); p.textContent = it.d;
+      li.appendChild(t); li.appendChild(p);
+      sEl.timeline.appendChild(li);
+    });
+
+    sEl.impact.textContent = d.impact;
+
+    sEl.related.innerHTML = '';
+    (d.related || []).forEach(function (r) {
+      var box = document.createElement('div');
+      box.className = 'rel__item';
+      var b = document.createElement('b'); b.textContent = r.t;
+      var i = document.createElement('i'); i.textContent = r.s;
+      box.appendChild(b); box.appendChild(i);
+      sEl.related.appendChild(box);
+    });
+
+    // 数据里没有的板块直接隐藏（快讯可以只写其中几块）
+    toggleSec(sEl.secFacts, d.facts && d.facts.length);
+    toggleSec(sEl.secTimeline, d.timeline && d.timeline.length);
+    toggleSec(sEl.secRelated, d.related && d.related.length);
+
+    sEl.tags.innerHTML = '';
+    d.tags.forEach(function (t) {
+      var s = document.createElement('span'); s.textContent = t;
+      sEl.tags.appendChild(s);
+    });
+
+    var ids = currentList(id);
+    var only = ids.length < 2;
+    sEl.prev.disabled = only;
+    sEl.next.disabled = only;
+    if (sEl.hint) {
+      sEl.hint.textContent = brief
+        ? 'ESC 关闭 · ← → 切换上一条 / 下一条快讯'
+        : 'ESC 关闭 · ← → 切换上一条 / 下一条';
+    }
+
+    var bodyBox = document.querySelector('.sheet__body');
+    if (bodyBox) bodyBox.scrollTop = 0;
+
+    if (!sheet.classList.contains('is-open')) {
+      lastFocus = document.activeElement;
+      sheet.classList.add('is-open');
+      document.body.classList.add('sheet-open');
+    }
+    updateSheetRead();
+    document.getElementById('sheetClose').focus();
+  }
+
+  function closeSheet() {
+    sheet.classList.remove('is-open');
+    document.body.classList.remove('sheet-open');
+    currentId = null;
+    if (lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+
+  function stepSheet(dir) {
+    if (!currentId) return;
+    var ids = currentList(currentId);
+    if (ids.length < 2) return;
+    var i = ids.indexOf(currentId);
+    if (i < 0) i = 0;
+    openSheet(ids[(i + dir + ids.length) % ids.length]);
+  }
+
+  // 弹窗内的已读按钮与卡片 / 快讯共用同一份 state
+  function updateSheetRead() {
+    if (!currentId) return;
+    var isRead = isBrief(currentId) ? !!state.briefRead[currentId] : !!state.read[currentId];
+    sEl.read.textContent = isRead ? '已完成' : '阅读完成';
+    sEl.read.setAttribute('aria-pressed', isRead ? 'true' : 'false');
+  }
+
+  if (sheet) {
+    document.getElementById('sheetClose').addEventListener('click', closeSheet);
+    sEl.prev.addEventListener('click', function () { stepSheet(-1); });
+    sEl.next.addEventListener('click', function () { stepSheet(1); });
+    sEl.read.addEventListener('click', function () {
+      if (!currentId) return;
+      if (isBrief(currentId)) state.briefRead[currentId] = !state.briefRead[currentId];
+      else state.read[currentId] = !state.read[currentId];
+      render();               // 同步卡片 / 快讯的已读标记与计数
+      updateSheetRead();
+    });
+    sheet.addEventListener('click', function (e) {
+      if (e.target.dataset && e.target.dataset.close) closeSheet();
+    });
+    document.addEventListener('keydown', function (e) {
+      if (!sheet.classList.contains('is-open')) return;
+      if (e.key === 'Escape') closeSheet();
+      else if (e.key === 'ArrowLeft') stepSheet(-1);
+      else if (e.key === 'ArrowRight') stepSheet(1);
+    });
+  }
+
+  // 唯一渲染出口：DOM 只是 state 的镜像，不重建节点、不读 DOM 反推状态
+  function render() {
+    var readNum = 0, showNum = 0;
+
+    cards.forEach(function (card) {
+      var id  = card.dataset.id;
+      var pri = card.dataset.priority;
+      var isRead = !!state.read[id];
+
+      // 1) 阅读状态（视觉镜像）
+      card.classList.toggle('is-read', isRead);
+      var btn = card.querySelector('.read-btn');
+      if (btn) {
+        btn.textContent = isRead ? '已完成' : '阅读完成';
+        btn.setAttribute('aria-pressed', isRead ? 'true' : 'false');
+      }
+      if (isRead) readNum++;
+
+      // 2) 筛选显示（display 隐藏不会丢失 state 中的已读状态）
+      var show = (state.filter === 'all') || (state.filter === pri);
+      card.style.display = show ? '' : 'none';
+      if (show) showNum++;
+    });
+
+    filters.forEach(function (f) {
+      f.classList.toggle('is-active', f.dataset.filter === state.filter);
+    });
+
+    // 快讯：已读标记与计数（同样是 state 的镜像）
+    var briefNum = 0;
+    briefItems.forEach(function (item) {
+      var done = !!state.briefRead[item.dataset.brief];
+      item.classList.toggle('is-read', done);
+      item.setAttribute('aria-pressed', done ? 'true' : 'false');
+      if (done) briefNum++;
+    });
+    if (briefReadCt) briefReadCt.textContent = briefNum;
+
+    // 已读/显示数量均从 state 计算，筛选状态下依然准确
+    if (readCount) readCount.textContent = readNum;
+    if (visibleCount) visibleCount.textContent = showNum;
+    if (readAllBtn) {
+      var allRead = cards.every(function (c) { return !!state.read[c.dataset.id]; });
+      readAllBtn.textContent = allRead ? '全部取消已读' : '全部标记已读';
+    }
+
+    updateSheetRead(); // 弹窗开着时，卡片侧的变化同步到弹窗按钮
+  }
+
+  // 事件委托：一次绑定，筛选重渲染后依然有效
+  news.addEventListener('click', function (e) {
+    // 0) 快讯：点任意一条打开详情弹窗
+    var bitem = e.target.closest('.brief__item');
+    if (bitem && bitem.dataset.brief) {
+      openSheet(bitem.dataset.brief);
+      return;
+    }
+
+    // 1) 查看详情：打开详情弹窗（第二个界面）
+    var detail = e.target.closest('.detail-btn');
+    if (detail) {
+      var dCard = detail.closest('.card');
+      if (dCard) openSheet(dCard.dataset.id);
+      return;
+    }
+
+    // 1) 单卡阅读完成：可反复 toggle，三张卡片状态互相独立
+    var btn = e.target.closest('.read-btn');
+    if (btn) {
+      var card = btn.closest('.card');
+      if (!card) return;
+      var id = card.dataset.id;
+      state.read[id] = !state.read[id];
+      render();
+      return;
+    }
+
+    // 2) 批量标记 / 取消已读
+    if (e.target.closest('#readAll')) {
+      var allRead = cards.every(function (c) { return !!state.read[c.dataset.id]; });
+      cards.forEach(function (c) { state.read[c.dataset.id] = !allRead; });
+      render();
+      return;
+    }
+
+    // 3) 重要程度筛选（只响应带 data-filter 的按钮）
+    var f = e.target.closest('.filter[data-filter]');
+    if (f && f.dataset.filter) {
+      state.filter = f.dataset.filter;
+      render();
+    }
+  });
+
+  render();
+})();
+</script>
+
+</body>
+</html>
