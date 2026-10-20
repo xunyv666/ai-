@@ -4,7 +4,7 @@
   "private": true,
   "description": "Static personal site. There is no real build step; this file exists only so that a default `npm run build` (used by some hosting presets) exits 0 instead of failing on a missing package.json. The authoritative build configuration is: Build command `exit 0`, Build output directory `.`.",
   "scripts": {
-    "build": "echo \"static site - nothing to build\"",
+    "build": "node tools/build.mjs",
     "dev": "echo \"no dev server - open index.html directly\""
   }
 }
