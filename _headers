@@ -1,0 +1,15 @@
+# Cloudflare Pages 响应头配置
+# 规则按顺序匹配；同一个响应头如果被多条规则命中，「后面的规则覆盖前面的」。
+
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  X-Frame-Options: SAMEORIGIN
+
+# 页面本体要求每次校验：改完推上去，刷新就能看到
+/index.html
+  Cache-Control: public, max-age=0, must-revalidate
+
+# 视频和静帧体积大，长缓存。若之后重渲染过素材，最多一天后自动换新
+/assets/*
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
