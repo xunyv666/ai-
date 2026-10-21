@@ -933,6 +933,28 @@
       flex-shrink: 0;
     }
 
+    /* ============ 首页欢迎语：毛笔字 ============
+       Ma Shan Zheng 是 OFL 授权的毛笔楷书。这里只子集了「新 / 一 / 天 / 开 / 始」
+       五个字（2.6KB，本地自托管，不依赖 Google Fonts 能否连通）。
+       换成别的字需要重新生成子集，否则会回落到系统行楷。 */
+    @font-face {
+      font-family: 'Ma Shan Zheng';
+      src: url("assets/fonts/ma-shan-zheng.woff2") format("woff2");
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+      unicode-range: U+4E00, U+5929, U+59CB, U+5F00, U+65B0;
+    }
+
+    .brush {
+      font-family: 'Ma Shan Zheng', 'STXingkai', '华文行楷', 'Xingkai SC', 'KaiTi', 'Kaiti SC', '楷体', serif;
+      font-size: clamp(46px, 8.4vw, 118px);
+      line-height: 1.14;
+      letter-spacing: .02em;
+      padding-left: .05em;
+      text-shadow: 0 3px 42px rgba(0, 0, 0, .46), 0 1px 2px rgba(0, 0, 0, .30);
+    }
+
     h1 {
       font-family: 'Fraunces', 'Songti SC', 'STSong', 'Noto Serif SC', Georgia, serif;
       font-weight: 400;
@@ -1174,6 +1196,11 @@
         font-size: clamp(26px, 7.6vh, 42px);
       }
 
+      .brush {
+        font-size: clamp(30px, 5.6vh, 46px);
+        line-height: 1.06;
+      }
+
       .sub {
         margin-top: 12px;
         font-size: 14px;
@@ -1244,7 +1271,7 @@
     </svg>
     <div class="num" data-page-node-id="ndFLKHPlkEdG69zqGenyC6"><span id="bootPct"
         data-page-node-id="5hkTrb4IQFEuttFcoXK3qm">00</span><em data-page-node-id="fakDbjSRmQ5vqwdA96fEWv">%</em></div>
-    <p class="label" data-page-node-id="q657TR1fGzJn9r61rtZLRD">正在装载黎明</p>
+    <p class="label" data-page-node-id="q657TR1fGzJn9r61rtZLRD">黑夜正在过去</p>
   </div>
 
   <!-- 固定背景舞台 -->
@@ -1344,8 +1371,8 @@
     <section class="panel" data-panel id="ch-0" data-page-node-id="s6B908pLh6WCwKCe7PxrM3">
       <div class="panel-inner" data-page-node-id="OsoLmleGZMKhDTWgBpKKC1">
         <p class="eyebrow" data-stag data-page-node-id="57EylDpJSfLt4g1UrXkOAr">学生 <span
-            data-page-node-id="xqqlBMOokhOCHDJFfgZ2Bw">·</span> 苏州</p>
-        <h1 data-stag data-page-node-id="2zZq9DZxpiyzhVvGNuOFBx">欢迎</h1>
+            data-page-node-id="xqqlBMOokhOCHDJFfgZ2Bw">·</span> 南京</p>
+        <h1 class="brush" data-stag data-page-node-id="2zZq9DZxpiyzhVvGNuOFBx">新一天<br>新开始</h1>
         <p class="sub" data-stag data-page-node-id="RYKQ45UUO95DAFm02my5Dg">个人网站</p>
         <div class="cta" data-stag data-page-node-id="bZQD6FmY95OnAFbAnwBz2g"><a class="pill" data-go="1"
             data-page-node-id="LIwGwTg89EbY3T1O6Df9Sq">看我的作品</a></div>
