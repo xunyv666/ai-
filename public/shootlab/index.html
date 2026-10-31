@@ -28,7 +28,7 @@
   </div>
 
   <div class="topbar-right">
-    <a class="back-link" href="../" title="回到作品集">← 作品集</a>
+    <a class="back-link" id="backLink" href="../" title="回到作品集">← 作品集</a>
     <div class="stat-pill">已记录 <b id="shotCount">0</b> 次出手</div>
     <label class="btn btn-primary" for="fileInput">分析我的视频</label>
   </div>
@@ -314,6 +314,22 @@
   window.BB = window.BB || {};
   window.BB.PoseEngine = { analyze, isReady, recomputeShot };
   document.documentElement.classList.add('engine-ready');
+</script>
+<script>
+  /* 「← 作品集」的落点随部署位置变 —— 同一份代码现在同时活在三个地方：
+       1. 个人网站子路径  /shootlab/       → ../ 就是作品集，不动
+       2. 独立站          shootlab.pages.dev → ../ 会掉回自己，指向主站
+       3. GitHub Pages    空站点根目录      → 没有作品集可回，藏掉 */
+  (function () {
+    var a = document.getElementById('backLink');
+    if (!a) return;
+    var host = location.hostname;
+    if (/\.github\.io$/i.test(host)) { a.hidden = true; return; }
+    if (/^shootlab\./i.test(host)) {
+      a.href = 'https://ai-6f8.pages.dev/';
+      a.title = '回到作品集（个人网站）';
+    }
+  })();
 </script>
 </body>
 </html>
