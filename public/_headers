@@ -13,3 +13,17 @@
 # 视频和静帧体积大，长缓存。若之后重渲染过素材，最多一天后自动换新
 /assets/*
   Cache-Control: public, max-age=86400, stale-while-revalidate=604800
+
+# 投篮分析（shootlab）：页面本体每次校验，免得改了前端还被旧 HTML 挡住；
+# wasm 与姿态模型共约 27MB，必须让浏览器缓存住，否则每次进页面都重下
+/shootlab/
+  Cache-Control: public, max-age=0, must-revalidate
+
+/shootlab/vendor/*
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
+
+/shootlab/models/*
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
+
+/shootlab/media/*
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800

@@ -756,6 +756,22 @@
       background: var(--amber-sunk);
     }
 
+    /* 次要作品入口：只留一圈细描边，把主按钮的实心琥珀色让出来 */
+    .pill-ghost {
+      background: transparent;
+      color: var(--ink);
+      -webkit-text-fill-color: var(--ink);
+      border-color: var(--rule);
+      box-shadow: none;
+    }
+
+    .pill-ghost:hover,
+    .pill-ghost:focus-visible {
+      background: rgba(243, 233, 220, .1);
+      color: var(--ink);
+      -webkit-text-fill-color: var(--ink);
+    }
+
     .pill:focus-visible,
     .nav a:focus-visible {
       outline: 2px solid var(--amber);
@@ -979,6 +995,10 @@
     .cta {
       margin-top: clamp(26px, 3.2vw, 42px);
       pointer-events: auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 12px;
     }
 
     .cta .pill {
@@ -1384,9 +1404,10 @@
         <p class="eyebrow" data-stag data-page-node-id="MT6MuvZKyyZioWY72stx7G">作品</p>
         <h1 data-stag data-page-node-id="ajCdJzoeA5BEvEwroVDugn">慢慢做，<br
             data-page-node-id="xiqLJBt8OM7WwRXE6n5Exo">都会放这儿。</h1>
-        <p class="sub" data-stag data-page-node-id="JBAeKSSb8ir6S9c4DrbhR1">一份 AI 行业日报看板已经上线，点开看看。</p>
+        <p class="sub" data-stag data-page-node-id="JBAeKSSb8ir6S9c4DrbhR1">两份都上线了：一份 AI 行业日报看板，一个在浏览器里跑的投篮动作分析。</p>
         <div class="cta" data-stag data-page-node-id="s7DgGZaj5ECsRiTLhaOTWp"><a class="pill" href="daily.html"
-            data-page-node-id="2IEIcDg3muuBXpyI7EF3wp">看 AI 日报</a></div>
+            data-page-node-id="2IEIcDg3muuBXpyI7EF3wp">看 AI 日报</a><a class="pill pill-ghost" href="shootlab/"
+            data-page-node-id="shootlab0p1">看投篮分析</a></div>
       </div>
     </section>
 
