@@ -15,16 +15,8 @@
 /assets/*
   Cache-Control: public, max-age=86400, stale-while-revalidate=604800
 
-# 投篮分析（shootlab）：页面本体每次校验，免得改了前端还被旧 HTML 挡住；
-# wasm 与姿态模型共约 27MB，必须让浏览器缓存住，否则每次进页面都重下
+# 投篮分析已搬到独立站 https://shootlab-pro.pages.dev
+# /shootlab/ 只剩一个跳转页，缓存策略交给默认即可（仍显式要求每次校验，
+# 万一以后改跳转目标，刷新就能生效）
 /shootlab/
   Cache-Control: public, max-age=0, must-revalidate
-
-/shootlab/vendor/*
-  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
-
-/shootlab/models/*
-  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
-
-/shootlab/media/*
-  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
