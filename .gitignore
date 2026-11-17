@@ -32,3 +32,6 @@ __pycache__/
 .DS_Store
 Thumbs.db
 desktop.ini
+
+# 生成底图的原始素材（体积大，不入库）
+/assets-src/

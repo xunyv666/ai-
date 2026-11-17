@@ -870,128 +870,94 @@
       gap: 12px;
     }
 
-    /* ============ 作品章节：一张古代书桌 ============
-   整屏换成深色木桌台面（纯 CSS 木纹 + 灯下暖光池 + 四边压暗），
-   三个作品入口做成卷起来的竹简，名字用毛笔写在竹面上。 */
-    /* ============ 作品章节：一间暗展厅 ============
-   底图是生成的一张真实渲染：三束射灯打在同一面墙上，留出三个光斑。
-   三件作品就挂在这三束光里——纸卡是真 HTML（名字、点击、焦点都在），
-   底图只负责光线和景深。 */
+    /* ============ 作品章节：白天书房，坐着写字的视角 ============
+   底图 desk-day.webp（2160×1353，比例 1.596）里已经写好三个名字，
+   页面只负责：把底图按原比例铺满视口（stage 锁定宽高比，多余部分裁掉），
+   再放三个与列对齐的点击热区。窗口任何尺寸下热区都不会错位。 */
     .panel-gallery {
       justify-content: flex-start;
       overflow: hidden;
-    }
-
-    .gallery-bg {
-      position: absolute;
-      inset: 0;
-      z-index: 0;
-      pointer-events: none;
-      background: #0a0a0c url("assets/gallery.jpg") center / cover no-repeat;
-    }
-
-    /* 上沿压一点，顶栏和「作品」两个字才压得住；下沿收暗托住页脚 */
-    .gallery-bg::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background:
-        linear-gradient(180deg, rgba(6, 7, 11, .62) 0%, rgba(6, 7, 11, .18) 18%, rgba(6, 7, 11, 0) 42%, rgba(6, 7, 11, .10) 72%, rgba(6, 7, 11, .66) 100%),
-        radial-gradient(120% 100% at 50% 46%, rgba(0, 0, 0, 0) 46%, rgba(0, 0, 0, .38) 100%);
+      /* 自带深色底：手机上 stage 改按宽缩放后，四周露出的部分不再透出黄昏 */
+      background: #14110d;
     }
 
     .panel-gallery .eyebrow {
       position: relative;
-      z-index: 2;
+      z-index: 3;
     }
 
-    .plaques {
+    .desk-stage {
+      position: absolute;
+      inset: 0;
+      margin: auto;                 /* 配合定宽高自动居中，不用 transform（会被入场动画覆盖） */
+      width: max(100vw, calc(100vh * 1.596));
+      height: max(100vh, calc(100vw / 1.596));
+      overflow: hidden;
+    }
+
+    .stage-img {
+      position: absolute;
+      inset: 0;
+      background: #14110d url("assets/desk-day.webp") center / 100% 100% no-repeat;
+    }
+
+    /* 顶栏、页脚的文字要压得住，上下各扫一层暗色 */
+    .stage-img::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(7, 7, 11, .52) 0%, rgba(7, 7, 11, .16) 15%, rgba(7, 7, 11, 0) 34%, rgba(7, 7, 11, 0) 74%, rgba(7, 7, 11, .30) 100%);
+    }
+
+    .hotspots {
       position: absolute;
       inset: 0;
       z-index: 2;
       pointer-events: none;
     }
 
-    /* 一张挂在射灯下的纸卡 */
-    .plaque {
+    .hotspots .hs { z-index: 2; }
+
+    /* 热区：透明方块，悬停时在对应列上亮一圈柔光 */
+    .hs {
       position: absolute;
-      left: var(--px, 50%);
-      top: 50%;
-      width: clamp(146px, 13.2vw, 192px);
-      aspect-ratio: 192/272;
-      transform: translate(-50%, -50%) rotate(var(--tilt, 0deg));
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0;
-      border-radius: 2px;
-      text-decoration: none;
+      left: var(--x);
+      top: var(--y);
+      width: var(--w);
+      height: var(--h);
+      transform: translate(-50%, -50%);
+      border-radius: 8px;
       pointer-events: auto;
-      background:
-        repeating-linear-gradient(92deg, rgba(160, 132, 92, .05) 0 1px, rgba(0, 0, 0, 0) 1px 4px),
-        radial-gradient(120% 80% at 50% 2%, rgba(255, 254, 248, .98) 0%, rgba(250, 242, 226, .96) 46%, rgba(236, 223, 196, .98) 100%);
-      box-shadow:
-        0 26px 44px -20px rgba(0, 0, 0, .9),
-        0 60px 90px -50px rgba(0, 0, 0, .95),
-        0 0 60px rgba(255, 178, 112, .10),
-        inset 0 0 0 1px rgba(120, 96, 64, .16),
-        inset 0 0 70px rgba(188, 156, 108, .16);
-      transition: transform .45s var(--ease), box-shadow .45s var(--ease);
+      text-decoration: none;
     }
 
-    .plaque:nth-child(1) {
-      --px: 20%;
-      --tilt: -1.2deg;
-    }
-
-    .plaque:nth-child(2) {
-      --px: 50.5%;
-      --tilt: .8deg;
-    }
-
-    .plaque:nth-child(3) {
-      --px: 79%;
-      --tilt: -.7deg;
-    }
-
-    .plaque-name {
-      writing-mode: vertical-rl;
-      text-orientation: upright;
-      font-family: 'Ma Shan Zheng', 'STXingkai', '华文行楷', 'Xingkai SC', 'KaiTi', 'Kaiti SC', '楷体', serif;
-      font-size: clamp(21px, 1.9vw, 28px);
-      line-height: 1;
-      letter-spacing: .14em;
-      color: #241a0c;
-      text-shadow: 0 1px 0 rgba(255, 255, 255, .6);
-    }
-
-    /* 纸上的一方朱印，位置随卡片大小走 */
-    .plaque::after {
+    .hs::after {
       content: '';
       position: absolute;
-      right: 16px;
-      bottom: 18px;
-      width: 15px;
-      height: 15px;
-      border-radius: 2px;
-      background: rgba(164, 48, 34, .55);
-      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .2);
-      transform: rotate(-3deg);
-    }
-
-    .plaque:hover {
-      transform: translate(-50%, calc(-50% - 8px)) rotate(var(--tilt, 0deg)) scale(1.015);
+      inset: 0;
+      border-radius: 10px;
+      opacity: 0;
+      transition: opacity .4s var(--ease);
+      background: radial-gradient(60% 60% at 50% 45%, rgba(255, 196, 138, .16) 0%, rgba(255, 196, 138, .04) 62%, rgba(255, 196, 138, 0) 100%);
       box-shadow:
-        0 34px 54px -20px rgba(0, 0, 0, .95),
-        0 80px 120px -60px rgba(0, 0, 0, 1),
-        0 0 90px rgba(255, 186, 120, .18),
-        inset 0 0 0 1px rgba(120, 96, 64, .2),
-        inset 0 0 80px rgba(198, 166, 116, .2);
+        0 0 0 1px rgba(255, 202, 150, .38) inset,
+        0 14px 40px -18px rgba(0, 0, 0, .55);
     }
 
-    .plaque:focus-visible {
+    .hs:hover::after,
+    .hs:focus-visible::after {
+      opacity: 1;
+    }
+
+    .hs:focus-visible {
       outline: 2px solid var(--amber);
-      outline-offset: 8px;
+      outline-offset: 6px;
+    }
+
+    /* 手机上底图改按宽缩放；热区同样跟随，下方补一行文字链接 */
+    .gallery-list {
+      display: none;
     }
 
     .cta .pill {
@@ -1100,49 +1066,40 @@
         display: none;
       }
 
-      .plaques {
-        position: relative;
-        inset: auto;
+      .desk-stage {
+        width: max(100vw, calc(56vh * 1.596));
+        height: max(calc(100vw / 1.596), 56vh);
+      }
+
+      .hs {
+        display: none;
+      }
+
+      .gallery-list {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 96px;
         display: flex;
-        flex-direction: column;
-        gap: 14px;
-        padding: 0 18px;
-        margin-top: 14px;
+        justify-content: center;
+        gap: 10px;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        pointer-events: auto;
       }
 
-      .plaque {
-        position: relative;
-        left: auto;
-        top: auto;
-        width: 100%;
-        max-width: 320px;
-        aspect-ratio: auto;
-        height: 78px;
-        transform: none;
-        justify-content: flex-start;
-        padding-left: 22px;
-      }
-
-      .plaque:hover {
-        transform: translateY(-3px);
-      }
-
-      .plaque-name {
-        writing-mode: horizontal-tb;
-        font-size: 22px;
-        letter-spacing: .12em;
-      }
-
-      .plaque::after {
-        right: 12px;
-        bottom: 12px;
-        width: 13px;
-        height: 13px;
-      }
-
-      .gallery-bg::after {
-        background:
-          linear-gradient(180deg, rgba(6, 7, 11, .66) 0%, rgba(6, 7, 11, .3) 20%, rgba(6, 7, 11, .34) 60%, rgba(6, 7, 11, .72) 100%);
+      .gallery-list a {
+        display: inline-flex;
+        align-items: center;
+        height: 38px;
+        padding: 0 16px;
+        border-radius: 999px;
+        background: rgba(16, 12, 8, .55);
+        color: var(--ink);
+        text-decoration: none;
+        font-size: 13.5px;
+        letter-spacing: .08em;
       }
 
       .rail {
@@ -1397,21 +1354,27 @@
     </section>
 
     <section class="panel panel-gallery" data-panel id="ch-1" data-page-node-id="VvGLxGHnz8FBkr0fzLg6zD">
-      <div class="gallery-bg" data-stag aria-hidden="true"></div>
+      <!-- 白天书房、坐着写字的视角；名字已写在三列界格里（底图自带），
+           这里只铺底图 + 三个点击热区，热区按底图比例随窗口缩放 -->
+      <div class="desk-stage">
+        <div class="stage-img" data-stag aria-hidden="true"></div>
+        <div class="hotspots">
+          <a class="hs" href="daily.html" style="--x:20%;--y:55%;--w:28%;--h:35%"
+            aria-label="行业日报" data-page-node-id="2IEIcDg3muuBXpyI7EF3wp"></a>
+          <a class="hs" href="https://shootlab-pro.pages.dev/" style="--x:51%;--y:55%;--w:26%;--h:35%"
+            aria-label="投篮分析" data-page-node-id="shootlab0p1"></a>
+          <a class="hs" href="https://world-religions-555.pages.dev/" style="--x:80%;--y:55%;--w:30%;--h:35%"
+            aria-label="世界宗教地图" data-page-node-id="worldreligions0p1"></a>
+        </div>
+      </div>
 
       <p class="eyebrow" data-stag data-page-node-id="MT6MuvZKyyZioWY72stx7G">作品</p>
 
-      <div class="plaques" data-stag>
-        <a class="plaque" href="daily.html" data-page-node-id="2IEIcDg3muuBXpyI7EF3wp">
-          <span class="plaque-name">行业日报</span>
-        </a>
-        <a class="plaque" href="https://shootlab-pro.pages.dev/" data-page-node-id="shootlab0p1">
-          <span class="plaque-name">投篮分析</span>
-        </a>
-        <a class="plaque" href="https://world-religions-555.pages.dev/" data-page-node-id="worldreligions0p1">
-          <span class="plaque-name">世界宗教地图</span>
-        </a>
-      </div>
+      <ul class="gallery-list" data-stag>
+        <li><a href="daily.html">行业日报</a></li>
+        <li><a href="https://shootlab-pro.pages.dev/">投篮分析</a></li>
+        <li><a href="https://world-religions-555.pages.dev/">世界宗教地图</a></li>
+      </ul>
     </section>
 
     <section class="panel" data-panel id="ch-2" data-page-node-id="5wCr4HsiyA5EkBUJAHCoLn">
