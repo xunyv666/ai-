@@ -1361,7 +1361,7 @@
     <section class="panel panel-pillar" data-panel id="ch-1" data-page-node-id="VvGLxGHnz8FBkr0fzLg6zD">
       <!-- 3D 石柱：金龙盘柱，三个作品刻在柱身不同高度；拖动可转，点名字进入 -->
       <div class="pillar-stage" id="pillarStage" data-stag>
-        <div class="pillar-loading" id="pillarLoading">起稿 · 雕刻中</div>
+        <div class="pillar-loading" id="pillarLoading">扎灯笼 · 刻字中</div>
         <ul class="gallery-list" id="pillarFallback">
           <li><a href="daily.html">行业日报</a></li>
           <li><a href="https://shootlab-pro.pages.dev/">投篮分析</a></li>
@@ -1781,9 +1781,10 @@
     })();
   </script>
   <script type="module">
-    /* ============ 盘龙石柱（three.js 懒加载） ============
-       只在滚到作品章节后才拉 three.js（npmmirror 优先，jsDelivr 兜底）。
-       失败或无 WebGL 时退回文字列表。 */
+    /* ============ 大灯笼（three.js 懒加载） ============
+       亮着的大灯笼挂在黑空间里，圆底垂下三条彩色流苏，
+       流苏头的铁牌上用立体金属字刻着作品名（三块牌错落悬挂）。
+       拖动可转灯笼，流苏和铁牌跟着一起转。 */
     const stage = document.getElementById("pillarStage");
     const CDN = [
       "https://registry.npmmirror.com/three/0.160.0/files/build/three.module.js",
@@ -1825,114 +1826,193 @@
 
       const scene = new THREE.Scene();
       const camera = new THREE.PerspectiveCamera(38, wrap.clientWidth / wrap.clientHeight, .1, 100);
-      camera.position.set(0, .35, wrap.clientWidth / wrap.clientHeight < .9 ? 15.5 : 13.2);
-      camera.lookAt(0, .2, 0);
+      camera.position.set(0, .05, 9.2);
+      camera.lookAt(0, -.35, 0);
 
-      /* ---------- 灯光：光从观众这边打向石柱 ---------- */
-      scene.add(new THREE.AmbientLight(0x6a5a48, .7));
-      const spot = new THREE.SpotLight(0xffd9a8, 3.2, 0, .62, .65, 0);
-      spot.position.set(2.4, 4.4, 8.8);
-      spot.target.position.set(0, 0, 0);
-      scene.add(spot, spot.target);
-      const rim = new THREE.DirectionalLight(0x9db4ff, .5);
-      rim.position.set(-4, 2.5, -7);
+      /* ---------- 灯光：观众侧主光 + 笼内暖光 ---------- */
+      scene.add(new THREE.AmbientLight(0x5a4638, .75));
+      const key = new THREE.SpotLight(0xffd9a8, 3.0, 0, .6, .6, 0);
+      key.position.set(2.6, 4.8, 9.2);
+      key.target.position.set(0, -.6, 0);
+      scene.add(key, key.target);
+      const rim = new THREE.DirectionalLight(0x9db4ff, .3);
+      rim.position.set(-5, 2, -7);
       scene.add(rim);
+      const inner = new THREE.PointLight(0xffb066, 2.6, 12, 1.5);
+      inner.position.set(0, .9, 0);
+      scene.add(inner);
 
-      /* ---------- 石柱：石纹 + 盘龙，画进一张 2048x1024 的柱面贴图 ---------- */
-      const texC = document.createElement("canvas");
-      texC.width = 2048; texC.height = 1024;
-      const tc = texC.getContext("2d");
-      const g = tc.createLinearGradient(0, 0, 0, 1024);
-      g.addColorStop(0, "#221a13"); g.addColorStop(.45, "#2b2118");
-      g.addColorStop(.75, "#1c1510"); g.addColorStop(1, "#181109");
-      tc.fillStyle = g; tc.fillRect(0, 0, 2048, 1024);
-      for (let i = 0; i < 2600; i++) {
-        tc.fillStyle = "rgba(" + (200 + Math.random() * 40 | 0) + "," + (170 + Math.random() * 40 | 0) + "," + (120 + Math.random() * 40 | 0) + "," + (Math.random() * .05).toFixed(3) + ")";
-        tc.fillRect(Math.random() * 2048, Math.random() * 1024, 1.6, 1.6);
-      }
-      for (let y = 0; y < 1024; y += 4) {
-        tc.fillStyle = "rgba(0,0,0," + (0.05 + 0.05 * Math.abs(Math.sin(y * .013))).toFixed(3) + ")";
-        tc.fillRect(0, y, 2048, 1);
-      }
-      const dragon = new Image();
-      dragon.src = "assets/dragon.jpg";
-      await dragon.decode().catch(() => { });
-      tc.globalCompositeOperation = "screen";
-      tc.drawImage(dragon, 0, 40, 2048, 950);
-      tc.globalCompositeOperation = "source-over";
+      const spin = new THREE.Group();     // 拖动转的部分：灯笼 + 流苏 + 铁牌
+      scene.add(spin);
+      const sways = [];
 
-      const stoneTex = new THREE.CanvasTexture(texC);
-      stoneTex.colorSpace = THREE.SRGBColorSpace;
-      stoneTex.anisotropy = 8;
-      const pillar = new THREE.Mesh(
-        new THREE.CylinderGeometry(1.15, 1.27, 7, 128, 1, true),
-        new THREE.MeshStandardMaterial({ map: stoneTex, roughness: .74, metalness: .22, bumpMap: stoneTex, bumpScale: .6 })
+      const gold = new THREE.MeshStandardMaterial({ color: 0xd9a441, metalness: .9, roughness: .3 });
+
+      /* ---------- 灯笼主体（红色 + 笼骨 + 内透光） ---------- */
+      const c = document.createElement("canvas");
+      c.width = 1024; c.height = 512;
+      const x = c.getContext("2d");
+      const g = x.createLinearGradient(0, 0, 0, 512);
+      g.addColorStop(0, "#a8271e"); g.addColorStop(.45, "#d8452e");
+      g.addColorStop(.75, "#e2603a"); g.addColorStop(1, "#a8271e");
+      x.fillStyle = g; x.fillRect(0, 0, 1024, 512);
+      for (let i = 0; i <= 16; i++) {
+        x.fillStyle = i % 2 ? "rgba(255,200,130,.5)" : "rgba(110,18,12,.6)";
+        x.fillRect(i * 64 - 2, 0, 4, 512);
+      }
+      const hl = x.createRadialGradient(512, 256, 30, 512, 256, 430);
+      hl.addColorStop(0, "rgba(255,232,186,.8)"); hl.addColorStop(1, "rgba(255,160,80,0)");
+      x.fillStyle = hl; x.fillRect(0, 0, 1024, 512);
+
+      const bodyTex = new THREE.CanvasTexture(c);
+      bodyTex.colorSpace = THREE.SRGBColorSpace;
+      const body = new THREE.Mesh(
+        new THREE.SphereGeometry(1.0, 64, 40),
+        new THREE.MeshStandardMaterial({
+          map: bodyTex, emissiveMap: bodyTex, emissive: 0xffb060,
+          emissiveIntensity: .62, roughness: .5, metalness: .1
+        })
       );
-      const group = new THREE.Group();
-      group.add(pillar);
+      body.scale.set(1, .8, 1);
+      body.position.y = .95;
+      spin.add(body);
 
-      /* ---------- 三块刻着作品名的牌：不同高度、不同方位 ---------- */
+      /* 上下金箍：上小下圆 */
+      const capT = new THREE.Mesh(new THREE.CylinderGeometry(.26, .38, .16, 32), gold);
+      capT.position.y = 1.82; spin.add(capT);
+      const hook = new THREE.Mesh(new THREE.TorusGeometry(.14, .02, 10, 32, Math.PI), gold);
+      hook.position.y = 1.97; hook.rotation.z = Math.PI; spin.add(hook);
+      const capB = new THREE.Mesh(new THREE.CylinderGeometry(.46, .34, .22, 32), gold);
+      capB.position.y = .14; spin.add(capB);
+
+      /* 笼内的光晕（黑色空间里的一圈暖光） */
+      const haloC = document.createElement("canvas");
+      haloC.width = haloC.height = 256;
+      const hx = haloC.getContext("2d");
+      const hg = hx.createRadialGradient(128, 128, 16, 128, 128, 118);
+      hg.addColorStop(0, "rgba(255,180,110,.5)");
+      hg.addColorStop(.6, "rgba(255,164,96,.14)");
+      hg.addColorStop(1, "rgba(255,160,80,0)");
+      hx.fillStyle = hg; hx.fillRect(0, 0, 256, 256);
+      const halo = new THREE.Sprite(new THREE.SpriteMaterial({
+        map: new THREE.CanvasTexture(haloC), blending: THREE.AdditiveBlending,
+        depthWrite: false, opacity: .55
+      }));
+      halo.scale.set(5.2, 5.2, 1); halo.position.y = .9;
+      scene.add(halo);
+
+      /* ---------- 三个作品：错落的铁牌 + 立体金属字 + 彩色流苏 ---------- */
       const works = [
-        { text: "行业日报", link: "daily.html", y: 2.05, ang: 0 },
-        { text: "投篮分析", link: "https://shootlab-pro.pages.dev/", y: 0, ang: 2.09 },
-        { text: "世界宗教地图", link: "https://world-religions-555.pages.dev/", y: -2.05, ang: 4.19 }
+        { text: "行业日报", link: "daily.html", ang: 0, drop: .95 },
+        { text: "投篮分析", link: "https://shootlab-pro.pages.dev/", ang: 2.09, drop: 1.42 },
+        { text: "世界宗教地图", link: "https://world-religions-555.pages.dev/", ang: 4.19, drop: 1.89 }
       ];
-      const plaques = [];
-      for (const w of works) {
-        const c = document.createElement("canvas");
-        c.width = 1024; c.height = 660;
-        const cc = c.getContext("2d");
-        const bg = cc.createLinearGradient(0, 0, 0, 660);
-        bg.addColorStop(0, "#332720"); bg.addColorStop(1, "#241b14");
-        cc.fillStyle = bg; cc.fillRect(0, 0, 1024, 660);
-        cc.strokeStyle = "rgba(232,190,130,.65)"; cc.lineWidth = 6;
-        cc.strokeRect(16, 16, 992, 628);
-        cc.strokeStyle = "rgba(232,190,130,.28)"; cc.lineWidth = 2;
-        cc.strokeRect(34, 34, 956, 592);
-        const size = w.text.length > 4 ? 148 : 176;
-        const font = size + 'px "Ma Shan Zheng", "STXingkai", "KaiTi", serif';
-        cc.textAlign = "center"; cc.textBaseline = "middle";
-        const yC = 300;
-        // 阴刻：先亮边后深墨，读起来是刻进去的
-        cc.font = font;
-        cc.fillStyle = "rgba(255,236,200,.30)";
-        cc.fillText(w.text, 512 + 4, yC + 10);
-        cc.fillStyle = "#171008";
-        cc.fillText(w.text, 512, yC + 6);
-        cc.fillStyle = "rgba(158,44,32,.85)";
-        cc.fillRect(878, 520, 62, 62);
+      const strandColors = [0xd4453a, 0xd9a441, 0x2e8f85, 0x4a5f9e, 0xc95f2f];
+      const plates = [];
+      const tags = [];
 
-        const plaqueTex = new THREE.CanvasTexture(c);
-        plaqueTex.colorSpace = THREE.SRGBColorSpace;
-        plaqueTex.anisotropy = 8;
-
-        const glowC = document.createElement("canvas");
-        glowC.width = 1024; glowC.height = 660;
-        const gc = glowC.getContext("2d");
-        gc.fillStyle = "#000"; gc.fillRect(0, 0, 1024, 660);
-        gc.font = font; gc.textAlign = "center"; gc.textBaseline = "middle";
-        gc.fillStyle = "#ffca8f";
-        gc.fillText(w.text, 512, yC + 6);
-        const glowTex = new THREE.CanvasTexture(glowC);
-        glowTex.colorSpace = THREE.SRGBColorSpace;
-
-        const arc = 1.25;
-        const m = new THREE.Mesh(
-          new THREE.CylinderGeometry(1.30, 1.30, 1.5, 64, 1, true, w.ang - arc / 2, arc),
-          new THREE.MeshStandardMaterial({
-            map: plaqueTex, emissiveMap: glowTex, emissive: 0xffc48a,
-            emissiveIntensity: .30, roughness: .82, metalness: .12,
-            side: THREE.DoubleSide
-          })
-        );
-        m.position.y = w.y;
-        m.userData.link = w.link;
-        group.add(m);
-        plaques.push(m);
+      function textTexture(text, px) {
+        const t = document.createElement("canvas");
+        t.width = 720; t.height = 240;
+        const tx = t.getContext("2d");
+        tx.font = px + 'px "Ma Shan Zheng", "STXingkai", "KaiTi", serif';
+        tx.textAlign = "center"; tx.textBaseline = "middle";
+        tx.fillStyle = "#ffffff";
+        tx.fillText(text, 360, 124);
+        const tex = new THREE.CanvasTexture(t);
+        tex.colorSpace = THREE.SRGBColorSpace;
+        tex.anisotropy = 8;
+        return tex;
       }
-      scene.add(group);
 
-      /* ---------- 交互：拖动转柱 / 悬停发亮 / 点击进入 ---------- */
+      for (const w of works) {
+        const tg = new THREE.Group();
+        const a = w.ang;
+        tg.position.set(Math.sin(a) * .44, -.12, Math.cos(a) * .44);
+        spin.add(tg);
+        tags.push(tg);
+
+        // 吊绳：长短错落
+        const cordLen = w.drop;
+        const cord = new THREE.Mesh(new THREE.CylinderGeometry(.014, .014, cordLen, 8), gold);
+        cord.position.y = -cordLen / 2;
+        tg.add(cord);
+
+        // 铁牌（作品名刻在这里，立体金属字）
+        const plate = new THREE.Mesh(
+          new THREE.BoxGeometry(.74, .52, .05),
+          new THREE.MeshStandardMaterial({ color: 0x2f2f36, metalness: .85, roughness: .42 })
+        );
+        const plateY = -cordLen - .26;
+        plate.position.y = plateY;
+        plate.userData.link = w.link;
+        tg.add(plate);
+        plates.push(plate);
+
+        // 立体金属字：多层字片叠出厚度，正面受光最亮
+        const tex = textTexture(w.text, w.text.length > 4 ? 108 : 132);
+        const DEPTH = 7, STEP = .012;
+        const front = new THREE.MeshStandardMaterial({
+          map: tex, transparent: true, color: 0xffd9a0,
+          metalness: .9, roughness: .3, emissive: 0xffb060, emissiveIntensity: .22,
+          depthWrite: false, polygonOffset: true, polygonOffsetFactor: -2
+        });
+        for (let i = 0; i < DEPTH; i++) {
+          const t = i / (DEPTH - 1);
+          const shade = Math.round(255 * (1 - t * .62));
+          const isFront = i === DEPTH - 1;
+          const mat = isFront ? front : new THREE.MeshBasicMaterial({
+            map: tex, transparent: true, depthWrite: false,
+            color: new THREE.Color(shade, shade * .82, shade * .55)
+          });
+          const m = new THREE.Mesh(new THREE.PlaneGeometry(.66, .22), mat);
+          m.position.set(0, plateY + .012, .028 + i * STEP);
+          tg.add(m);
+        }
+        // 背面同样刻一份：灯笼转到哪一面，哪一面都读得到
+        for (let i = 0; i < DEPTH; i++) {
+          const t = i / (DEPTH - 1);
+          const shade = Math.round(255 * (1 - t * .62));
+          const isFront = i === DEPTH - 1;
+          const mat = isFront ? front : new THREE.MeshBasicMaterial({
+            map: tex, transparent: true, depthWrite: false,
+            color: new THREE.Color(shade, shade * .82, shade * .55)
+          });
+          const m = new THREE.Mesh(new THREE.PlaneGeometry(.66, .22), mat);
+          m.position.set(0, plateY + .012, -.028 - i * STEP);
+          m.rotation.y = Math.PI;
+          tg.add(m);
+        }
+
+        // 铁牌下的彩色流苏：一束细丝，随风轻摆
+        const strands = new THREE.Group();
+        strands.position.y = -cordLen - .52;
+        for (let i = 0; i < 14; i++) {
+          const ang = (i / 14) * Math.PI * 2;
+          const rr = i % 3 === 0 ? .012 : .085;
+          const len = .95 + (i % 4) * .11;
+          const st = new THREE.Mesh(
+            new THREE.CylinderGeometry(.005, .012, len, 5),
+            new THREE.MeshStandardMaterial({ color: strandColors[i % strandColors.length], roughness: .62 })
+          );
+          st.position.set(Math.cos(ang) * rr, -len / 2, Math.sin(ang) * rr);
+          st.rotation.z = Math.cos(ang) * .025;
+          st.rotation.x = Math.sin(ang) * .025;
+          strands.add(st);
+        }
+        const ring = new THREE.Mesh(new THREE.TorusGeometry(.09, .018, 8, 24), gold);
+        ring.rotation.x = Math.PI / 2; ring.position.y = .02;
+        strands.add(ring);
+        tg.add(strands);
+        sways.push({ g: strands, ph: a * 2.2 });
+
+        // 梢头小珠
+        const bead = new THREE.Mesh(new THREE.SphereGeometry(.04, 12, 10), gold);
+        bead.position.y = -cordLen - .52 - 1.5;
+        tg.add(bead);
+      }
+
+      /* ---------- 交互：拖动转灯笼 / 悬停亮牌 / 点击进入 ---------- */
       const ray = new THREE.Raycaster();
       const ptr = new THREE.Vector2(-2, -2);
       let dragging = false, moved = 0, lastX = 0, vel = 0, hovered = null;
@@ -1951,7 +2031,7 @@
         setPointer(e);
         if (dragging) {
           const dx = e.clientX - lastX;
-          group.rotation.y += dx * .0062;
+          spin.rotation.y += dx * .0062;
           vel = dx * .0032;
           moved += Math.abs(dx);
           lastX = e.clientX;
@@ -1966,7 +2046,7 @@
         const w2 = wrap.clientWidth, h2 = wrap.clientHeight;
         renderer.setSize(w2, h2);
         camera.aspect = w2 / h2;
-        camera.position.z = w2 / h2 < .9 ? 15.5 : 13.2;
+        camera.position.z = w2 / h2 < .9 ? 11.8 : 9.2;
         camera.updateProjectionMatrix();
       }
       addEventListener("resize", fit);
@@ -1974,24 +2054,30 @@
 
       const clock = new THREE.Clock();
       (function loop() {
-        // 只在作品章节显示石柱；其余章节隐藏并跳过渲染（首屏黄昏不再被挡）
+        // 只在作品章节显示；其余章节隐藏并跳过渲染（首屏黄昏不受影响）
         const pp = window.pageYOffset / Math.max(1, document.documentElement.scrollHeight - innerHeight);
         const active = pp > .16 && pp < .55;
         stage.style.visibility = active ? "visible" : "hidden";
         if (!active) { requestAnimationFrame(loop); return; }
         const dt = Math.min(.05, clock.getDelta());
+        const t = clock.elapsedTime;
         if (!dragging) {
           vel *= .94;
-          group.rotation.y += vel;
-          if (!reduced) group.rotation.y += dt * .05;   // 缓慢自转
+          spin.rotation.y += vel;
+          if (!reduced) spin.rotation.y += dt * .10;   // 灯笼缓慢自转
+        }
+        for (const t2 of tags) t2.rotation.y = -spin.rotation.y;  // 铁牌始终正对观众
+        for (const s of sways) {                        // 流苏随风轻摆
+          s.g.rotation.z = Math.sin(t * 1.3 + s.ph) * .05;
+          s.g.rotation.x = Math.cos(t * 1.1 + s.ph) * .05;
         }
         ray.setFromCamera(ptr, camera);
-        const hit = ray.intersectObjects(plaques, false)[0];
+        const hit = ray.intersectObjects(plates, false)[0];
         const h = hit ? hit.object : null;
         if (h !== hovered) {
-          if (hovered) hovered.material.emissiveIntensity = .30;
+          if (hovered) hovered.material.emissive.setHex(0x000000);
           hovered = h;
-          if (hovered) hovered.material.emissiveIntensity = 1.15;
+          if (hovered) hovered.material.emissive.setHex(0xffb060);
           wrap.style.cursor = hovered ? "pointer" : "grab";
         }
         renderer.render(scene, camera);
@@ -2001,6 +2087,6 @@
       stage.classList.add("ready");
     }
   </script>
-</body>
+</body></body></body>
 
 </html>
