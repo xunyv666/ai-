@@ -2041,9 +2041,9 @@
 
       /* ---------- 三个作品：流苏织成的字帘 ---------- */
       const works = [
-        { text: "行业日报", link: "daily.html", ang: 0, drop: .38 },
-        { text: "投篮分析", link: "https://shootlab-pro.pages.dev/", ang: 2.09, drop: .78 },
-        { text: "世界宗教地图", link: "https://world-religions-555.pages.dev/", ang: 4.19, drop: 1.18 }
+        { text: "行业日报", link: "daily.html", ang: 0, drop: .38, tint: 0xff2f24 },
+        { text: "投篮分析", link: "https://shootlab-pro.pages.dev/", ang: 2.09, drop: .78, tint: 0x2bff6a },
+        { text: "世界宗教地图", link: "https://world-religions-555.pages.dev/", ang: 4.19, drop: 1.18, tint: 0x2f6bff }
       ];
       const curtains = [];
       const hitBoxes = [];
@@ -2119,7 +2119,20 @@
         const tex = new THREE.CanvasTexture(cv);
         tex.colorSpace = THREE.SRGBColorSpace;
         tex.anisotropy = 8;
-        return tex;
+
+        // 另一张：只有字发光（悬停时按作品的上色）
+        const emi = document.createElement("canvas");
+        emi.width = W; emi.height = H;
+        const ec = emi.getContext("2d");
+        ec.fillStyle = "#000"; ec.fillRect(0, 0, W, H);
+        ec.font = size + 'px "Ma Shan Zheng", "STXingkai", "KaiTi", serif';
+        ec.textAlign = "center"; ec.textBaseline = "middle";
+        ec.fillStyle = "#fff";
+        for (let i = 0; i < n; i++) ec.fillText(text[i], W / 2, 130 + i * step);
+        const emiTex = new THREE.CanvasTexture(emi);
+        emiTex.colorSpace = THREE.SRGBColorSpace;
+
+        return { tex: tex, emi: emiTex };
       }
 
       const woodSide = new THREE.MeshStandardMaterial({ color: 0x5a3c1f, roughness: .82, metalness: .05 });
@@ -2138,16 +2151,18 @@
         tg.add(cord);
 
         // 木牌：双面镂空薄板（红漆金框那面朝外）
-        const tex = woodTexture(w.text);
+        const wt = woodTexture(w.text);
         const pw = .56, ph = 2.0;
         const face = new THREE.MeshStandardMaterial({
-          map: tex, transparent: true, alphaTest: .42, side: THREE.DoubleSide,
-          roughness: .72, metalness: .08
+          map: wt.tex, transparent: true, alphaTest: .42, side: THREE.DoubleSide,
+          roughness: .72, metalness: .08,
+          emissiveMap: wt.emi, emissive: 0x000000, emissiveIntensity: 1.5
         });
         const plaque = new THREE.Mesh(new THREE.PlaneGeometry(pw, ph), face);
         plaque.position.y = -cordLen - ph / 2;
         plaque.userData.link = w.link;
         plaque.userData.face = face;
+        plaque.userData.tint = w.tint;
         tg.add(plaque);
         hitBoxes.push(plaque);
 
@@ -2192,6 +2207,11 @@
       }
 
       /* ---------- 交互：拖动转灯笼 / 悬停亮帘 / 点击进入 ---------- */
+      // 悬停时打到牌面上的那束彩色光（只照亮刻字）
+      const tintLight = new THREE.PointLight(0xffffff, 0, 4.5, 2);
+      scene.add(tintLight);
+
+      const tmpVec = new THREE.Vector3();
       const ray = new THREE.Raycaster();
       const ptr = new THREE.Vector2(-2, -2);
       let dragging = false, moved = 0, lastX = 0, vel = 0, hovered = null;
@@ -2268,15 +2288,20 @@
         const h = hit ? hit.object : null;
         if (h !== hovered) {
           if (hovered) {
-            hovered.userData.glow.material.opacity = 0;
             if (hovered.userData.face) hovered.userData.face.emissive.setHex(0x000000);
+            tintLight.intensity = 0;
           }
           hovered = h;
           if (hovered) {
-            hovered.userData.glow.material.opacity = .5;
-            if (hovered.userData.face) hovered.userData.face.emissive.setHex(0x3d2608);
+            if (hovered.userData.face) hovered.userData.face.emissive.setHex(hovered.userData.tint || 0xffffff);
+            tintLight.color.setHex(hovered.userData.tint || 0xffffff);
+            tintLight.intensity = 2.6;
           }
           wrap.style.cursor = hovered ? "pointer" : "grab";
+        }
+        if (hovered) {
+          hovered.getWorldPosition(tmpVec);
+          tintLight.position.set(tmpVec.x + .28, tmpVec.y + .2, tmpVec.z + .5);
         }
         renderer.render(scene, camera);
         requestAnimationFrame(loop);
