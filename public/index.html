@@ -1456,9 +1456,9 @@
       <div class="pillar-stage" id="pillarStage" data-stag>
         <div class="pillar-loading" id="pillarLoading">扎灯笼 · 刻字中</div>
         <ul class="gallery-list" id="pillarFallback">
-          <li><a href="daily.html">行业日报</a></li>
-          <li><a href="https://shootlab-pro.pages.dev/">投篮分析</a></li>
-          <li><a href="https://world-religions-555.pages.dev/">世界宗教地图</a></li>
+          <li><a href="daily.html" target="_blank" rel="noopener noreferrer">行业日报</a></li>
+          <li><a href="https://shootlab-pro.pages.dev/" target="_blank" rel="noopener noreferrer">投篮分析</a></li>
+          <li><a href="https://world-religions-555.pages.dev/" target="_blank" rel="noopener noreferrer">世界宗教地图</a></li>
         </ul>
       </div>
 
@@ -1589,11 +1589,8 @@
         maxScroll = Math.max(1, docEl.scrollHeight - window.innerHeight);
         progress = clamp(window.pageYOffset / maxScroll, 0, 1);
         seekTo = 0;                      // 定格：不再擦帧
-        // 滚到作品章节才加载 3D 石柱（three.js 走 CDN，懒加载不拖累首屏）
-        if (!window.__pillarBooted && progress > 0.20) {
-          window.__pillarBooted = true;
-          window.dispatchEvent(new CustomEvent("works:active"));
-        }
+        // 滚到作品章节才加载 3D 灯笼（three.js 走 CDN，懒加载不拖累首屏）
+        if (progress > 0.20) bootWorks();
         sunY = SUN_Y0 - (SUN_Y0 - SUN_Y1) * progress;   // 滚动只升降太阳
       }
 
@@ -1855,6 +1852,33 @@
       readScroll();
       paint();
 
+      /* ---------- 刷新/回退时补一次 ----------
+         浏览器恢复滚动位置常常不发 scroll 事件，readScroll 就没机会跑，
+         灯笼会因为「进度仍是 0」而不加载。这里在 load / pageshow 补读，
+         再用 IntersectionObserver 兜底：作品章节真的进视口就加载。 */
+      function bootWorks() {
+        if (window.__pillarBooted) return;
+        window.__pillarBooted = true;
+        window.dispatchEvent(new CustomEvent("works:active"));
+      }
+
+      window.addEventListener("load", function () { setTimeout(readScroll, 80); });
+      window.addEventListener("pageshow", function () { setTimeout(readScroll, 80); });
+
+      (function watchWorks() {
+        var panel = document.getElementById("ch-1");
+        if (!panel) return;
+        if ("IntersectionObserver" in window) {
+          new IntersectionObserver(function (list) {
+            for (var i = 0; i < list.length; i++) {
+              if (list[i].isIntersecting && list[i].intersectionRatio > 0.25) { bootWorks(); break; }
+            }
+          }, { threshold: [0.25, 0.45] }).observe(panel);
+        } else {
+          setTimeout(function () { if (progress > 0.18) bootWorks(); }, 400);
+        }
+      })();
+
       // 静帧能画出来就揭幕；同时给 1.2s 兜底，别让"图还没到"把页面锁住
       (function watchPoster() {
         if (typeof Image === "function") {
@@ -1906,6 +1930,7 @@
     let booted = false;
     let THREE_REF = null;
     let gen = 0;
+    let ctxLost = false;
 
     async function loadThree() {
       let lastErr = null;
@@ -1916,7 +1941,10 @@
       throw lastErr;
     }
 
+    /* 事件可能在模块脚本执行前就派发过了（内联脚本先跑、模块是 defer 的），
+       所以先补一次检查，再挂监听 */
     window.addEventListener("works:active", boot, { once: true });
+    if (window.__pillarBooted) boot();
 
     async function boot() {
       if (booted) return;
@@ -1947,7 +1975,12 @@
       }
     });
     document.addEventListener("visibilitychange", function () {
-      if (!document.hidden) setTimeout(rebuild, 120);
+      // 切标签页本身不用重建（作品改成新标签打开后，这边常常只是失焦），
+      // 只有上下文真的丢了才重来一次
+      if (!document.hidden && ctxLost) {
+        ctxLost = false;
+        setTimeout(rebuild, 120);
+      }
     });
 
     async function build(THREE) {
@@ -1961,6 +1994,7 @@
 
       renderer.domElement.addEventListener("webglcontextlost", function (e) {
         e.preventDefault();
+        ctxLost = true;
       });
       renderer.domElement.addEventListener("webglcontextrestored", function () {
         if (myGen === gen) setTimeout(rebuild, 60);
@@ -2274,9 +2308,22 @@
         }
       });
       window.addEventListener("pointerup", function (e) {
-        if (dragging && moved < 6 && hovered) location.href = hovered.userData.link;
+        // 点中铭牌：在新标签页打开（当前页的灯笼保留，返回时不用重建）
+        if (dragging && moved < 6 && hovered) openWork(hovered.userData.link);
         dragging = false;
       });
+
+      // 用 <a target=_blank> 打开，等同用户点击链接，不会被当成弹窗拦掉
+      function openWork(href) {
+        if (!href) return;
+        var a = document.createElement("a");
+        a.href = href;
+        a.target = "_blank";
+        a.rel = "noopener noreferrer";
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+      }
 
       function fit() {
         const w2 = wrap.clientWidth, h2 = wrap.clientHeight;
