@@ -613,62 +613,143 @@
       color: var(--amber);
     }
 
+    /* ============ 右侧章节表盘：黄铜半圆机械刻度 ============
+   原来是竖排的 01–04 加一条进度线，现在做成一枚半圆表盘：
+   黄铜外圈 + 钢制内圈 + 四道刻度，指针随滚动转动，刻度可点直接跳章。 */
     .rail {
       position: fixed;
       z-index: 41;
-      right: clamp(18px, 3.6vw, 54px);
+      right: clamp(16px, 2.4vw, 34px);
       top: 50%;
-      transform: translateY(-50%);
-      display: flex;
-      align-items: center;
-      gap: 14px;
+      width: 170px;
+      height: 92px;
+      margin-top: -46px;
+      --needle: -72deg;
     }
 
+    /* 表盘外圈：半个黄铜环，开口朝左 */
     .rail .line {
-      position: relative;
-      width: 1px;
-      height: 132px;
-      background: var(--rule);
-      overflow: hidden;
+      position: absolute;
+      left: 50%;
+      bottom: 0;
+      width: 160px;
+      height: 80px;
+      margin-left: -80px;
+      border: 2px solid rgba(198, 154, 86, .8);
+      border-bottom: none;
+      border-radius: 160px 160px 0 0;
+      background:
+        radial-gradient(120% 130% at 50% 100%, rgba(38, 32, 26, .92) 0%, rgba(14, 12, 10, .96) 72%);
+      box-shadow:
+        0 0 22px rgba(255, 176, 110, .10),
+        inset 0 6px 18px rgba(255, 190, 130, .07),
+        inset 0 -2px 0 rgba(0, 0, 0, .6),
+        0 10px 24px -12px rgba(0, 0, 0, .8);
+      overflow: visible;
     }
 
+    /* 内圈细钢环 */
+    .rail .line::before {
+      content: '';
+      position: absolute;
+      left: 8px;
+      right: 8px;
+      bottom: 0;
+      height: 70px;
+      border: 1px solid rgba(150, 160, 170, .28);
+      border-bottom: none;
+      border-radius: 150px 150px 0 0;
+    }
+
+    /* 指针：从圆心指出去，随滚动摆 */
     .rail .line i {
+      position: absolute;
+      left: 50%;
+      bottom: 0;
       display: block;
-      width: 100%;
-      height: 100%;
-      background: var(--amber);
-      transform-origin: 50% 0;
-      transform: scaleY(0);
+      width: 2px;
+      height: 64px;
+      margin-left: -1px;
+      transform-origin: 50% 100%;
+      transform: rotate(var(--needle));
+      background: linear-gradient(to top, rgba(255, 206, 152, .98) 0%, rgba(255, 186, 120, .55) 70%, rgba(255, 186, 120, .1) 100%);
+      box-shadow: 0 0 10px rgba(255, 186, 120, .5);
+      transition: transform .18s linear;
+    }
+
+    /* 圆心轴帽 */
+    .rail .line::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      bottom: -6px;
+      width: 13px;
+      height: 13px;
+      margin-left: -6.5px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 34% 30%, #f0d3a0 0%, #b98b4a 55%, #6d4d24 100%);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, .7);
     }
 
     .rail ol {
-      display: flex;
-      flex-direction: column;
-      gap: 22px;
+      position: absolute;
+      inset: 0;
+      list-style: none;
+      margin: 0;
+      padding: 0;
     }
 
+    /* 四个刻度：沿半圆摆开，可点 */
     .rail li {
+      position: absolute;
+      left: 50%;
+      bottom: 0;
+      width: 26px;
+      height: 26px;
+      margin-left: -13px;
       display: flex;
       align-items: center;
-      gap: 10px;
+      justify-content: center;
+      cursor: pointer;
+      transform: rotate(var(--a)) translateY(-68px) rotate(calc(-1 * var(--a)));
+    }
+
+    .rail li:focus-visible {
+      outline: 2px solid var(--amber);
+      outline-offset: 3px;
+      border-radius: 6px;
     }
 
     .rail li b {
-      font-size: 10.5px;
-      font-weight: 400;
-      letter-spacing: .10em;
-      color: var(--ink-faint);
-      transition: color .4s var(--ease);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: .04em;
+      color: rgba(238, 220, 192, .72);
+      background: radial-gradient(circle at 34% 28%, rgba(96, 88, 78, .55) 0%, rgba(30, 26, 22, .85) 70%);
+      box-shadow: inset 0 0 0 1px rgba(190, 160, 120, .18);
+      transition: color .35s var(--ease), background .35s var(--ease), box-shadow .35s var(--ease);
+    }
+
+    .rail li:hover b {
+      color: #ffe0b4;
+    }
+
+    .rail li.on b {
+      color: #241605;
+      background: radial-gradient(circle at 34% 28%, #ffe3b4 0%, #d9a441 60%, #a97c33 100%);
+      box-shadow: 0 0 14px rgba(255, 196, 130, .55), inset 0 0 0 1px rgba(255, 236, 196, .5);
     }
 
     .rail li i {
-      display: block;
-      width: 13px;
-      height: 1px;
-      background: var(--rule);
-      border-radius: 1px;
-      transition: width .5s var(--ease), background .5s var(--ease);
+      display: none;
     }
+
 
     .rail li.on b {
       color: var(--amber);
@@ -1319,17 +1400,17 @@
   </header>
 
   <!-- 右侧章节轨 -->
-  <aside class="rail" aria-hidden="true" data-page-node-id="cmMrAoTfg4pXgvWy8BDcVQ">
+  <aside class="rail" data-page-node-id="cmMrAoTfg4pXgvWy8BDcVQ" aria-label="章节导航">
     <div class="line" data-page-node-id="WKoWmC8GFRfjCHFS8X4asQ"><i id="railFill"
         data-page-node-id="Oqh1xd663sCD9IPxnXUJNJ"></i></div>
     <ol data-page-node-id="LCEqUCpMhRM2v4NUPAvqoz">
-      <li data-rail="0" data-page-node-id="dYrwGn9jt8QEEeRESxSz6S"><b
+      <li data-rail="0" style="--a:-72deg" data-page-node-id="dYrwGn9jt8QEEeRESxSz6S"><b
           data-page-node-id="iAKcMD23zLZhK729IkTCZb">01</b><i data-page-node-id="tvbkLCMVRNBz39q8euRSMr"></i></li>
-      <li data-rail="1" data-page-node-id="pNnBOv4smRMWzBETnlXck1"><b
+      <li data-rail="1" style="--a:-24deg" data-page-node-id="pNnBOv4smRMWzBETnlXck1"><b
           data-page-node-id="IgW9WdI0clzyLppGE2foq9">02</b><i data-page-node-id="c02xPTFttnpTyW8e2TrLTR"></i></li>
-      <li data-rail="2" data-page-node-id="8oDmx6QEtEGOx6dOTHkvLr"><b
+      <li data-rail="2" style="--a:24deg" data-page-node-id="8oDmx6QEtEGOx6dOTHkvLr"><b
           data-page-node-id="7hyxuP6ARcDCG1TIWtFYTm">03</b><i data-page-node-id="mZCzr3K47PWhvC3nC8rxXz"></i></li>
-      <li data-rail="3" data-page-node-id="whBJvF5YViJRQf6W4BSWiy"><b
+      <li data-rail="3" style="--a:72deg" data-page-node-id="whBJvF5YViJRQf6W4BSWiy"><b
           data-page-node-id="BeQIJPOD3C3xmuEWdvTB8I">04</b><i data-page-node-id="nRA2TGcIcFeNYnCBcM6Xrs"></i></li>
     </ol>
   </aside>
@@ -1442,6 +1523,17 @@
       var idxTime = document.getElementById("idxTime");
       var hint = document.getElementById("hint");
       var railLis = [].slice.call(document.querySelectorAll("[data-rail]"));
+      // 右侧 01–04 可点：直接跳到对应章节
+      railLis.forEach(function (li) {
+        var idx = parseInt(li.getAttribute("data-rail"), 10);
+        li.setAttribute("role", "button");
+        li.setAttribute("tabindex", "0");
+        li.setAttribute("aria-label", "跳到第 " + (idx + 1) + " 章");
+        li.addEventListener("click", function () { goChapter(idx); });
+        li.addEventListener("keydown", function (e) {
+          if (e.key === "Enter" || e.key === " ") { e.preventDefault(); goChapter(idx); }
+        });
+      });
 
       var panels = [].slice.call(document.querySelectorAll("[data-panel]")).map(function (p) {
         var items = [].slice.call(p.querySelectorAll("[data-stag]"));
@@ -1501,7 +1593,7 @@
           lastDusk = progress;
           docEl.style.setProperty("--dusk", progress.toFixed(4));
           docEl.style.setProperty("--sunp", progress.toFixed(4));
-          railFill.style.transform = "scaleY(" + progress.toFixed(4) + ")";
+          railFill.style.transform = "rotate(" + (-72 + progress * 144).toFixed(1) + "deg)";
           if (hint) hint.style.opacity = progress > 0.035 ? "0" : "1";
         }
         if (sunY !== lastSunY) {
@@ -1928,9 +2020,9 @@
 
       /* ---------- 三个作品：流苏织成的字帘 ---------- */
       const works = [
-        { text: "行业日报", link: "daily.html", ang: 0, drop: .42 },
-        { text: "投篮分析", link: "https://shootlab-pro.pages.dev/", ang: 2.09, drop: .74 },
-        { text: "世界宗教地图", link: "https://world-religions-555.pages.dev/", ang: 4.19, drop: 1.06 }
+        { text: "行业日报", link: "daily.html", ang: 0, drop: .38 },
+        { text: "投篮分析", link: "https://shootlab-pro.pages.dev/", ang: 2.09, drop: .78 },
+        { text: "世界宗教地图", link: "https://world-religions-555.pages.dev/", ang: 4.19, drop: 1.18 }
       ];
       const curtains = [];
       const hitBoxes = [];
@@ -2015,7 +2107,7 @@
       for (const w of works) {
         const tg = new THREE.Group();
         const a = w.ang;
-        tg.position.set(Math.sin(a) * .62, -.14, Math.cos(a) * .62);
+        tg.position.set(Math.sin(a) * .82, -.14, Math.cos(a) * .82);
         spin.add(tg);
         tags.push(tg);
 
