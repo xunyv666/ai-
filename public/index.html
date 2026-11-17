@@ -877,7 +877,6 @@
     .panel-pillar {
       justify-content: flex-start;
       overflow: hidden;
-      background: #000;
     }
 
     .pillar-stage {
@@ -1361,7 +1360,7 @@
 
     <section class="panel panel-pillar" data-panel id="ch-1" data-page-node-id="VvGLxGHnz8FBkr0fzLg6zD">
       <!-- 3D 石柱：金龙盘柱，三个作品刻在柱身不同高度；拖动可转，点名字进入 -->
-      <div class="pillar-stage" id="pillarStage">
+      <div class="pillar-stage" id="pillarStage" data-stag>
         <div class="pillar-loading" id="pillarLoading">起稿 · 雕刻中</div>
         <ul class="gallery-list" id="pillarFallback">
           <li><a href="daily.html">行业日报</a></li>
@@ -1826,7 +1825,7 @@
 
       const scene = new THREE.Scene();
       const camera = new THREE.PerspectiveCamera(38, wrap.clientWidth / wrap.clientHeight, .1, 100);
-      camera.position.set(0, .35, wrap.clientWidth / wrap.clientHeight < .9 ? 11.8 : 9.5);
+      camera.position.set(0, .35, wrap.clientWidth / wrap.clientHeight < .9 ? 15.5 : 13.2);
       camera.lookAt(0, .2, 0);
 
       /* ---------- 灯光：光从观众这边打向石柱 ---------- */
@@ -1967,7 +1966,7 @@
         const w2 = wrap.clientWidth, h2 = wrap.clientHeight;
         renderer.setSize(w2, h2);
         camera.aspect = w2 / h2;
-        camera.position.z = w2 / h2 < .9 ? 11.8 : 9.5;
+        camera.position.z = w2 / h2 < .9 ? 15.5 : 13.2;
         camera.updateProjectionMatrix();
       }
       addEventListener("resize", fit);
@@ -1975,6 +1974,11 @@
 
       const clock = new THREE.Clock();
       (function loop() {
+        // 只在作品章节显示石柱；其余章节隐藏并跳过渲染（首屏黄昏不再被挡）
+        const pp = window.pageYOffset / Math.max(1, document.documentElement.scrollHeight - innerHeight);
+        const active = pp > .16 && pp < .55;
+        stage.style.visibility = active ? "visible" : "hidden";
+        if (!active) { requestAnimationFrame(loop); return; }
         const dt = Math.min(.05, clock.getDelta());
         if (!dragging) {
           vel *= .94;
