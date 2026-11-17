@@ -1006,6 +1006,55 @@
       to { opacity: 1; }
     }
 
+    /* 作品页内部的摇杆：拖动它移动灯笼 */
+    .lantern-pad {
+      position: absolute;
+      left: clamp(20px, 3vw, 42px);
+      bottom: 104px;
+      width: 76px;
+      height: 76px;
+      z-index: 5;
+      border-radius: 50%;
+      pointer-events: auto;
+      touch-action: none;
+      cursor: grab;
+      border: 2px solid rgba(206, 162, 92, .5);
+      background: radial-gradient(circle at 50% 44%, rgba(34, 29, 24, .92), rgba(10, 9, 8, .96));
+      box-shadow:
+        inset 0 0 20px rgba(0, 0, 0, .85),
+        0 10px 24px -12px rgba(0, 0, 0, .9);
+      transition: border-color .3s var(--ease);
+    }
+
+    .lantern-pad:active {
+      cursor: grabbing;
+      border-color: rgba(232, 190, 130, .85);
+    }
+
+    .pad-knob {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 30px;
+      height: 30px;
+      margin: -15px 0 0 -15px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 34% 28%, #ffe6bd 0%, #c9974e 55%, #6b4a22 100%);
+      box-shadow: 0 3px 8px rgba(0, 0, 0, .8), inset 0 1px 0 rgba(255, 236, 200, .6);
+      transition: transform .1s ease-out;
+    }
+
+    .pad-label {
+      position: absolute;
+      left: 50%;
+      bottom: -18px;
+      transform: translateX(-50%);
+      font-size: 10px;
+      letter-spacing: .16em;
+      color: rgba(214, 194, 166, .42);
+      white-space: nowrap;
+    }
+
     .pillar-stage.ready .pillar-loading {
       display: none;
     }
@@ -1455,6 +1504,10 @@
       <!-- 3D 石柱：金龙盘柱，三个作品刻在柱身不同高度；拖动可转，点名字进入 -->
       <div class="pillar-stage" id="pillarStage" data-stag>
         <div class="pillar-loading" id="pillarLoading">扎灯笼 · 刻字中</div>
+        <div class="lantern-pad" id="lanternPad" aria-label="调整灯笼位置">
+          <span class="pad-knob"></span>
+          <span class="pad-label">灯笼位置</span>
+        </div>
         <ul class="gallery-list" id="pillarFallback">
           <li><a href="daily.html">行业日报</a></li>
           <li><a href="https://shootlab-pro.pages.dev/">投篮分析</a></li>
@@ -2212,6 +2265,54 @@
       scene.add(tintLight);
 
       const tmpVec = new THREE.Vector3();
+      /* ---------- 摇杆：拖动调整灯笼位置 ---------- */
+      const pad = document.getElementById("lanternPad");
+      const knob = pad ? pad.querySelector(".pad-knob") : null;
+      let panX = 0, panY = 0, padDrag = false;
+
+      function setKnob(nx, ny) {
+        if (knob) knob.style.transform = "translate(" + (nx * 21).toFixed(1) + "px," + (ny * 21).toFixed(1) + "px)";
+      }
+      function padTo(e) {
+        const r = pad.getBoundingClientRect();
+        let nx = ((e.clientX - r.left) / r.width) * 2 - 1;
+        let ny = ((e.clientY - r.top) / r.height) * 2 - 1;
+        const len = Math.hypot(nx, ny);
+        if (len > 1) { nx /= len; ny /= len; }
+        setKnob(nx, ny);
+        panX = nx * 1.15;
+        panY = -ny * .85;
+      }
+      if (pad) {
+        pad.addEventListener("pointerdown", function (e) {
+          e.stopPropagation(); e.preventDefault();
+          padDrag = true;
+          ptr.set(-2, -2);
+          pad.setPointerCapture && pad.setPointerCapture(e.pointerId);
+          padTo(e);
+        });
+        pad.addEventListener("pointermove", function (e) {
+          if (!padDrag) return;
+          e.stopPropagation();
+          ptr.set(-2, -2);
+          padTo(e);
+        });
+        pad.addEventListener("pointerup", function (e) {
+          padDrag = false; e.stopPropagation();
+        });
+        pad.addEventListener("pointercancel", function () { padDrag = false; });
+        pad.addEventListener("wheel", function (e) {
+          e.stopPropagation(); e.preventDefault();
+          ptr.set(-2, -2);
+          panY = Math.max(-.85, Math.min(.85, panY + e.deltaY * -.0012));
+          setKnob(panX / 1.15, -panY / .85);
+        }, { passive: false });
+        pad.addEventListener("dblclick", function (e) {
+          e.stopPropagation();
+          panX = 0; panY = 0; setKnob(0, 0);
+        });
+      }
+
       const ray = new THREE.Raycaster();
       const ptr = new THREE.Vector2(-2, -2);
       let dragging = false, moved = 0, lastX = 0, vel = 0, hovered = null;
@@ -2274,8 +2375,8 @@
           if (!reduced) spin.rotation.y += dt * .10;   // 灯笼缓慢自转
         }
         // 挂在风里：吊点轻微摆，整体慢慢向左漂
-        pivot.position.x = -.45 + Math.sin(t * .11) * .28;
-        pivot.position.y = 2.2 + Math.sin(t * .16) * .05;
+        pivot.position.x = -.45 + Math.sin(t * .11) * .28 + panX;
+        pivot.position.y = 2.2 + Math.sin(t * .16) * .05 + panY;
         pivot.rotation.z = Math.sin(t * .35) * .05 + Math.sin(t * .9) * .012;
         spin.rotation.x = Math.sin(t * .27) * .02;
         for (const tg of tags) tg.rotation.y = -spin.rotation.y;   // 帘子始终正对观众
