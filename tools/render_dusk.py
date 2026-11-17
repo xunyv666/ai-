@@ -15,6 +15,14 @@ W, H = 1920, 1080
 FPS = 24
 FRAMES = 144
 
+# 出片参数（可用环境变量覆盖）
+#   NO_GULLS=1        不画海鸥
+#   OUT_SCALE=1280x720 输出时缩放（留空则原尺寸）
+#   CRF=28            x264 质量，数字越大文件越小
+NO_GULLS = os.environ.get("NO_GULLS", "") == "1"
+OUT_SCALE = os.environ.get("OUT_SCALE", "").strip()
+CRF = os.environ.get("CRF", "23").strip()
+
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ASSETS = os.path.join(ROOT, "public", "assets")
 os.makedirs(ASSETS, exist_ok=True)
@@ -201,7 +209,7 @@ def render_frame(t, grain=0.0075):
     img += (haze * 0.055)[:, :, None] * srgb("#ffd0a0")[None, None, :]
 
     # --- 海鸥 ---
-    for bx, by, w, spd, fhz, ph in GULLS:
+    for bx, by, w, spd, fhz, ph in (() if NO_GULLS else GULLS):
         px = ((bx - spd * t) % 1.30) - 0.15
         cx = px * W
         cy = by * H + np.sin(t * 2.0 * np.pi * 0.55 + ph * 6.0) * 0.010 * H
@@ -232,7 +240,7 @@ def main():
 
     import imageio_ffmpeg
     ffmpeg = imageio_ffmpeg.get_ffmpeg_exe()
-    out = os.path.join(ASSETS, "dusk-gulls.mp4")
+    out = os.path.join(ASSETS, "dusk-sea.mp4")
     poster = os.path.join(ASSETS, "dusk-poster.jpg")
 
     cmd = [
@@ -242,10 +250,9 @@ def main():
         "-an",
         "-c:v", "libx264", "-preset", "slow", "-tune", "film",
         "-x264-params", "keyint=1:min-keyint=1:scenecut=0:open-gop=0",
-        "-crf", "23", "-pix_fmt", "yuv420p",
+        "-crf", CRF, "-pix_fmt", "yuv420p",
         "-movflags", "+faststart",
-        out,
-    ]
+    ] + (["-vf", f"scale={OUT_SCALE}"] if OUT_SCALE else []) + [out]
     proc = subprocess.Popen(cmd, stdin=subprocess.PIPE)
 
     for i in range(FRAMES):

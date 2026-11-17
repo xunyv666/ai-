@@ -254,7 +254,7 @@
       position: absolute;
       left: var(--sunx);
       top: var(--suny);
-      width: clamp(300px, 40vw, 560px);
+      width: clamp(250px, 32vw, 440px);
       aspect-ratio: 1/1;
       /* 随升高略微收小：低空的大气放大感，到高空更接近一颗正常日轮 */
       transform: translate(-50%, -50%) scale(calc(1.04 - var(--sunp) * .18));
@@ -263,15 +263,14 @@
       z-index: 7;
       background:
         radial-gradient(closest-side,
-          rgba(255, 251, 238, 1) 0%,
-          rgba(255, 249, 230, 1) 13%,
-          rgba(255, 246, 220, .94) 19%,
-          rgba(255, 242, 206, .66) 27%,
-          rgba(255, 228, 180, .38) 37%,
-          rgba(255, 210, 156, .17) 50%,
-          rgba(255, 196, 136, .06) 64%,
-          rgba(255, 190, 128, 0) 80%);
-      filter: blur(1.2px);
+          rgba(255, 238, 206, .82) 0%,
+          rgba(255, 232, 194, .74) 11%,
+          rgba(255, 222, 174, .52) 18%,
+          rgba(255, 208, 156, .30) 27%,
+          rgba(255, 194, 140, .14) 39%,
+          rgba(255, 182, 126, .05) 55%,
+          rgba(255, 176, 120, 0) 74%);
+      filter: blur(6px);
     }
 
     /* ============ 太阳照亮周围 ============
@@ -288,13 +287,13 @@
       mix-blend-mode: screen;
       z-index: 6;
       background: radial-gradient(closest-side,
-          rgba(255, 218, 168, .30) 0%,
-          rgba(255, 200, 142, .22) 24%,
-          rgba(255, 180, 120, .12) 46%,
-          rgba(255, 168, 106, .05) 68%,
+          rgba(255, 214, 164, .22) 0%,
+          rgba(255, 198, 140, .16) 24%,
+          rgba(255, 180, 120, .085) 46%,
+          rgba(255, 168, 106, .035) 68%,
           rgba(255, 160, 96, 0) 86%);
-      filter: blur(24px);
-      opacity: calc(.72 + var(--sunp) * .28);
+      filter: blur(30px);
+      opacity: calc(.62 + var(--sunp) * .24);
     }
 
     /* ============ 沙滩浅海：近处沙底、远处渐深 ============
@@ -314,99 +313,6 @@
       opacity: .10;
       -webkit-mask-image: linear-gradient(to top, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, .7) 45%, rgba(0, 0, 0, 0) 100%);
       mask-image: linear-gradient(to top, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, .7) 45%, rgba(0, 0, 0, 0) 100%);
-    }
-
-    /* ============ 动态海浪：三层波前由远及近涌向岸边 ============
-   每层浪从贴近地平线的小尺寸（远处）持续放大并向屏幕下方推进，
-   到近岸最大后循环，叠出「海浪从画面里往外/向观众打来」的推近感。
-   三层错相，浪一浪接一浪不间断。 */
-    .waves {
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      height: 40%;
-      pointer-events: none;
-      overflow: hidden;
-      z-index: 4;
-    }
-
-    .waves svg path {
-      fill: #ffcd92;
-    }
-
-    .waves svg {
-      position: absolute;
-      left: 50%;
-      bottom: 0;
-      width: 200%;
-      height: auto;
-      transform-origin: 50% 100%;
-      /* 基准态与动画首帧一致：svg 定位在 left:50%，若不做 translateX(-50%)，
-     延迟阶段（wave-2/3 各有 2.5s/5s 延迟）它就只露出一半、还是靠右的那半。 */
-      transform: translateX(-50%) scale(.16);
-      display: block;
-      mix-blend-mode: screen;
-    }
-
-    /* fill-mode:both 让延迟期间也停在首帧（贴地平线的小浪），不会突然冒出半个波形 */
-    .wave-1 {
-      opacity: .16;
-      animation: surge 7s cubic-bezier(.3, .1, .7, .4) infinite both;
-    }
-
-    .wave-2 {
-      opacity: .12;
-      animation: surge 10s cubic-bezier(.3, .1, .7, .4) infinite 2.5s both;
-    }
-
-    .wave-3 {
-      opacity: .08;
-      animation: surge 14s cubic-bezier(.3, .1, .7, .4) infinite 5s both;
-    }
-
-    @keyframes surge {
-      0% {
-        transform: translateX(-50%) translateY(52%) scale(.16);
-        opacity: .10;
-      }
-
-      55% {
-        transform: translateX(-50%) translateY(14%) scale(.8);
-        opacity: .17;
-      }
-
-      100% {
-        transform: translateX(-50%) translateY(0) scale(1.35);
-        opacity: 0;
-      }
-    }
-
-    /* 近岸泡沫白边：浪打到近处时泛起、退去 */
-    .waves::after {
-      content: '';
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      height: 16%;
-      background: linear-gradient(to top,
-          rgba(255, 214, 158, .14) 0%, rgba(255, 214, 158, 0) 100%);
-      animation: foam 6s ease-in-out infinite;
-    }
-
-    @keyframes foam {
-
-      0%,
-      100% {
-        transform: translateY(0) scaleY(.8);
-        opacity: .5;
-      }
-
-      50% {
-        transform: translateY(-7px) scaleY(1.1);
-        opacity: .9;
-      }
     }
 
     /* ============ 夕阳金鳞：海面上的碎金反光 ============
@@ -617,56 +523,6 @@
 
       100% {
         transform: translate3d(122vw, 6px, 0) scale(1);
-      }
-    }
-
-    /* 缓慢漂移的海鸥剪影 */
-    .birds {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      color: #e8bf98;
-    }
-
-    .birds svg {
-      position: absolute;
-      fill: none;
-      stroke: currentColor;
-      stroke-width: 2;
-      stroke-linecap: round;
-    }
-
-    .birds svg:nth-child(1) {
-      width: 74px;
-      top: 22%;
-      left: -12%;
-      opacity: .16;
-      animation: glide 46s linear infinite;
-    }
-
-    .birds svg:nth-child(2) {
-      width: 52px;
-      top: 34%;
-      left: -12%;
-      opacity: .12;
-      animation: glide 67s linear infinite 8s;
-    }
-
-    .birds svg:nth-child(3) {
-      width: 38px;
-      top: 44%;
-      left: -12%;
-      opacity: .09;
-      animation: glide 88s linear infinite 22s;
-    }
-
-    @keyframes glide {
-      from {
-        transform: translate3d(0, 0, 0)
-      }
-
-      to {
-        transform: translate3d(128vw, 0, 0)
       }
     }
 
@@ -1001,6 +857,16 @@
       gap: 12px;
     }
 
+    /* 作品面板只剩一个标签和三个按钮，底部对齐会让按钮贴着屏幕下沿，
+       这里单独改成垂直居中，视线上更稳，点导航跳过来也正好在视线中间 */
+    .panel-mid {
+      justify-content: center;
+    }
+
+    .panel-mid .cta {
+      margin-top: clamp(4px, .8vw, 10px);
+    }
+
     .cta .pill {
       height: 48px;
       padding: 0 28px;
@@ -1239,10 +1105,6 @@
     }
 
     @media (prefers-reduced-motion: reduce) {
-      .birds {
-        display: none;
-      }
-
       .cloud {
         animation: none;
         transform: translate3d(0, 0, 0);
@@ -1263,11 +1125,6 @@
 
       .cloud-4 {
         transform: translate3d(80vw, 0, 0);
-      }
-
-      .waves svg,
-      .waves::after {
-        animation: none;
       }
 
       .stage::before {
@@ -1303,23 +1160,6 @@
     <div class="sunglow" aria-hidden="true"></div>
     <div class="sunbloom" aria-hidden="true"></div>
     <div class="sandbar" aria-hidden="true"></div>
-    <div class="waves" aria-hidden="true">
-      <svg class="wave-3" viewBox="0 0 2880 320" preserveAspectRatio="none">
-        <path
-          d="M0,160 C240,60 480,260 720,160 C960,60 1200,260 1440,160 C1680,60 1920,260 2160,160 C2400,60 2640,260 2880,160 L2880,320 L0,320 Z"
-          fill="#ffffff" />
-      </svg>
-      <svg class="wave-2" viewBox="0 0 2880 360" preserveAspectRatio="none">
-        <path
-          d="M0,200 C200,100 400,300 720,200 C1040,100 1240,300 1440,200 C1640,100 1840,300 2160,200 C2480,100 2680,300 2880,200 L2880,360 L0,360 Z"
-          fill="#ffffff" />
-      </svg>
-      <svg class="wave-1" viewBox="0 0 2880 400" preserveAspectRatio="none">
-        <path
-          d="M0,240 C240,120 480,360 720,240 C960,120 1200,360 1440,240 C1680,120 1920,360 2160,240 C2400,120 2640,360 2880,240 L2880,400 L0,400 Z"
-          fill="#ffffff" />
-      </svg>
-    </div>
     <div class="sunpath" aria-hidden="true"></div>
     <div class="glitter" aria-hidden="true"><i class="g1"></i><i class="g2"></i><i class="g3"></i></div>
     <div class="depth" aria-hidden="true" data-page-node-id="dBxZgy1EKiMhDRCeUBSFEJ"></div>
@@ -1331,17 +1171,6 @@
     </div>
     <div class="veil" data-page-node-id="6wIWVedZkLRuykj3QItUKR"></div>
     <div class="night" data-page-node-id="p9qPCFDPp0CrVkR0UMBYtm"></div>
-    <div class="birds" aria-hidden="true" data-page-node-id="ooXLOzZzc8F7a5Bn8BP2mB">
-      <svg viewBox="0 0 26 8" data-page-node-id="A43cAtowp9kKbBP0U96nNd">
-        <path d="M1 6 Q7 -1 13 6 Q19 -1 25 6" data-page-node-id="8GWzKlahxpmnT5RmqVhrK8" />
-      </svg>
-      <svg viewBox="0 0 26 8" data-page-node-id="1Rvb259CmkGloZb1Tx7s9O">
-        <path d="M1 6 Q7 -1 13 6 Q19 -1 25 6" data-page-node-id="CkwCCVc0Tqgyx5Wcb6xdWn" />
-      </svg>
-      <svg viewBox="0 0 26 8" data-page-node-id="S6qfJgQCeNZLKw3HIIOJKd">
-        <path d="M1 6 Q7 -1 13 6 Q19 -1 25 6" data-page-node-id="xbg8mCjeUCbu86E2BLLQHv" />
-      </svg>
-    </div>
     <div class="grain" data-page-node-id="BjmDFW89k9iU9AN6OgDDZU"></div>
   </div>
 
@@ -1357,7 +1186,6 @@
       <a data-go="1" data-page-node-id="4BkJUK4gsHRQAkEpQEc34U">作品</a>
       <a data-go="2" data-page-node-id="hCUWN8bQZkrC8kVCG2bmog">关于</a>
       <a href="resume.html" data-page-node-id="nFEdm3tzRc2FOtsAdrpc1C">简历</a>
-      <a href="daily.html" data-page-node-id="haZh7eB6RxyKbHNAIoy2QW">AI 日报</a>
       <a class="pill" href="mailto:603327998@qq.com" data-page-node-id="JPQwDi2SPrZYyYsl4gqK4w">写邮件给我</a>
     </nav>
   </header>
@@ -1399,12 +1227,9 @@
       </div>
     </section>
 
-    <section class="panel" data-panel id="ch-1" data-page-node-id="VvGLxGHnz8FBkr0fzLg6zD">
+    <section class="panel panel-mid" data-panel id="ch-1" data-page-node-id="VvGLxGHnz8FBkr0fzLg6zD">
       <div class="panel-inner" data-page-node-id="mutuIuvDHVfQGhWFi7ADEu">
         <p class="eyebrow" data-stag data-page-node-id="MT6MuvZKyyZioWY72stx7G">作品</p>
-        <h1 data-stag data-page-node-id="ajCdJzoeA5BEvEwroVDugn">慢慢做，<br
-            data-page-node-id="xiqLJBt8OM7WwRXE6n5Exo">都会放这儿。</h1>
-        <p class="sub" data-stag data-page-node-id="JBAeKSSb8ir6S9c4DrbhR1">三份都上线了：一份 AI 行业日报看板，一个在浏览器里跑的投篮动作分析，还有一张能缩放的世界宗教地图。</p>
         <div class="cta" data-stag data-page-node-id="s7DgGZaj5ECsRiTLhaOTWp"><a class="pill" href="daily.html"
             data-page-node-id="2IEIcDg3muuBXpyI7EF3wp">看 AI 日报</a><a class="pill pill-ghost" href="https://shootlab-pro.pages.dev/"
             data-page-node-id="shootlab0p1">看投篮分析</a><a class="pill pill-ghost"
@@ -1452,7 +1277,7 @@
       /* 视频：本地 1920×1080 / 24fps / 144 帧 / 全 I 帧（每帧皆关键帧）。
          全 I 帧是滚动擦动的前提——任意时间点都能瞬间定位到精确帧，
          否则每次 currentTime 跳转都要回退到前一个关键帧再解码，擦动会变成幻灯片。 */
-      var VIDEO = "assets/dusk-gulls.mp4";
+      var VIDEO = "assets/dusk-sea.mp4";
       var POSTER = "assets/dusk-poster.jpg";
 
       /* 章节节奏 [fadeInStart, fadeInEnd, fadeOutStart, fadeOutEnd]，单位是 0..1 的页面进度。
@@ -1633,6 +1458,18 @@
         seekAt = seekTo;
       }
 
+      /* ---------- 首屏揭幕 ----------
+         以前要等整段视频下载完才淡出预加载器，弱网下要干等十几秒。
+         现在静帧一解码出来就揭幕（最多等 1.2s），视频继续在后台下载，
+         下完再淡入接管；在那之前滚动不擦动而已，页面本身已经可以看。 */
+      var revealed = false;
+      function reveal() {
+        if (revealed) return;
+        revealed = true;
+        setProgress(1);
+        start();
+      }
+
       /* ---------- 挂载视频源：先绑监听，再设 src ---------- */
       function attach(src) {
         if (attached) return;
@@ -1733,7 +1570,11 @@
         var c = CUES[i];
         if (!c) return;
         maxScroll = Math.max(1, docEl.scrollHeight - window.innerHeight);
-        var y = ((c[0] + c[1]) / 2) * maxScroll;
+        // 落在「已完全显示、还没开始退场」的平台区中点：(淡入结束 + 退场开始) / 2
+        // 以前取淡入区间中点，跳过去时面板才刚淡到一半，还得再滑一下才看得清按钮
+        var holdEnd = Math.min(c[2], 1);
+        var at = (c[1] + Math.max(c[1], holdEnd)) / 2;
+        var y = at * maxScroll;
         window.scrollTo({ top: y, behavior: reduced ? "auto" : "smooth" });
       }
       document.addEventListener("click", function (ev) {
@@ -1752,6 +1593,18 @@
 
       readScroll();
       paint();
+
+      // 静帧能画出来就揭幕；同时给 1.2s 兜底，别让"图还没到"把页面锁住
+      (function watchPoster() {
+        if (typeof Image === "function") {
+          var im = new Image();
+          im.onload = reveal;
+          im.onerror = reveal;
+          im.src = POSTER;
+        }
+        setTimeout(reveal, 1200);
+      })();
+
       preload();
       requestAnimationFrame(frame);
 

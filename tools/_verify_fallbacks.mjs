@@ -112,7 +112,7 @@ writeFileSync(`${OUT}/fallback_reduced.jpg`, Buffer.from(s.data, "base64"));
 
 /* ---------- B. 视频不可用（屏蔽 mp4） ---------- */
 await send("Emulation.setEmulatedMedia", { features: [] });
-await send("Network.setBlockedURLs", { urls: ["*dusk-gulls.mp4*"] });
+await send("Network.setBlockedURLs", { urls: ["*dusk-sea.mp4*"] });
 events = [];
 await send("Page.navigate", { url: URL_ });
 await sleep(6000);
