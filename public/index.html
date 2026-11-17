@@ -620,88 +620,92 @@
     /* ============ 右侧章节表盘：倒扣的半圆，刻度随滚动转 ============
    半圆翻过来（弧在下、开口朝上），一圈铜刻度与 01–04 跟着页面滚动
    逆时针转过去，正下方一枚固定的铜指针指出当前章。 */
+    /* ============ 右侧章节表盘：竖着的半圆，直径贴着网页右边 ============
+   半圆的平边（直径）沿视口右缘竖直，弧朝左凸；刻度与 01–04 沿弧排开，
+   随滚动逆时针转，最左端一枚固定铜指针指出当前章。 */
     .rail {
       position: fixed;
       z-index: 41;
       right: 0;
       top: 50%;
-      width: 244px;
-      height: 150px;
-      margin-top: -75px;
+      width: 122px;
+      height: 268px;
+      margin-top: -134px;
       --rot: 60deg;
     }
 
-    /* 盘面：倒扣的半圆 */
+    /* 盘面：平边贴右缘，弧朝左 */
     .rail .line {
       position: absolute;
-      left: 0;
-      top: 0;
-      width: 244px;
-      height: 122px;
+      right: 0;
+      top: 50%;
+      width: 118px;
+      height: 236px;
+      transform: translateY(-50%);
       border: 2px solid rgba(206, 162, 92, .85);
-      border-top: none;
-      border-radius: 0 0 244px 244px;
+      border-right: none;
+      border-radius: 118px 0 0 118px;
       background:
-        radial-gradient(130% 120% at 50% -18%, rgba(34, 29, 23, .96) 0%, rgba(12, 11, 9, .98) 68%);
+        radial-gradient(120% 130% at 108% 50%, rgba(34, 29, 23, .96) 0%, rgba(12, 11, 9, .98) 68%);
       box-shadow:
         0 0 30px rgba(255, 176, 110, .08),
-        inset 0 -8px 22px rgba(255, 194, 134, .07),
+        inset -8px 0 22px rgba(255, 194, 134, .07),
         0 14px 30px -16px rgba(0, 0, 0, .9);
     }
 
-    /* 刻度齿：沿下半圈密排 */
+    /* 刻度齿：沿左半圈密排 */
     .rail .line::before {
       content: '';
       position: absolute;
-      left: 6px;
-      right: 6px;
-      top: 0;
-      height: 116px;
-      border-radius: 0 0 236px 236px;
-      background: repeating-conic-gradient(from 0deg at 50% 0%,
+      left: 0;
+      top: 4px;
+      bottom: 4px;
+      right: 0;
+      border-radius: 118px 0 0 118px;
+      background: repeating-conic-gradient(from 90deg at 100% 50%,
           rgba(226, 194, 148, .55) 0deg .9deg,
           rgba(226, 194, 148, 0) .9deg 4.5deg);
-      -webkit-mask-image: radial-gradient(closest-side, transparent 0 100px, #000 100px 108px, transparent 108px 100%);
-      mask-image: radial-gradient(closest-side, transparent 0 100px, #000 100px 108px, transparent 108px 100%);
+      -webkit-mask-image: radial-gradient(closest-side, transparent 0 96px, #000 96px 106px, transparent 106px 100%);
+      mask-image: radial-gradient(closest-side, transparent 0 96px, #000 96px 106px, transparent 106px 100%);
       pointer-events: none;
     }
 
-    /* 固定指针：正下方一枚铜三角，指着当前刻度 */
+    /* 固定指针：弧的最左端，指向右（指向盘心） */
     .rail .line i {
       position: absolute;
-      left: 50%;
-      top: 4px;
+      left: 2px;
+      top: 50%;
       width: 0;
       height: 0;
-      margin-left: -8px;
-      border-left: 8px solid transparent;
-      border-right: 8px solid transparent;
-      border-top: 15px solid #e8bd72;
+      margin-top: -8px;
+      border-top: 8px solid transparent;
+      border-bottom: 8px solid transparent;
+      border-left: 16px solid #e8bd72;
       filter: drop-shadow(0 0 8px rgba(255, 190, 120, .75));
       transform: none;
       background: none;
       box-shadow: none;
     }
 
-    /* 轴心：小铜帽（半圆的圆心在表盘上方） */
+    /* 轴心：贴右缘的铜帽 */
     .rail .line::after {
       content: '';
       position: absolute;
-      left: 50%;
-      top: -9px;
+      right: -8px;
+      top: 50%;
       width: 18px;
       height: 18px;
-      margin-left: -9px;
+      margin-top: -9px;
       border-radius: 50%;
       background: radial-gradient(circle at 34% 28%, #ffe6bd 0%, #c9974e 52%, #6b4a22 100%);
       box-shadow: 0 3px 8px rgba(0, 0, 0, .8), inset 0 1px 0 rgba(255, 236, 200, .6);
     }
 
-    /* 会转的刻度盘 */
+    /* 会转的刻度盘：轴心在右缘中点 */
     .rail ol {
       position: absolute;
-      left: 50%;
-      top: 0;
+      right: 0;
+      top: 50%;
       width: 0;
       height: 0;
       list-style: none;
@@ -715,15 +719,15 @@
       position: absolute;
       left: 0;
       top: 0;
-      width: 40px;
-      height: 40px;
-      margin: -20px 0 0 -20px;
+      width: 38px;
+      height: 38px;
+      margin: -19px 0 0 -19px;
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      /* 沿下半圆排开，并抵消父级旋转，让数字始终正立 */
-      transform: rotate(var(--a)) translateY(96px) rotate(calc(-1 * var(--a) - var(--rot)));
+      /* 沿左半圆排开，并抵消父级旋转，让数字始终正立 */
+      transform: rotate(var(--a)) translateX(-96px) rotate(calc(-1 * var(--a) - var(--rot)));
       transition: opacity .25s ease-out, transform .25s ease-out;
     }
 
@@ -754,6 +758,7 @@
     .rail li i {
       display: none;
     }
+
 
 
 
