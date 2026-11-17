@@ -748,8 +748,9 @@
     }
 
     /* ============ 首页欢迎语：毛笔字 ============
-       Ma Shan Zheng 是 OFL 授权的毛笔楷书。这里只子集了「新 / 一 / 天 / 开 / 始」
-       五个字（2.6KB，本地自托管，不依赖 Google Fonts 能否连通）。
+       Ma Shan Zheng 是 OFL 授权的毛笔楷书。这里只子集了站点实际用到的字符
+       ——「新一天开始」「行业日报投篮分析世界宗教地图」以及 AI 两个字母
+       （8.6KB，本地自托管，不依赖 Google Fonts 能否连通）。
        换成别的字需要重新生成子集，否则会回落到系统行楷。 */
     @font-face {
       font-family: 'Ma Shan Zheng';
@@ -757,7 +758,9 @@
       font-weight: 400;
       font-style: normal;
       font-display: swap;
-      unicode-range: U+4E00, U+5929, U+59CB, U+5F00, U+65B0;
+      unicode-range: U+41, U+49, U+4E00, U+4E16, U+4E1A, U+5206, U+56FE, U+5730,
+        U+5929, U+59CB, U+5B97, U+5F00, U+6295, U+62A5, U+6559, U+65B0, U+65E5,
+        U+6790, U+754C, U+7BEE, U+884C;
     }
 
     .brush {
@@ -867,14 +870,189 @@
       gap: 12px;
     }
 
-    /* 作品面板只剩一个标签和三个按钮，让它顶着面板上沿排（面板自身有 96px 上内边距，
-       落在顶栏下方），点导航跳过来三个入口就在视线最上方 */
-    .panel-mid {
+    /* ============ 作品章节：一张古代书桌 ============
+   整屏换成深色木桌台面（纯 CSS 木纹 + 灯下暖光池 + 四边压暗），
+   三个作品入口做成卷起来的竹简，名字用毛笔写在竹面上。 */
+    .panel-desk {
       justify-content: flex-start;
     }
 
-    .panel-mid .cta {
-      margin-top: clamp(4px, .8vw, 10px);
+    .panel-desk .panel-inner {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: min(100%, 60rem);
+    }
+
+    .desk {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background-color: #2a1a0d;
+      background-image:
+        /* 左上斜下的一束窗光 */
+        linear-gradient(112deg,
+          rgba(255, 214, 160, .10) 0%,
+          rgba(255, 206, 146, .05) 22%,
+          rgba(255, 206, 146, 0) 44%),
+        /* 灯下的暖光池：落在竹卷那一侧 */
+        radial-gradient(42% 34% at 18% 20%, rgba(255, 198, 126, .20) 0%, rgba(255, 176, 100, .06) 50%, rgba(255, 176, 100, 0) 80%),
+        /* 两侧压暗，桌面像有纵深 */
+        linear-gradient(90deg, rgba(0, 0, 0, .42) 0%, rgba(0, 0, 0, 0) 16%, rgba(0, 0, 0, 0) 84%, rgba(0, 0, 0, .42) 100%),
+        /* 木板缝：每 260px 一道 */
+        repeating-linear-gradient(180deg, rgba(0, 0, 0, .45) 0 1px, rgba(0, 0, 0, 0) 1px 260px),
+        /* 木纹：细密的横向丝理 */
+        repeating-linear-gradient(178.5deg,
+          rgba(255, 214, 164, .045) 0 2px,
+          rgba(0, 0, 0, 0) 2px 7px,
+          rgba(0, 0, 0, .07) 7px 8px,
+          rgba(0, 0, 0, 0) 8px 15px),
+        /* 大块深浅，避免木纹太规整 */
+        radial-gradient(64% 58% at 68% 46%, rgba(96, 56, 26, .55) 0%, rgba(96, 56, 26, 0) 72%),
+        linear-gradient(172deg, #422a19 0%, #311f11 44%, #1f1208 100%);
+      box-shadow:
+        inset 0 0 200px rgba(0, 0, 0, .72),
+        inset 0 -90px 120px -60px rgba(0, 0, 0, .8);
+    }
+
+    /* 桌沿：底部一道更深的横带，给台面一点厚度 */
+    .desk::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 8%;
+      background: linear-gradient(to top, rgba(0, 0, 0, .55) 0%, rgba(0, 0, 0, 0) 100%);
+    }
+
+    /* ============ 竹简：编连成册的竹片，右端卷起一截 ============
+   按真实形制：竹片窄长（实物长 20–60cm、宽仅 0.5–1cm），一片写一列字，
+   上中下用丝绳编连；收起时从一端卷成细卷。这里画的是「已展开一部分」的样子
+   —— 左边摊开几片竹简，右端还卷着的一截，绳从两头绕过。 */
+    .scrolls {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-end;
+      gap: clamp(28px, 3.4vw, 56px);
+      margin-top: clamp(10px, 1.2vw, 18px);
+      pointer-events: auto;
+    }
+
+    .scroll {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: clamp(126px, 10.6vw, 150px);
+      height: clamp(216px, 28vh, 262px);
+      padding-right: 28px;
+      border-radius: 3px;
+      text-decoration: none;
+      color: #2b1a08;
+      background-image:
+        /* 上中下三道编绳 */
+        linear-gradient(180deg,
+          rgba(0, 0, 0, 0) 0 23.6%,
+          rgba(46, 26, 10, .96) 23.6% 25.2%,
+          rgba(126, 84, 44, .85) 25.2% 26.4%,
+          rgba(0, 0, 0, 0) 26.4% 73.6%,
+          rgba(46, 26, 10, .96) 73.6% 75.2%,
+          rgba(126, 84, 44, .85) 75.2% 76.4%,
+          rgba(0, 0, 0, 0) 76.4% 100%),
+        /* 一片片竹简：竹黄 + 缝隙 */
+        repeating-linear-gradient(90deg,
+          #cda971 0 15px,
+          #bf9a5c 15px 16px,
+          #7d5a2e 16px 17.6px,
+          #b9955a 17.6px 18px);
+      background-color: #bf9a5c;
+      box-shadow:
+        0 12px 18px -8px rgba(0, 0, 0, .55),
+        0 30px 44px -28px rgba(0, 0, 0, .85);
+      transform: rotate(var(--tilt, 0deg));
+      transform-origin: 50% 100%;
+      transition: transform .38s var(--ease), box-shadow .38s var(--ease), filter .38s var(--ease);
+    }
+
+    .scroll:nth-child(1) {
+      --tilt: -1.1deg;
+    }
+
+    .scroll:nth-child(2) {
+      --tilt: .9deg;
+    }
+
+    .scroll:nth-child(3) {
+      --tilt: -.7deg;
+    }
+
+    /* 右端还卷着的一截细卷：表面是一圈圈竹片边 */
+    .scroll::after {
+      content: '';
+      position: absolute;
+      top: -3px;
+      bottom: -3px;
+      right: 0;
+      width: 32px;
+      border-radius: 16px;
+      background-image:
+        linear-gradient(90deg,
+          rgba(0, 0, 0, .48) 0%,
+          rgba(0, 0, 0, .06) 14%,
+          rgba(255, 246, 212, .24) 38%,
+          rgba(255, 250, 224, .28) 52%,
+          rgba(0, 0, 0, .12) 78%,
+          rgba(0, 0, 0, .52) 100%),
+        repeating-linear-gradient(180deg,
+          rgba(255, 240, 202, .12) 0 1px,
+          rgba(0, 0, 0, 0) 1px 3px,
+          rgba(70, 42, 14, .18) 3px 4px,
+          rgba(0, 0, 0, 0) 4px 6px),
+        linear-gradient(90deg, #7d5b2c 0%, #b8925a 46%, #a37f4a 100%);
+      box-shadow: inset 0 0 12px rgba(0, 0, 0, .4), -3px 0 8px rgba(0, 0, 0, .4);
+    }
+
+    /* 落在桌面上的接触阴影 */
+    .scroll::before {
+      content: '';
+      position: absolute;
+      left: -6%;
+      right: -8%;
+      bottom: -14px;
+      height: 18px;
+      border-radius: 50%;
+      background: radial-gradient(closest-side, rgba(0, 0, 0, .5) 0%, rgba(0, 0, 0, 0) 100%);
+      filter: blur(3px);
+      z-index: -1;
+    }
+
+    .scroll-name {
+      position: relative;
+      z-index: 1;
+      margin-right: 6px;
+      writing-mode: vertical-rl;
+      text-orientation: upright;
+      font-family: 'Ma Shan Zheng', 'STXingkai', '华文行楷', 'Xingkai SC', 'KaiTi', 'Kaiti SC', '楷体', serif;
+      font-size: clamp(20px, 1.74vw, 25px);
+      line-height: 1;
+      letter-spacing: .10em;
+      color: #241504;
+      text-shadow: 0 1px 0 rgba(255, 246, 214, .38);
+    }
+
+    .scroll:hover {
+      transform: translateY(-6px) rotate(var(--tilt, 0deg));
+      filter: brightness(1.05);
+      box-shadow:
+        0 18px 26px -10px rgba(0, 0, 0, .6),
+        0 40px 54px -30px rgba(0, 0, 0, .9);
+    }
+
+    .scroll:focus-visible {
+      outline: 2px solid var(--amber);
+      outline-offset: 4px;
     }
 
     .cta .pill {
@@ -981,6 +1159,22 @@
     @media (max-width:720px) {
       .nav a:not(.pill) {
         display: none;
+      }
+
+      .scrolls {
+        gap: 16px;
+        justify-content: flex-start;
+      }
+
+      .scroll {
+        width: clamp(104px, 29vw, 126px);
+        height: clamp(184px, 42vw, 212px);
+        padding-right: 24px;
+      }
+
+      .scroll-name {
+        font-size: 19px;
+        letter-spacing: .10em;
       }
 
       .rail {
@@ -1234,13 +1428,22 @@
       </div>
     </section>
 
-    <section class="panel panel-mid" data-panel id="ch-1" data-page-node-id="VvGLxGHnz8FBkr0fzLg6zD">
+    <section class="panel panel-desk" data-panel id="ch-1" data-page-node-id="VvGLxGHnz8FBkr0fzLg6zD">
+      <!-- 古代书桌台面：木纹 + 灯下暖光，铺满整个章节 -->
+      <div class="desk" data-stag aria-hidden="true"></div>
       <div class="panel-inner" data-page-node-id="mutuIuvDHVfQGhWFi7ADEu">
         <p class="eyebrow" data-stag data-page-node-id="MT6MuvZKyyZioWY72stx7G">作品</p>
-        <div class="cta" data-stag data-page-node-id="s7DgGZaj5ECsRiTLhaOTWp"><a class="pill" href="daily.html"
-            data-page-node-id="2IEIcDg3muuBXpyI7EF3wp">看 AI 日报</a><a class="pill" href="https://shootlab-pro.pages.dev/"
-            data-page-node-id="shootlab0p1">看投篮分析</a><a class="pill"
-            href="https://world-religions-555.pages.dev/" data-page-node-id="worldreligions0p1">看世界宗教地图</a></div>
+        <div class="scrolls" data-stag data-page-node-id="s7DgGZaj5ECsRiTLhaOTWp">
+          <a class="scroll" href="daily.html" data-page-node-id="2IEIcDg3muuBXpyI7EF3wp">
+            <span class="scroll-name">行业日报</span>
+          </a>
+          <a class="scroll" href="https://shootlab-pro.pages.dev/" data-page-node-id="shootlab0p1">
+            <span class="scroll-name">投篮分析</span>
+          </a>
+          <a class="scroll" href="https://world-religions-555.pages.dev/" data-page-node-id="worldreligions0p1">
+            <span class="scroll-name">世界宗教地图</span>
+          </a>
+        </div>
       </div>
     </section>
 
