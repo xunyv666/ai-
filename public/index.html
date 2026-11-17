@@ -617,45 +617,48 @@
    原来是竖排的 01–04 加一条进度线，现在做成一枚半圆表盘：
    黄铜外圈 + 钢制内圈 + 四道刻度，指针随滚动转动，刻度可点直接跳章。 */
     /* ============ 右侧章节表盘（黄铜半圆仪表） ============ */
+    /* ============ 右侧章节表盘：倒扣的半圆，刻度随滚动转 ============
+   半圆翻过来（弧在下、开口朝上），一圈铜刻度与 01–04 跟着页面滚动
+   逆时针转过去，正下方一枚固定的铜指针指出当前章。 */
     .rail {
       position: fixed;
       z-index: 41;
-      right: clamp(28px, 3vw, 52px);
+      right: 0;
       top: 50%;
       width: 244px;
-      height: 136px;
-      margin-top: -68px;
+      height: 150px;
+      margin-top: -75px;
+      --rot: 60deg;
     }
 
-    /* 表盘：黄铜外圈 + 深色盘面 + 一圈刻度齿 */
+    /* 盘面：倒扣的半圆 */
     .rail .line {
       position: absolute;
       left: 0;
-      bottom: 0;
+      top: 0;
       width: 244px;
       height: 122px;
       border: 2px solid rgba(206, 162, 92, .85);
-      border-bottom: none;
-      border-radius: 244px 244px 0 0;
+      border-top: none;
+      border-radius: 0 0 244px 244px;
       background:
-        radial-gradient(130% 120% at 50% 118%, rgba(34, 29, 23, .96) 0%, rgba(12, 11, 9, .98) 68%);
+        radial-gradient(130% 120% at 50% -18%, rgba(34, 29, 23, .96) 0%, rgba(12, 11, 9, .98) 68%);
       box-shadow:
         0 0 30px rgba(255, 176, 110, .08),
-        inset 0 8px 22px rgba(255, 194, 134, .07),
-        inset 0 -1px 0 rgba(0, 0, 0, .7),
+        inset 0 -8px 22px rgba(255, 194, 134, .07),
         0 14px 30px -16px rgba(0, 0, 0, .9);
     }
 
-    /* 刻度齿：沿半圆一圈细密铜齿 */
+    /* 刻度齿：沿下半圈密排 */
     .rail .line::before {
       content: '';
       position: absolute;
       left: 6px;
       right: 6px;
-      bottom: 0;
+      top: 0;
       height: 116px;
-      border-radius: 236px 236px 0 0;
-      background: repeating-conic-gradient(from 180deg at 50% 100%,
+      border-radius: 0 0 236px 236px;
+      background: repeating-conic-gradient(from 0deg at 50% 0%,
           rgba(226, 194, 148, .55) 0deg .9deg,
           rgba(226, 194, 148, 0) .9deg 4.5deg);
       -webkit-mask-image: radial-gradient(closest-side, transparent 0 100px, #000 100px 108px, transparent 108px 100%);
@@ -663,67 +666,75 @@
       pointer-events: none;
     }
 
-    /* 指针：细长黄铜针从轴心指出去 */
+    /* 固定指针：正下方一枚铜三角，指着当前刻度 */
     .rail .line i {
       position: absolute;
       left: 50%;
-      bottom: 0;
-      width: 3px;
-      height: 104px;
-      margin-left: -1.5px;
-      transform-origin: 50% 100%;
-      transform: rotate(var(--needle));
-      background: linear-gradient(to top, rgba(255, 214, 160, 1) 0%, rgba(238, 178, 106, .95) 62%, rgba(255, 226, 176, .95) 100%);
-      box-shadow: 0 0 12px rgba(255, 190, 120, .55);
-      clip-path: polygon(50% 0, 100% 6%, 50% 100%, 0 6%);
-      transition: transform .18s linear;
+      top: 4px;
+      width: 0;
+      height: 0;
+      margin-left: -8px;
+      border-left: 8px solid transparent;
+      border-right: 8px solid transparent;
+      border-top: 15px solid #e8bd72;
+      filter: drop-shadow(0 0 8px rgba(255, 190, 120, .75));
+      transform: none;
+      background: none;
+      box-shadow: none;
     }
 
-    /* 轴帽 */
+    /* 轴心：小铜帽（半圆的圆心在表盘上方） */
     .rail .line::after {
       content: '';
       position: absolute;
       left: 50%;
-      bottom: -9px;
-      width: 20px;
-      height: 20px;
-      margin-left: -10px;
+      top: -9px;
+      width: 18px;
+      height: 18px;
+      margin-left: -9px;
       border-radius: 50%;
       background: radial-gradient(circle at 34% 28%, #ffe6bd 0%, #c9974e 52%, #6b4a22 100%);
       box-shadow: 0 3px 8px rgba(0, 0, 0, .8), inset 0 1px 0 rgba(255, 236, 200, .6);
     }
 
+    /* 会转的刻度盘 */
     .rail ol {
       position: absolute;
-      inset: 0;
+      left: 50%;
+      top: 0;
+      width: 0;
+      height: 0;
       list-style: none;
       margin: 0;
       padding: 0;
+      transform: rotate(var(--rot));
+      transition: transform .25s ease-out;
     }
 
-    /* 四个刻度：贴着表盘内侧排开 */
     .rail li {
       position: absolute;
-      left: 50%;
-      bottom: 0;
-      width: 34px;
-      height: 34px;
-      margin-left: -17px;
+      left: 0;
+      top: 0;
+      width: 40px;
+      height: 40px;
+      margin: -20px 0 0 -20px;
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      transform: rotate(var(--a)) translateY(-82px) rotate(calc(-1 * var(--a)));
+      /* 沿下半圆排开，并抵消父级旋转，让数字始终正立 */
+      transform: rotate(var(--a)) translateY(96px) rotate(calc(-1 * var(--a) - var(--rot)));
+      transition: opacity .25s ease-out, transform .25s ease-out;
     }
 
     .rail li:focus-visible {
       outline: 2px solid var(--amber);
       outline-offset: 4px;
-      border-radius: 8px;
+      border-radius: 10px;
     }
 
     .rail li b {
-      font-size: 12.5px;
+      font-size: 13px;
       font-weight: 500;
       letter-spacing: .06em;
       color: rgba(214, 194, 166, .62);
@@ -743,6 +754,7 @@
     .rail li i {
       display: none;
     }
+
 
 
 
@@ -1399,13 +1411,13 @@
     <div class="line" data-page-node-id="WKoWmC8GFRfjCHFS8X4asQ"><i id="railFill"
         data-page-node-id="Oqh1xd663sCD9IPxnXUJNJ"></i></div>
     <ol data-page-node-id="LCEqUCpMhRM2v4NUPAvqoz">
-      <li data-rail="0" style="--a:-66deg" data-page-node-id="dYrwGn9jt8QEEeRESxSz6S"><b
+      <li data-rail="0" style="--a:-62deg" data-page-node-id="dYrwGn9jt8QEEeRESxSz6S"><b
           data-page-node-id="iAKcMD23zLZhK729IkTCZb">01</b><i data-page-node-id="tvbkLCMVRNBz39q8euRSMr"></i></li>
-      <li data-rail="1" style="--a:-22deg" data-page-node-id="pNnBOv4smRMWzBETnlXck1"><b
+      <li data-rail="1" style="--a:-21deg" data-page-node-id="pNnBOv4smRMWzBETnlXck1"><b
           data-page-node-id="IgW9WdI0clzyLppGE2foq9">02</b><i data-page-node-id="c02xPTFttnpTyW8e2TrLTR"></i></li>
-      <li data-rail="2" style="--a:22deg" data-page-node-id="8oDmx6QEtEGOx6dOTHkvLr"><b
+      <li data-rail="2" style="--a:21deg" data-page-node-id="8oDmx6QEtEGOx6dOTHkvLr"><b
           data-page-node-id="7hyxuP6ARcDCG1TIWtFYTm">03</b><i data-page-node-id="mZCzr3K47PWhvC3nC8rxXz"></i></li>
-      <li data-rail="3" style="--a:66deg" data-page-node-id="whBJvF5YViJRQf6W4BSWiy"><b
+      <li data-rail="3" style="--a:62deg" data-page-node-id="whBJvF5YViJRQf6W4BSWiy"><b
           data-page-node-id="BeQIJPOD3C3xmuEWdvTB8I">04</b><i data-page-node-id="nRA2TGcIcFeNYnCBcM6Xrs"></i></li>
     </ol>
   </aside>
@@ -1514,6 +1526,7 @@
       var bootPct = document.getElementById("bootPct");
       var bootRing = document.getElementById("bootRing");
       var railFill = document.getElementById("railFill");
+      var railEl = railFill ? railFill.closest(".rail") : null;
       var idxNum = document.getElementById("idxNum");
       var idxTime = document.getElementById("idxTime");
       var hint = document.getElementById("hint");
@@ -1588,7 +1601,15 @@
           lastDusk = progress;
           docEl.style.setProperty("--dusk", progress.toFixed(4));
           docEl.style.setProperty("--sunp", progress.toFixed(4));
-          railFill.style.transform = "rotate(" + (-66 + progress * 132).toFixed(1) + "deg)";
+          var rot = 60 - progress * 120;
+          if (railEl) railEl.style.setProperty("--rot", rot.toFixed(1) + "deg");
+          // 转到半圆外面的刻度就收起来，免得飘到盘外
+          for (var ri = 0; ri < railLis.length; ri++) {
+            var ba = parseFloat(railLis[ri].style.getPropertyValue("--a")) || 0;
+            var out = Math.abs(ba + rot) > 82;
+            railLis[ri].style.opacity = out ? "0" : "1";
+            railLis[ri].style.pointerEvents = out ? "none" : "auto";
+          }
           if (hint) hint.style.opacity = progress > 0.035 ? "0" : "1";
         }
         if (sunY !== lastSunY) {
