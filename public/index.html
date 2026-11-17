@@ -1842,9 +1842,19 @@
       inner.position.set(0, .95, 0);
       scene.add(inner);
 
-      const spin = new THREE.Group();     // 拖动转的部分：灯笼 + 三幅流苏字帘
-      spin.position.z = 1.8;
-      scene.add(spin);
+      const pivot = new THREE.Group();    // 吊点：整盏灯从这里吊下来，随风摆
+      pivot.position.set(0, 2.2, 0);
+      scene.add(pivot);
+
+      // 上面那根吊绳：从吊点一直拉出画面
+      const rope = new THREE.Mesh(new THREE.CylinderGeometry(.013, .013, 7, 8),
+        new THREE.MeshStandardMaterial({ color: 0xcbb48c, roughness: .8 }));
+      rope.position.y = 3.4;
+      pivot.add(rope);
+
+      const spin = new THREE.Group();     // 拖动转的部分：灯笼 + 三块木牌
+      spin.position.set(0, -2.2, 1.8);
+      pivot.add(spin);
       const sways = [];
       const tags = [];
 
@@ -1887,6 +1897,19 @@
       const capB = new THREE.Mesh(new THREE.CylinderGeometry(.56, .42, .24, 32), gold);
       capB.position.y = .10; spin.add(capB);
 
+      /* 底部托盘：灯笼与木牌的连接处，一圈金边加十颗珠子 */
+      const tray = new THREE.Mesh(new THREE.CylinderGeometry(.52, .58, .07, 48), gold);
+      tray.position.y = -.06; spin.add(tray);
+      const trayRing = new THREE.Mesh(new THREE.TorusGeometry(.55, .022, 8, 48),
+        new THREE.MeshStandardMaterial({ color: 0xe8c684, metalness: .95, roughness: .25 }));
+      trayRing.rotation.x = Math.PI / 2; trayRing.position.y = -.085; spin.add(trayRing);
+      for (let i = 0; i < 10; i++) {
+        const ang = (i / 10) * Math.PI * 2;
+        const bead = new THREE.Mesh(new THREE.SphereGeometry(.032, 12, 10), gold);
+        bead.position.set(Math.cos(ang) * .50, -.10, Math.sin(ang) * .50);
+        spin.add(bead);
+      }
+
       /* 笼内的光晕 */
       const haloC = document.createElement("canvas");
       haloC.width = haloC.height = 256;
@@ -1912,48 +1935,72 @@
       const curtains = [];
       const hitBoxes = [];
 
-      // 木雕书签：木纹底 + 金边 + 阴刻竖排字
+      // 木雕书签：木纹底 + 红漆金框 + 镂空纹样 + 阴刻竖排字（带孔，见得到后面）
       function woodTexture(text) {
-        const W = 360, H = 1400;
+        const W = 420, H = 1500;
         const cv = document.createElement("canvas");
         cv.width = W; cv.height = H;
         const cc = cv.getContext("2d");
 
         const g = cc.createLinearGradient(0, 0, W, 0);
-        g.addColorStop(0, "#6d4a2a"); g.addColorStop(.5, "#8b6237"); g.addColorStop(1, "#61401e");
+        g.addColorStop(0, "#a9743c"); g.addColorStop(.45, "#c08a4d");
+        g.addColorStop(.72, "#ad783f"); g.addColorStop(1, "#8a5c2d");
         cc.fillStyle = g; cc.fillRect(0, 0, W, H);
 
-        // 竖向木纹
-        for (let i = 0; i < 240; i++) {
+        for (let i = 0; i < 300; i++) {
           const gx = Math.random() * W;
-          cc.strokeStyle = "rgba(" + (88 + Math.random() * 62 | 0) + "," + (58 + Math.random() * 42 | 0) + ",28," + (.05 + Math.random() * .13).toFixed(3) + ")";
+          cc.strokeStyle = "rgba(" + (92 + Math.random() * 66 | 0) + "," + (60 + Math.random() * 44 | 0) + ",30," + (.05 + Math.random() * .14).toFixed(3) + ")";
           cc.lineWidth = .6 + Math.random() * 2.2;
           cc.beginPath(); cc.moveTo(gx, 0);
           for (let y = 0; y < H; y += 40) cc.lineTo(gx + Math.sin(y * .01 + gx) * 3, y);
           cc.stroke();
         }
 
-        // 金边（书签的双线框）
-        cc.strokeStyle = "rgba(228,190,126,.55)"; cc.lineWidth = 6;
-        cc.strokeRect(14, 14, W - 28, H - 28);
-        cc.strokeStyle = "rgba(228,190,126,.22)"; cc.lineWidth = 2;
-        cc.strokeRect(30, 30, W - 60, H - 60);
+        // 外圈红漆
+        cc.strokeStyle = "#9c2b1c"; cc.lineWidth = 16;
+        cc.strokeRect(13, 13, W - 26, H - 26);
+        // 金线两道
+        cc.strokeStyle = "rgba(246,214,154,.95)"; cc.lineWidth = 3.5;
+        cc.strokeRect(32, 32, W - 64, H - 64);
+        cc.strokeStyle = "rgba(236,200,136,.45)"; cc.lineWidth = 1.6;
+        cc.strokeRect(42, 42, W - 84, H - 84);
 
-        // 顶端穿绳的小孔
-        cc.fillStyle = "rgba(20,12,6,.85)";
-        cc.beginPath(); cc.arc(W / 2, 68, 13, 0, Math.PI * 2); cc.fill();
-        cc.strokeStyle = "rgba(255,236,200,.25)"; cc.lineWidth = 2;
-        cc.beginPath(); cc.arc(W / 2, 68, 13, 0, Math.PI * 2); cc.stroke();
+        // 角上的青绿点
+        cc.fillStyle = "rgba(46,143,133,.85)";
+        [[56, 56], [W - 56, 56], [56, H - 56], [W - 56, H - 56]].forEach(function (p2) {
+          cc.beginPath(); cc.arc(p2[0], p2[1], 9, 0, Math.PI * 2); cc.fill();
+        });
 
-        // 阴刻竖排字：先亮边后深墨，像刻进木头里
+        // 镂空：左右回纹小孔、上下云头、字间菱形
+        cc.globalCompositeOperation = "destination-out";
+        function hole(x2, y2, w2, h2, r2) {
+          cc.beginPath();
+          if (cc.roundRect) cc.roundRect(x2, y2, w2, h2, r2);
+          else cc.rect(x2, y2, w2, h2);
+          cc.fill();
+        }
+        for (let y2 = 240; y2 < H - 200; y2 += 150) {
+          hole(40, y2, 22, 62, 10);
+          hole(W - 62, y2, 22, 62, 10);
+        }
+        [96, H - 96].forEach(function (cy2) {
+          for (let i = -2; i <= 2; i++) {
+            cc.beginPath();
+            cc.arc(W / 2 + i * 46, cy2, i === 0 ? 17 : 11, 0, Math.PI * 2);
+            cc.fill();
+          }
+        });
+        cc.globalCompositeOperation = "source-over";
+
+        // 阴刻竖排字
         const n = text.length;
         const step = (H - 300) / n;
-        const size = Math.min(230, step * .92);
+        const size = Math.min(240, step * .92);
         cc.font = size + 'px "Ma Shan Zheng", "STXingkai", "KaiTi", serif';
         cc.textAlign = "center"; cc.textBaseline = "middle";
-        cc.fillStyle = "rgba(255,238,204,.34)";
-        for (let i = 0; i < n; i++) cc.fillText(text[i], W / 2 + 6, 150 + i * step + 7);
-        cc.fillStyle = "#281806";
+        cc.fillStyle = "rgba(255,244,214,.5)";
+        for (let i = 0; i < n; i++) cc.fillText(text[i], W / 2 + 7, 150 + i * step + 8);
+        cc.fillStyle = "#1d1003";
         for (let i = 0; i < n; i++) cc.fillText(text[i], W / 2, 150 + i * step);
 
         const tex = new THREE.CanvasTexture(cv);
@@ -1968,7 +2015,7 @@
       for (const w of works) {
         const tg = new THREE.Group();
         const a = w.ang;
-        tg.position.set(Math.sin(a) * .78, -.12, Math.cos(a) * .78);
+        tg.position.set(Math.sin(a) * .62, -.14, Math.cos(a) * .62);
         spin.add(tg);
         tags.push(tg);
 
@@ -1977,16 +2024,14 @@
         cord.position.y = -cordLen / 2;
         tg.add(cord);
 
-        // 木雕书签：正面背面都是刻字的木板，四周是木料本色
+        // 木牌：双面镂空薄板（红漆金框那面朝外）
         const tex = woodTexture(w.text);
-        const pw = .52, ph = 1.92, pd = .07;
+        const pw = .56, ph = 2.0;
         const face = new THREE.MeshStandardMaterial({
-          map: tex, roughness: .74, metalness: .08
+          map: tex, transparent: true, alphaTest: .42, side: THREE.DoubleSide,
+          roughness: .72, metalness: .08
         });
-        const plaque = new THREE.Mesh(
-          new THREE.BoxGeometry(pw, ph, pd),
-          [woodSide, woodSide, woodSide, woodSide, face, face]
-        );
+        const plaque = new THREE.Mesh(new THREE.PlaneGeometry(pw, ph), face);
         plaque.position.y = -cordLen - ph / 2;
         plaque.userData.link = w.link;
         plaque.userData.face = face;
@@ -2095,9 +2140,11 @@
           spin.rotation.y += vel;
           if (!reduced) spin.rotation.y += dt * .10;   // 灯笼缓慢自转
         }
-        // 缓慢往左飘，带一点上下呼吸
-        spin.position.x = -.55 + Math.sin(t * .10) * .30;
-        spin.position.y = Math.sin(t * .16) * .06;
+        // 挂在风里：吊点轻微摆，整体慢慢向左漂
+        pivot.position.x = -.45 + Math.sin(t * .11) * .28;
+        pivot.position.y = 2.2 + Math.sin(t * .16) * .05;
+        pivot.rotation.z = Math.sin(t * .35) * .05 + Math.sin(t * .9) * .012;
+        spin.rotation.x = Math.sin(t * .27) * .02;
         for (const tg of tags) tg.rotation.y = -spin.rotation.y;   // 帘子始终正对观众
         for (const s of sways) {                        // 帘子随风轻摆
           s.g.rotation.z = Math.sin(t * .9 + s.ph) * .04;
