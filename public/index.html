@@ -1781,10 +1781,10 @@
     })();
   </script>
   <script type="module">
-    /* ============ 大灯笼（three.js 懒加载） ============
-       亮着的大灯笼挂在黑空间里，圆底垂下三条彩色流苏，
-       流苏头的铁牌上用立体金属字刻着作品名（三块牌错落悬挂）。
-       拖动可转灯笼，流苏和铁牌跟着一起转。 */
+    /* ============ 大灯笼 + 流苏织字（three.js 懒加载） ============
+       亮着的大灯笼挂在黑空间里，圆底垂下三幅帘：每幅帘的彩色流苏
+       按笔画织出一个作品名（竖排，珠帘字的织法）。
+       拖动可转，帘子始终面向观众；点帘子进入作品。 */
     const stage = document.getElementById("pillarStage");
     const CDN = [
       "https://registry.npmmirror.com/three/0.160.0/files/build/three.module.js",
@@ -1827,7 +1827,7 @@
       const scene = new THREE.Scene();
       const camera = new THREE.PerspectiveCamera(38, wrap.clientWidth / wrap.clientHeight, .1, 100);
       camera.position.set(0, .05, 9.2);
-      camera.lookAt(0, -.35, 0);
+      camera.lookAt(0, -.4, 0);
 
       /* ---------- 灯光：观众侧主光 + 笼内暖光 ---------- */
       scene.add(new THREE.AmbientLight(0x5a4638, .75));
@@ -1838,13 +1838,14 @@
       const rim = new THREE.DirectionalLight(0x9db4ff, .3);
       rim.position.set(-5, 2, -7);
       scene.add(rim);
-      const inner = new THREE.PointLight(0xffb066, 2.6, 12, 1.5);
-      inner.position.set(0, .9, 0);
+      const inner = new THREE.PointLight(0xffb066, 2.8, 12, 1.5);
+      inner.position.set(0, .95, 0);
       scene.add(inner);
 
-      const spin = new THREE.Group();     // 拖动转的部分：灯笼 + 流苏 + 铁牌
+      const spin = new THREE.Group();     // 拖动转的部分：灯笼 + 三幅流苏字帘
       scene.add(spin);
       const sways = [];
+      const tags = [];
 
       const gold = new THREE.MeshStandardMaterial({ color: 0xd9a441, metalness: .9, roughness: .3 });
 
@@ -1867,25 +1868,25 @@
       const bodyTex = new THREE.CanvasTexture(c);
       bodyTex.colorSpace = THREE.SRGBColorSpace;
       const body = new THREE.Mesh(
-        new THREE.SphereGeometry(1.0, 64, 40),
+        new THREE.SphereGeometry(1.3, 64, 40),
         new THREE.MeshStandardMaterial({
           map: bodyTex, emissiveMap: bodyTex, emissive: 0xffb060,
           emissiveIntensity: .62, roughness: .5, metalness: .1
         })
       );
-      body.scale.set(1, .8, 1);
+      body.scale.set(1, .84, 1);
       body.position.y = .95;
       spin.add(body);
 
-      /* 上下金箍：上小下圆 */
-      const capT = new THREE.Mesh(new THREE.CylinderGeometry(.26, .38, .16, 32), gold);
-      capT.position.y = 1.82; spin.add(capT);
-      const hook = new THREE.Mesh(new THREE.TorusGeometry(.14, .02, 10, 32, Math.PI), gold);
-      hook.position.y = 1.97; hook.rotation.z = Math.PI; spin.add(hook);
-      const capB = new THREE.Mesh(new THREE.CylinderGeometry(.46, .34, .22, 32), gold);
-      capB.position.y = .14; spin.add(capB);
+      /* 上下金箍 */
+      const capT = new THREE.Mesh(new THREE.CylinderGeometry(.32, .48, .18, 32), gold);
+      capT.position.y = 2.06; spin.add(capT);
+      const hook = new THREE.Mesh(new THREE.TorusGeometry(.16, .022, 10, 32, Math.PI), gold);
+      hook.position.y = 2.22; hook.rotation.z = Math.PI; spin.add(hook);
+      const capB = new THREE.Mesh(new THREE.CylinderGeometry(.56, .42, .24, 32), gold);
+      capB.position.y = .10; spin.add(capB);
 
-      /* 笼内的光晕（黑色空间里的一圈暖光） */
+      /* 笼内的光晕 */
       const haloC = document.createElement("canvas");
       haloC.width = haloC.height = 256;
       const hx = haloC.getContext("2d");
@@ -1898,125 +1899,122 @@
         map: new THREE.CanvasTexture(haloC), blending: THREE.AdditiveBlending,
         depthWrite: false, opacity: .55
       }));
-      halo.scale.set(5.2, 5.2, 1); halo.position.y = .9;
+      halo.scale.set(6.2, 6.2, 1); halo.position.y = .95;
       scene.add(halo);
 
-      /* ---------- 三个作品：错落的铁牌 + 立体金属字 + 彩色流苏 ---------- */
+      /* ---------- 三个作品：流苏织成的字帘 ---------- */
       const works = [
-        { text: "行业日报", link: "daily.html", ang: 0, drop: .95 },
-        { text: "投篮分析", link: "https://shootlab-pro.pages.dev/", ang: 2.09, drop: 1.42 },
-        { text: "世界宗教地图", link: "https://world-religions-555.pages.dev/", ang: 4.19, drop: 1.89 }
+        { text: "行业日报", link: "daily.html", ang: 0, drop: 1.0 },
+        { text: "投篮分析", link: "https://shootlab-pro.pages.dev/", ang: 2.09, drop: 1.58 },
+        { text: "世界宗教地图", link: "https://world-religions-555.pages.dev/", ang: 4.19, drop: 2.16 }
       ];
-      const strandColors = [0xd4453a, 0xd9a441, 0x2e8f85, 0x4a5f9e, 0xc95f2f];
-      const plates = [];
-      const tags = [];
+      const strandColors = [0xd4453a, 0xd9a441, 0xe0703f, 0x2e8f85, 0x4a5f9e];
+      const curtains = [];
+      const hitBoxes = [];
 
-      function textTexture(text, px) {
-        const t = document.createElement("canvas");
-        t.width = 720; t.height = 240;
-        const tx = t.getContext("2d");
-        tx.font = px + 'px "Ma Shan Zheng", "STXingkai", "KaiTi", serif';
-        tx.textAlign = "center"; tx.textBaseline = "middle";
-        tx.fillStyle = "#ffffff";
-        tx.fillText(text, 360, 124);
-        const tex = new THREE.CanvasTexture(t);
-        tex.colorSpace = THREE.SRGBColorSpace;
-        tex.anisotropy = 8;
-        return tex;
+      // 把名字画到画布上（竖排），返回 ctx 供按列采样
+      function nameCanvas(text) {
+        const cv = document.createElement("canvas");
+        cv.width = 240; cv.height = text.length * 270 + 60;
+        const cc = cv.getContext("2d");
+        cc.font = '190px "Ma Shan Zheng", "STXingkai", "KaiTi", serif';
+        cc.textAlign = "center"; cc.textBaseline = "middle";
+        cc.fillStyle = "#fff";
+        for (let i = 0; i < text.length; i++) {
+          cc.fillText(text[i], 120, 130 + i * 270);
+        }
+        return cv;
       }
 
       for (const w of works) {
         const tg = new THREE.Group();
         const a = w.ang;
-        tg.position.set(Math.sin(a) * .44, -.12, Math.cos(a) * .44);
+        tg.position.set(Math.sin(a) * .55, -.12, Math.cos(a) * .55);
         spin.add(tg);
         tags.push(tg);
 
-        // 吊绳：长短错落
+        // 吊绳 + 帘杆
         const cordLen = w.drop;
         const cord = new THREE.Mesh(new THREE.CylinderGeometry(.014, .014, cordLen, 8), gold);
         cord.position.y = -cordLen / 2;
         tg.add(cord);
 
-        // 铁牌（作品名刻在这里，立体金属字）
-        const plate = new THREE.Mesh(
-          new THREE.BoxGeometry(.74, .52, .05),
-          new THREE.MeshStandardMaterial({ color: 0x2f2f36, metalness: .85, roughness: .42 })
+        const cv = nameCanvas(w.text);
+        const d = cv.getContext("2d").getImageData(0, 0, cv.width, cv.height).data;
+        const scale = 2.3 / cv.height;           // 帘面高度 2.3
+        const barW = cv.width * scale;
+
+        // 帘杆（金色横杆，流苏从这里垂下来）
+        const bar = new THREE.Mesh(new THREE.CylinderGeometry(.016, .016, barW + .06, 10), gold);
+        bar.rotation.z = Math.PI / 2;
+        bar.position.y = 0;
+        tg.add(bar);
+
+        // 按列采样：每一列墨迹的连续段 = 一条流苏（长度=段的长度）
+        const strandGeo = new THREE.CylinderGeometry(.0095, .0145, 1, 5);
+        let count = 0;
+        for (let px = 4; px < cv.width; px += 5) {
+          let runStart = -1;
+          for (let py = 0; py < cv.height; py += 3) {
+            const al = d[(py * cv.width + px) * 4 + 3];
+            const ink = al > 110;
+            if (ink && runStart < 0) runStart = py;
+            if ((!ink || py + 3 >= cv.height) && runStart >= 0) {
+              const runEnd = ink ? cv.height : py;
+              const len = (runEnd - runStart) * scale;
+              if (len > .035) {
+                const wx = (px - cv.width / 2) * scale;
+                const wy = -(runStart * scale + len / 2);
+                const col = strandColors[(count + px) % strandColors.length];
+                const st = new THREE.Mesh(strandGeo,
+                  new THREE.MeshStandardMaterial({
+                    color: col, roughness: .38, emissive: col, emissiveIntensity: .30
+                  }));
+                st.scale.y = len;
+                st.position.set(wx, wy, (Math.random() - .5) * .012);
+                tg.add(st);
+                count++;
+              }
+              runStart = -1;
+            }
+          }
+        }
+
+        // 帘子居中的热区（透明盒：悬停亮、点击进）
+        const hit = new THREE.Mesh(
+          new THREE.BoxGeometry(barW + .12, 1.56, .1),
+          new THREE.MeshBasicMaterial({ transparent: true, opacity: 0, depthWrite: false })
         );
-        const plateY = -cordLen - .26;
-        plate.position.y = plateY;
-        plate.userData.link = w.link;
-        tg.add(plate);
-        plates.push(plate);
+        hit.position.y = -.78;
+        hit.userData.link = w.link;
+        tg.add(hit);
+        hitBoxes.push(hit);
 
-        // 立体金属字：多层字片叠出厚度，正面受光最亮
-        const tex = textTexture(w.text, w.text.length > 4 ? 108 : 132);
-        const DEPTH = 7, STEP = .012;
-        const front = new THREE.MeshStandardMaterial({
-          map: tex, transparent: true, color: 0xffd9a0,
-          metalness: .9, roughness: .3, emissive: 0xffb060, emissiveIntensity: .22,
-          depthWrite: false, polygonOffset: true, polygonOffsetFactor: -2
-        });
-        for (let i = 0; i < DEPTH; i++) {
-          const t = i / (DEPTH - 1);
-          const shade = Math.round(255 * (1 - t * .62));
-          const isFront = i === DEPTH - 1;
-          const mat = isFront ? front : new THREE.MeshBasicMaterial({
-            map: tex, transparent: true, depthWrite: false,
-            color: new THREE.Color(shade, shade * .82, shade * .55)
-          });
-          const m = new THREE.Mesh(new THREE.PlaneGeometry(.66, .22), mat);
-          m.position.set(0, plateY + .012, .028 + i * STEP);
-          tg.add(m);
-        }
-        // 背面同样刻一份：灯笼转到哪一面，哪一面都读得到
-        for (let i = 0; i < DEPTH; i++) {
-          const t = i / (DEPTH - 1);
-          const shade = Math.round(255 * (1 - t * .62));
-          const isFront = i === DEPTH - 1;
-          const mat = isFront ? front : new THREE.MeshBasicMaterial({
-            map: tex, transparent: true, depthWrite: false,
-            color: new THREE.Color(shade, shade * .82, shade * .55)
-          });
-          const m = new THREE.Mesh(new THREE.PlaneGeometry(.66, .22), mat);
-          m.position.set(0, plateY + .012, -.028 - i * STEP);
-          m.rotation.y = Math.PI;
-          tg.add(m);
-        }
+        // 悬停时帘子背后的暖光
+        const glow = new THREE.Sprite(new THREE.SpriteMaterial({
+          map: halo.material.map, blending: THREE.AdditiveBlending,
+          depthWrite: false, opacity: 0
+        }));
+        glow.scale.set(2.6, 2.6, 1); glow.position.y = -.78;
+        tg.add(glow);
+        hit.userData.glow = glow;
 
-        // 铁牌下的彩色流苏：一束细丝，随风轻摆
-        const strands = new THREE.Group();
-        strands.position.y = -cordLen - .52;
-        for (let i = 0; i < 14; i++) {
-          const ang = (i / 14) * Math.PI * 2;
-          const rr = i % 3 === 0 ? .012 : .085;
-          const len = .95 + (i % 4) * .11;
-          const st = new THREE.Mesh(
-            new THREE.CylinderGeometry(.005, .012, len, 5),
-            new THREE.MeshStandardMaterial({ color: strandColors[i % strandColors.length], roughness: .62 })
-          );
-          st.position.set(Math.cos(ang) * rr, -len / 2, Math.sin(ang) * rr);
-          st.rotation.z = Math.cos(ang) * .025;
-          st.rotation.x = Math.sin(ang) * .025;
-          strands.add(st);
-        }
-        const ring = new THREE.Mesh(new THREE.TorusGeometry(.09, .018, 8, 24), gold);
-        ring.rotation.x = Math.PI / 2; ring.position.y = .02;
-        strands.add(ring);
-        tg.add(strands);
-        sways.push({ g: strands, ph: a * 2.2 });
-
-        // 梢头小珠
-        const bead = new THREE.Mesh(new THREE.SphereGeometry(.04, 12, 10), gold);
-        bead.position.y = -cordLen - .52 - 1.5;
-        tg.add(bead);
+        curtains.push(tg);
       }
 
-      /* ---------- 交互：拖动转灯笼 / 悬停亮牌 / 点击进入 ---------- */
+      /* ---------- 交互：拖动转灯笼 / 悬停亮帘 / 点击进入 ---------- */
       const ray = new THREE.Raycaster();
       const ptr = new THREE.Vector2(-2, -2);
       let dragging = false, moved = 0, lastX = 0, vel = 0, hovered = null;
+      let camZ = wrap.clientWidth / wrap.clientHeight < .9 ? 15.5 : 13.2;
+      camera.position.z = camZ;
       const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      wrap.addEventListener("wheel", function (e) {
+        e.preventDefault();
+        camZ = Math.min(16.5, Math.max(6.8, camZ + e.deltaY * .006));
+        camera.position.z = camZ;
+      }, { passive: false });
 
       function setPointer(e) {
         const r = wrap.getBoundingClientRect();
@@ -2046,7 +2044,7 @@
         const w2 = wrap.clientWidth, h2 = wrap.clientHeight;
         renderer.setSize(w2, h2);
         camera.aspect = w2 / h2;
-        camera.position.z = w2 / h2 < .9 ? 11.8 : 9.2;
+        camera.position.z = camZ;
         camera.updateProjectionMatrix();
       }
       addEventListener("resize", fit);
@@ -2066,18 +2064,21 @@
           spin.rotation.y += vel;
           if (!reduced) spin.rotation.y += dt * .10;   // 灯笼缓慢自转
         }
-        for (const t2 of tags) t2.rotation.y = -spin.rotation.y;  // 铁牌始终正对观众
-        for (const s of sways) {                        // 流苏随风轻摆
-          s.g.rotation.z = Math.sin(t * 1.3 + s.ph) * .05;
-          s.g.rotation.x = Math.cos(t * 1.1 + s.ph) * .05;
+        // 缓慢往左飘，带一点上下呼吸
+        spin.position.x = -.55 + Math.sin(t * .10) * .30;
+        spin.position.y = Math.sin(t * .16) * .06;
+        for (const tg of tags) tg.rotation.y = -spin.rotation.y;   // 帘子始终正对观众
+        for (const s of sways) {                        // 帘子随风轻摆
+          s.g.rotation.z = Math.sin(t * .9 + s.ph) * .04;
+          s.g.rotation.x = Math.cos(t * .7 + s.ph) * .04;
         }
         ray.setFromCamera(ptr, camera);
-        const hit = ray.intersectObjects(plates, false)[0];
+        const hit = ray.intersectObjects(hitBoxes, false)[0];
         const h = hit ? hit.object : null;
         if (h !== hovered) {
-          if (hovered) hovered.material.emissive.setHex(0x000000);
+          if (hovered) hovered.userData.glow.material.opacity = 0;
           hovered = h;
-          if (hovered) hovered.material.emissive.setHex(0xffb060);
+          if (hovered) hovered.userData.glow.material.opacity = .55;
           wrap.style.cursor = hovered ? "pointer" : "grab";
         }
         renderer.render(scene, camera);
@@ -2087,6 +2088,6 @@
       stage.classList.add("ready");
     }
   </script>
-</body></body></body>
+</body>
 
 </html>
