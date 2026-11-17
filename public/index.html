@@ -857,10 +857,10 @@
       gap: 12px;
     }
 
-    /* 作品面板只剩一个标签和三个按钮，底部对齐会让按钮贴着屏幕下沿，
-       这里单独改成垂直居中，视线上更稳，点导航跳过来也正好在视线中间 */
+    /* 作品面板只剩一个标签和三个按钮，让它顶着面板上沿排（面板自身有 96px 上内边距，
+       落在顶栏下方），点导航跳过来三个入口就在视线最上方 */
     .panel-mid {
-      justify-content: center;
+      justify-content: flex-start;
     }
 
     .panel-mid .cta {
@@ -1231,8 +1231,8 @@
       <div class="panel-inner" data-page-node-id="mutuIuvDHVfQGhWFi7ADEu">
         <p class="eyebrow" data-stag data-page-node-id="MT6MuvZKyyZioWY72stx7G">作品</p>
         <div class="cta" data-stag data-page-node-id="s7DgGZaj5ECsRiTLhaOTWp"><a class="pill" href="daily.html"
-            data-page-node-id="2IEIcDg3muuBXpyI7EF3wp">看 AI 日报</a><a class="pill pill-ghost" href="https://shootlab-pro.pages.dev/"
-            data-page-node-id="shootlab0p1">看投篮分析</a><a class="pill pill-ghost"
+            data-page-node-id="2IEIcDg3muuBXpyI7EF3wp">看 AI 日报</a><a class="pill" href="https://shootlab-pro.pages.dev/"
+            data-page-node-id="shootlab0p1">看投篮分析</a><a class="pill"
             href="https://world-religions-555.pages.dev/" data-page-node-id="worldreligions0p1">看世界宗教地图</a></div>
       </div>
     </section>
