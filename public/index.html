@@ -2019,34 +2019,41 @@
       const bodyTex = new THREE.CanvasTexture(c);
       bodyTex.colorSpace = THREE.SRGBColorSpace;
       const body = new THREE.Mesh(
-        new THREE.SphereGeometry(1.3, 64, 40),
+        new THREE.SphereGeometry(1.45, 64, 40),
         new THREE.MeshStandardMaterial({
           map: bodyTex, emissiveMap: bodyTex, emissive: 0xffb060,
           emissiveIntensity: .62, roughness: .5, metalness: .1
         })
       );
-      body.scale.set(1, .84, 1);
+      body.scale.set(1.04, .78, 1.04);
       body.position.y = .95;
       spin.add(body);
 
       /* 上下金箍 */
-      const capT = new THREE.Mesh(new THREE.CylinderGeometry(.32, .48, .18, 32), gold);
-      capT.position.y = 2.06; spin.add(capT);
-      const hook = new THREE.Mesh(new THREE.TorusGeometry(.16, .022, 10, 32, Math.PI), gold);
-      hook.position.y = 2.22; hook.rotation.z = Math.PI; spin.add(hook);
-      const capB = new THREE.Mesh(new THREE.CylinderGeometry(.56, .42, .24, 32), gold);
-      capB.position.y = .10; spin.add(capB);
+      const capT = new THREE.Mesh(new THREE.CylinderGeometry(.36, .54, .20, 40), gold);
+      capT.position.y = 2.10; spin.add(capT);
+      const hook = new THREE.Mesh(new THREE.TorusGeometry(.18, .024, 10, 32, Math.PI), gold);
+      hook.position.y = 2.28; hook.rotation.z = Math.PI; spin.add(hook);
+      const capB = new THREE.Mesh(new THREE.CylinderGeometry(.72, .58, .26, 40), gold);
+      capB.position.y = .06; spin.add(capB);
 
-      /* 底部托盘：灯笼与木牌的连接处，一圈金边加十颗珠子 */
-      const tray = new THREE.Mesh(new THREE.CylinderGeometry(.52, .58, .07, 48), gold);
-      tray.position.y = -.06; spin.add(tray);
-      const trayRing = new THREE.Mesh(new THREE.TorusGeometry(.55, .022, 8, 48),
+      /* 底盘：托住灯笼、也是木牌的挂点。做得比笼身宽一圈，
+         三根吊绳正好从盘沿垂下去，不再是漂在半空的线头 */
+      // 盘面朝下、背光，单独给点自发光，免得黑成一块
+      const trayMat = new THREE.MeshStandardMaterial({
+        color: 0xd2a25c, metalness: .88, roughness: .34,
+        emissive: 0x6b3f12, emissiveIntensity: .55
+      });
+      const tray = new THREE.Mesh(new THREE.CylinderGeometry(.94, 1.04, .11, 64), trayMat);
+      tray.position.y = -.14; spin.add(tray);
+      const trayRing = new THREE.Mesh(new THREE.TorusGeometry(1.01, .028, 10, 64),
         new THREE.MeshStandardMaterial({ color: 0xe8c684, metalness: .95, roughness: .25 }));
-      trayRing.rotation.x = Math.PI / 2; trayRing.position.y = -.085; spin.add(trayRing);
-      for (let i = 0; i < 10; i++) {
-        const ang = (i / 10) * Math.PI * 2;
-        const bead = new THREE.Mesh(new THREE.SphereGeometry(.032, 12, 10), gold);
-        bead.position.set(Math.cos(ang) * .50, -.10, Math.sin(ang) * .50);
+      trayRing.rotation.x = Math.PI / 2; trayRing.position.y = -.20; spin.add(trayRing);
+      // 盘面下沿一圈金珠
+      for (let i = 0; i < 16; i++) {
+        const ang = (i / 16) * Math.PI * 2;
+        const bead = new THREE.Mesh(new THREE.SphereGeometry(.036, 12, 10), gold);
+        bead.position.set(Math.cos(ang) * .97, -.21, Math.sin(ang) * .97);
         spin.add(bead);
       }
 
@@ -2168,7 +2175,7 @@
       for (const w of works) {
         const tg = new THREE.Group();
         const a = w.ang;
-        tg.position.set(Math.sin(a) * .82, -.14, Math.cos(a) * .82);
+        tg.position.set(Math.sin(a) * .86, -.195, Math.cos(a) * .86);
         spin.add(tg);
         tags.push(tg);
 
