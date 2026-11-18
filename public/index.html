@@ -634,7 +634,7 @@
       --rot: 60deg;
     }
 
-    /* 盘面：平边贴右缘，弧朝左 */
+    /* 盘面：完全透明，只留刻度、数字和指针浮在页面上 */
     .rail .line {
       position: absolute;
       right: 0;
@@ -642,38 +642,16 @@
       width: 118px;
       height: 236px;
       transform: translateY(-50%);
-      border: 2px solid rgba(206, 162, 92, .85);
-      border-right: none;
-      border-radius: 118px 0 0 118px;
-      background:
-        radial-gradient(120% 130% at 108% 50%, rgba(34, 29, 23, .96) 0%, rgba(12, 11, 9, .98) 68%);
-      box-shadow:
-        0 0 30px rgba(255, 176, 110, .08),
-        inset -8px 0 22px rgba(255, 194, 134, .07),
-        0 14px 30px -16px rgba(0, 0, 0, .9);
-    }
-
-    /* 刻度齿：沿左半圈密排 */
-    .rail .line::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 4px;
-      bottom: 4px;
-      right: 0;
-      border-radius: 118px 0 0 118px;
-      background: repeating-conic-gradient(from 90deg at 100% 50%,
-          rgba(226, 194, 148, .55) 0deg .9deg,
-          rgba(226, 194, 148, 0) .9deg 4.5deg);
-      -webkit-mask-image: radial-gradient(closest-side, transparent 0 96px, #000 96px 106px, transparent 106px 100%);
-      mask-image: radial-gradient(closest-side, transparent 0 96px, #000 96px 106px, transparent 106px 100%);
+      border: none;
+      background: none;
+      box-shadow: none;
       pointer-events: none;
     }
 
     /* 固定指针：弧的最左端，指向右（指向盘心） */
     .rail .line i {
       position: absolute;
-      left: 2px;
+      left: -8px;
       top: 50%;
       width: 0;
       height: 0;
@@ -681,24 +659,10 @@
       border-top: 8px solid transparent;
       border-bottom: 8px solid transparent;
       border-left: 16px solid #e8bd72;
-      filter: drop-shadow(0 0 8px rgba(255, 190, 120, .75));
+      filter: drop-shadow(0 0 10px rgba(255, 196, 130, .9));
       transform: none;
       background: none;
       box-shadow: none;
-    }
-
-    /* 轴心：贴右缘的铜帽 */
-    .rail .line::after {
-      content: '';
-      position: absolute;
-      right: -8px;
-      top: 50%;
-      width: 18px;
-      height: 18px;
-      margin-top: -9px;
-      border-radius: 50%;
-      background: radial-gradient(circle at 34% 28%, #ffe6bd 0%, #c9974e 52%, #6b4a22 100%);
-      box-shadow: 0 3px 8px rgba(0, 0, 0, .8), inset 0 1px 0 rgba(255, 236, 200, .6);
     }
 
     /* 会转的刻度盘：轴心在右缘中点 */
@@ -741,8 +705,8 @@
       font-size: 13px;
       font-weight: 500;
       letter-spacing: .06em;
-      color: rgba(214, 194, 166, .62);
-      text-shadow: 0 1px 0 rgba(0, 0, 0, .8);
+      color: rgba(232, 210, 180, .82);
+      text-shadow: 0 0 10px rgba(0, 0, 0, .95), 0 1px 2px rgba(0, 0, 0, .9);
       transition: color .3s var(--ease), text-shadow .3s var(--ease);
     }
 
